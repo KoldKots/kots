@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{77690ab3-07d0-404f-8f70-af94088d644f}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{03875507-a6b0-479c-83dc-a9bab7b3a69b}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{f7ed2cf2-c47f-45a6-9ebb-9b1e42f55787}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Stored Procedures">
+      <UniqueIdentifier>{d2238211-0375-40d0-b20e-ffc5f77551ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Views">
+      <UniqueIdentifier>{8c2b685d-b0f8-499c-8d9a-cad951220991}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="g_ai.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_chase.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_cmds.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_combat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_func.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_items.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_monster.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_phys.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_save.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_spawn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_svcmds.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_target.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_trigger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_turret.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_weapon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_abilities.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_admin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_array.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_bfg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_character.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_commands.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_configstrings.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_conpersist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_dbthread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_hook.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_hud.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_items.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_linkedlist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_logging.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_maplist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_menu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_monster.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_motd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_mute.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_mysql_helper.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_pickups.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_power.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_pweapon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_resist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_runes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_sabre.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_server.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_svcmds.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_tballs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_update.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_weapon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_weapondamage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_actor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_berserk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_boss2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_boss3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_boss31.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_boss32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_brain.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_chick.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_flash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_flipper.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_float.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_flyer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_gladiator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_gunner.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_hover.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_infantry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_insane.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_medic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_move.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_mutant.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_parasite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_soldier.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_supertank.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="m_tank.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p_client.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p_hud.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p_menu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p_trail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p_view.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p_weapon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="q_shared.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kots_official.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="g_local.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_abilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_admin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_bfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_commands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_configstrings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_conpersist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_dbthread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_hook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_hud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_items.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_linkedlist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_logging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_maplist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_monster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_motd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_mute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_mysql_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_pickups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_power.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_pweapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_resist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_runes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_sabre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_svcmds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_tballs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_update.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_weapondamage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_actor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_berserk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_boss2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_boss31.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_boss32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_brain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_chick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_flipper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_float.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_flyer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_gladiator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_gunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_hover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_infantry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_insane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_medic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_mutant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_parasite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_soldier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_supertank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_tank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="q_shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kots_official.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="game.def">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="AdminLogin.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="BanIp.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="CreateCharacter.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="DeleteAllCharacters.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="DeleteCharacter.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="Load.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="LoadIpBans.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="LoadMuteList.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="LoadRunes.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="LoadServers.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="Login.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="LogInfo.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="MutePlayer.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="SaveCharacter.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="SavePersist.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="SavePlayer.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="SavePower.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="SaveSettings.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="SaveStats.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="SaveWeapon.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="UnmutePlayer.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="UpdateKings.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="UpdateServer.sql">
+      <Filter>Stored Procedures</Filter>
+    </None>
+    <None Include="v_possible_kings.sql">
+      <Filter>Views</Filter>
+    </None>
+    <None Include="..\changelog.txt" />
+    <None Include="..\TODO.txt" />
+  </ItemGroup>
+</Project>

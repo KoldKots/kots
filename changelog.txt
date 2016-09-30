@@ -1,0 +1,951 @@
+Version 1.1.0 - 2010-08-15 - SWB
+BUGFIX: Fixed a bug where the wrong text printed out for sv dbhostname.
+BUGFIX: Fixed a bug with the wrong dbhostname variable being used.
+BUGFIX: Fixed some Linux build issues with some code in kots_update.c (Don't remember where this came from but it wasn't used).
+CHANGE: Nerfed fly to limit it to 3 seconds of flying time with a cooldown and recharge period.
+CHANGE: Nerfed the hook to limit it to only hold on for 5 seconds with a half second cooldown.
+CHANGE: Removed the ability to train weapons above level 6.
+CHANGE: Nerfed grenade launcher level 10 effect to only last 3 seconds or 1.5 with strength reduction.
+CHANGE: Nerfed hyperblaster level 10 effect to only have a 50% chance to happen.
+CHANGE: Reduced tech 3 to resistance 1.4
+CHANGE: Added tech 5 resistance of 1.5
+CHANGE: Capped munition and vitality to 1 per 3 levels until you reach level 10
+CHANGE: Added respec function for beginners: Upon reaching level 10 you have the option of relocating 5 player points.
+
+Changes provided thanks to Corrupted:
+Changed leveling a bit to have people go through the midlevels faster:
+   Level 8: 60k
+   Level 9: 100k
+   Level 10: 150k
+   Level 11: 200k
+   Level 12: 275k
+   Level 13: 350k
+   Level 14: 425k
+   Level 15: 500k
+   Level 16: 600k
+
+CHANGE: Nerfed vithealth: Adds 35 life now
+CHANGE: Nerfed spiral growth: 100 damage initially, 100 damage per level, can't be trained before level 6
+CHANGE: Nerfed weapon knock: str7 from 160 to 250, str 5 from 250 to 400 (didn't test yet)
+CHANGE: Nerfed monsters exp/credits significantly (changes mostly aimed at people abusing stupid small maps like 2box4)
+CHANGE: Nerfed railgun (lvl 5: 200 dmg, lvl 6: 250 dmg)
+CHANGE: Buffed sprees (to 2x, 3x, 5x bonus)
+CHANGE: Nerfed hand grenade (lvl 6: 350 dmg, lvl 10: 400 dmg, 1000 speed)
+CHANGE: Nerfed hook speed/increased cubecost
+
+Version 1.0.10 - 2009-01-24 - SWB
+Cleaned up code and added variables for people to host servers using their own database.
+
+Version 1.0.9 - 2008-03-26 - SWB
+BUGFIX: Karma level 2 was not allowing pickup beyond max anymore
+BUGFIX: Fixed a problem where your own packs weren't counting towards your total credits in kots_stats
+BUGFIX: Fixed a false positive for dummy killing that can happen from killing monsters
+BUGFIX: A crash would occur when a player disconnected before login completed
+
+Version 1.0.8 - 2008-03-23 - SWB
+BUGFIX: Fixed the lack of line breaks on kots_stats help
+BUGFIX: Fixed a few database connection issues
+BUGFIX: Fixed a bug that could cause crashes in 1.0.7 when logging information
+BUGFIX: Fixed a bug that could crash the server during shutdown
+BUGFIX: The thump sound when on your spree was not always indexed each map so you might not always hear it
+
+Version 1.0.7 - 2008-03-23 - SWB
+BUGFIX: Certain server cvars could be changed during the map that shouldn't (they would be reset next map though)
+BUGFIX: Fixed a bug with chaingun accuracy
+BUGFIX: Fixed a bug with kots health not curing poison
+BUGFIX: Fixed a bug with bide death explosions that was causing illegitimate 2fers
+BUGFIX: Fixed a bug with the HG short fuse setting
+BUGFIX: Fast weapon switching didn't play well with the old weapon toggling binds "use x; use y"
+CHANGE: Added an update feature that can be used in game to update mod version with virtually no down time
+CHANGE: Bide starting damage is now 200 for level 1
+CHANGE: Added some more admin commands
+CHANGE: Improved some of the database code
+CHANGE: Improved some of the cheat detection
+CHANGE: Removed some of the false positives in dummy killing detection
+CHANGE: Extended cheat detection to include certain methods of pack farming
+CHANGE: Mute list is now saved on the character server so all servers share the same list
+CHANGE: Enforced first person vote rule for monster voting with only 2 people to prevent confusion
+CHANGE: Changed spawning of monsters to include a minimum number of monsters (MIXED: (players + 1) * 2, ONLY: (players + 2) * 2)
+		If number of monsters spawned is lower than the minimum one will spawn every second
+CHANGE: Credit is now given to fake item owner and lifter/tosser if item is lifted/tossed within 2 seconds of the person hitting it
+CHANGE: Limited all fake items to only 4 of each type out at a time this includes expacks, fake healths, fake shards, and mines
+CHANGE: Tech 7 is now required for fake shards to keep it more in line with karma
+CHANGE: Added vote info command for showing monster and map votes
+CHANGE: Added kots_stats command for viewing end of level stats at any time (this includes a new pack/credits stat)
+		Use kots_stats help for more info. kots_stats will simply toggle showing the stats on and off
+CHANGE: Added damage vs kill exp ratio to end of game stats
+CHANGE: Power cube convert (kots_pconvert) is now saved on the character server so your characters setting will persist between games and servers
+CHANGE: Added minimum velocity to kots_toss to make it more usable when up close to the item you're tossing
+CHANGE: Increased monster exp by roughly 40% (in an attempt to get people to play more)
+
+Version 1.0.6a - 2008-01-28 - SWB
+BUGFIX: Really fixed kots_pconvert (I swear!)
+
+Version 1.0.6 - 2008-01-28 - SWB
+BUGFIX: Changed kots_pconvert back because I was stupid and didn't realize kots_power was already taken
+BUGFIX: Fixed an issue causing people with little or no armor to take very little damage
+CHANGE: Added a check for duplicate commands to prevent myself from doing stupid stuff in the future
+
+Version 1.0.5 - 2008-01-27 - SWB
+BUGFIX: Antiweapon couldn't be selected from the weapons menu
+BUGFIX: kots_buy and a few other commands now work while dead
+BUGFIX: There was a bug with rocket launcher splash damage not being increased by munition until level 7
+BUGFIX: Shotgun was only firing 12 pellets instead of 18
+BUGFIX: Fixed an issue where the grappling hook could be fired multiple times
+BUGFIX: Powers can no longer be trained if they are resisted and vice versa
+BUGFIX: Armor regen was only giving 10 per power antiweapon and not counting the weapon antiweapon bonus
+BUGFIX: EMP Shockwave disabled regen/timed abilities for 15 seconds instead of 6 seconds like it should
+CHANGE: Changed the way tech resist works to make it work like KOTS2000
+CHANGE: Tech resist is no longer taken into account for spawn armor
+CHANGE: Lowered shotgun damage back down to 16 damage per pellet with the fix for pellet count
+CHANGE: Hand grenades only do splash damage when stepped on now instead of the full blast
+CHANGE: Grenade launcher grenades can now be stepped on
+CHANGE: Level 6 HG now allows you to enable/disable a shorter 2 second fuse
+CHANGE: Changed detonate to do a flat 120 damage and then add bonus from munition and weapon level past 6
+CHANGE: Detonate now does 1/4 of the damage to yourself excluding quad damage bonuses
+CHANGE: Modified some of the character server code to help improve reliability when there are connection issues
+CHANGE: kots_pconvert will now stay on after dying and between maps
+CHANGE: Increased bide starting damage to 200 for level 1
+CHANGE: Increased bide starting blast radius by 25%
+CHANGE: Sabre can now be fired again nearly instantly if let go during mid attack to finish the remaining frames
+CHANGE: When sabre is cut short after 0.9 seconds all frames will start over again
+CHANGE: Spiral can now be cast immediately after your last spiral finishes
+CHANGE: Increased time between throwing other players to give them just enough time to dodge before the next throw
+CHANGE: Tballing other players only gives you experience if you do not tball yourself
+CHANGE: Modified fly to be more likely to use a cube when tapping the button
+CHANGE: Made some changes to prevent people from logging out and picking up their packs with a different character
+CHANGE: Implemented some new features to help aid in catching dummykillers
+CHANGE: Expack per level damage increase has been reduced to 10 damage per level
+CHANGE: The command kots_pconvert is now kots_power
+CHANGE: The command kots_spiritswim is now kots_swim
+CHANGE: Added the strength level 7 ability that cuts level 10 weapon effects in half
+CHANGE: Added the strength level 10 ability that makes you immune to level 10 weapon effects
+CHANGE: Increased VitArmor spawn bonus to 10
+
+Version 1.0.4 - 2008-01-08 - SWB
+BUGFIX: Fixed a very rare occassion where someone could be logged in as your character if you disconnect while still logging in
+BUGFIX: Fixed a crash that could occur from someone disconnecting before their character is loaded and attempting to log them out
+BUGFIX: Fixed a crash that could occur if there was an error updating the rune list from the server
+BUGFIX: Fixed obituary when dying from fake shards
+BUGFIX: Wisdom 4 would cause you to take 1 damage to things you are immune to
+BUGFIX: Some splash damages were contributing to accuracy when they shouldn't
+BUGFIX: Mines were not being destroyed correctly on spawns and were causing players to take full damage
+CHANGE: Made some overall improvements to the character server code
+CHANGE: Fake shard is now available at tech 5
+CHANGE: Fake shard does 100 damage at tech 5 and 200 at tech 7
+CHANGE: Fake shard now does 75% of remaining damage to health once armor is all gone
+CHANGE: Shotgun now does 17 damage at level 6 and the refire upgrade is slightly faster at level 4
+CHANGE: Resisting throw now decreases throw distance by 80%
+
+Version 1.0.3 - 2008-01-04 - SWB
+BUGFIX: Tballing while falling no longer results in taking falling damage
+CHANGE: Player credits are now level / 2 + 1
+CHANGE: Tballing now ignores the closest spawn to you
+CHANGE: Flashlight state now persists through levels
+CHANGE: Increased monster experience slightly
+CHANGE: Increased shotgun damage at multiple levels, level 6 now does 16 damage per shot
+CHANGE: Grenades can now only be detonated when primed
+
+Version 1.0.2 - 2008-01-03 - SWB
+BUGFIX: Strength 4 only gave blast resistance against grenade launcher
+BUGFIX: Players will no longer get squished or hit by objects at map end
+BUGFIX: If a server fails to load a map after a vote or when trying to go to the next map it will be removed from maplist and same map reloaded
+BUGFIX: Detonate was costing two ammo instead of one
+CHANGE: Decreased the time it takes between detonates and throwing another grenade
+CHANGE: Slowed down HG refire rate upgrade slightly
+CHANGE: Made some more minor adjustments to splash damage
+CHANGE: Added command kots_hgtimer on/off to enable/disable resetting of timer on grenades
+CHANGE: Added command kots_hgspeed on/off to enable/disable fixed speed for throwing grenades
+
+Version 1.0.1 - 2008-01-02 - SWB
+BUGFIX:	A direct hit that also caused splash damage would be counted as more than one hit in accuracy
+BUGFIX: Changes to character server code should prevent the already logged in message on the next map
+BUGFIX: The number of seconds for dropping the next mine always showed 0 in the message
+CHANGE: Indexed sound for rail deflect at the beginning of every map to ensure it gets played
+CHANGE: Detonate now only detonates the grenade currently in your hand
+CHANGE: Modified the splash damage done on hand grenades and rocket launcher slightly
+CHANGE: Made some optimizations to the character server code
+CHANGE: Added some new admin and server commands
+CHANGE: Added stat tracking for total credits received and total packs picked up
+CHANGE: Increased default previous maps not votable to 5
+CHANGE: Added a server cvar to allow servers to configure number of previous maps (minimum of 1)
+
+Rev 135 2007-12-23 - SWB
+BUGFIX: Monsters sprees ended at 50 and distributed points which could be exploited
+BUGFIX: There was a problem with percent (%) signs in text since the implementation of %a and %h shortucts
+BUGFIX: Third beam on bfg was only doing half damage
+BUGFIX: Player items could be dropped during intermission and when dead
+BUGFIX: VitArmor gave 75 armor per level on respawn instead of 5
+BUGFIX: Haste could be used while dead
+BUGFIX: Map rotation would sometimes pick the same map if no other map could be picked because of maplist settings
+BUGFIX: Monsters were not searching for a new target when arriving at their destination when no players have been spotted
+BUGFIX: Certain server configurations could cause the server to immediately crash when it tries to change to it's initial map
+BUGFIX: Fixed a timing issue with dropped invulnerabilities
+BUGFIX: Fixed a problem with picking up player dropped quad damages and invulns that can give the full timer if you pick it up on the exact frame it expires on
+BUGFIX: Spiral wasn't hitting as often as it should
+BUGFIX: Spirals that were partly in water would only show up underwater
+CHANGE: Indexed a few more weapon sounds at the start of the map
+CHANGE: Removed screen shake on bfg while firing
+CHANGE: Reduced refire time on bfg
+CHANGE: Monster exp is only given on damage now and not after a kill
+CHANGE: Killing players more than 10 levels below or less than a quarter of your level doesn't count toward sprees
+CHANGE: Reduced EMP effects to 6 seconds as in K2K
+CHANGE: Reduced GL dizzy effects to 5 seconds
+CHANGE: Rune name is kept on display during intermission
+CHANGE: Tweaked quad rage slightly by increasing damage counter from 600 to 800
+CHANGE: Modified the experience system again
+CHANGE: Munition now affects spiral and expack damage like it should
+CHANGE: Hand grenades now explode when you walk on top of them
+CHANGE: Hyperblaster level 2 and higher now fires at the normal Quake 2 firing speed
+CHANGE: Hand grenades at level 4 or higher can now be detonated using kots_detonate
+CHANGE: Hand grenades can be thrown quicker at level 2 and up
+CHANGE: Doubled the respawn amount when your respawn weapon is grenades
+CHANGE: Added %p, %w, %s, %r, and %f
+CHANGE: Added vote map next feature
+CHANGE: Added the ability for observers to chat with eachother without in-game players hearing it using say_team or messagemode2
+CHANGE: Decreased hyperblaster stun length to 0.1 seconds
+CHANGE: Hand grenade splash damage now increases at a third the rate of normal damage for each level
+CHANGE: Hand grenades and grenade launcher now calculate munition for splash damage
+CHANGE: Hand grenades and grenade launcher now calculate quad damage for splash damage
+CHANGE: Added a motd cvar for servers to configure the path for their motd file
+CHANGE: Added some more admin commands
+CHANGE: Expack can't be touched for 1 second after dropping
+CHANGE: Karma 6 is now required to cure poison when picking up dead player stims
+CHANGE: When spectating someone if no one is in your line of site for karma id then the person you're chasing is used
+CHANGE: Bide damage counter now starts at 150 and increases by 50 for each level of bide you have trained
+CHANGE: Reduced monster experience slightly
+CHANGE: Message of the day is now printed in the center of the screen
+CHANGE: Made some minor improvements in communication with the character server
+CHANGE: Monsters no longer receive damage bonuses against eachother
+CHANGE: Monsters no longer vampire more health than the player had
+CHANGE: Monsters no longer receive more damage from empathy than the player had health
+CHANGE: Conflagration rockets and grenades now take munition and quad into account for splash damage
+CHANGE: Munition and weapon level damage percentages now add together before coming up with the final number
+CHANGE: Wisdom 4 no longer grants full immunity to low types of damage such as the top of slime
+CHANGE: Prevented more than one of the same rune from dropping on a map
+CHANGE: Headshots now have only a 10% damage bonus
+CHANGE: Modified bide radius calculation so it doesn't grow so rapidly with little damage
+
+Rev 134 2007-12-18 - SWB
+BUGFIX: Another small bug in chaingun accuracy
+BUGFIX: Hyperblaster changes were discussed and speed is faster, but damage was never lowered
+BUGFIX: The sprees broken and spreewars broken stats were being incremented for the person spreeing and not the breaker
+BUGFIX: There was a bug in calculating the number of points purchased when buying player points after multiple masteries
+BUGFIX: Fixed some bugs with spawn farthest that can cause predictable spawning when there are no players or no monsters
+BUGFIX: Longest spree stat was never able to reach 50
+BUGFIX: A spiral bug could cause up to 1024 hits in one frame from spiral usually resulting in instant death
+BUGFIX: Conflagration hits no longer count toward accuracy
+BUGFIX: Bide damage counted toward accuracy
+BUGFIX: Players could drop their invulnerability from respawn
+BUGFIX: Players wouldn't be spawn kicked if they had invulnerability from respawn
+BUGFIX: Other players could still hear item pickups with dex 2
+BUGFIX: Certain monster damages were not getting the bonuses that they should
+BUGFIX: Weapon points required 2 to add one past 6, but only took 1 point away
+CHANGE: Changed some of the exp bonuses for spreeing
+CHANGE: Changed the way player levels factor into experience
+CHANGE: Previous maps only count if played for more than a minute or the fraglimit is hit
+CHANGE: Previous 7 maps cannot be voted on
+CHANGE: Too many vote failures will result in the map not being able to be voted for until the next map
+CHANGE: Number of seconds to wait before dropping next mine is now displayed
+CHANGE: Changed the text when joining the game
+CHANGE: Added ability for admins to ban a player by IP Address
+CHANGE: Expack no longer causes damage when it explodes after being out too long
+CHANGE: Added a new kots_toss ability that lifts packs away from you to be tossed at opponents
+CHANGE: Mines can be dropped once every 5 seconds now
+CHANGE: Score is now displayed from server listings instead of frags
+CHANGE: Made some minor changes to help prevent hook from causing falling damage so much
+CHANGE: Added shortcut for hg when using kots_weapon and other commands
+CHANGE: Decreased all levels of hook speed slightly
+CHANGE: Monster damage calculations have been changed slightly, the end result is more damage per level for monsters
+CHANGE: Quad rage counter no longer counts damage dealt past 0 health
+CHANGE: Decreased amount of damage required to trigger quad rage
+CHANGE: Decreased the amount taken from the quad rage counter on death
+CHANGE: Training weapons past level 6 now requires 2 weapon points per level
+CHANGE: Weapons past level 6 now increase damage at 2.5% per level of weapon 6 damage
+
+Rev 132 2007-11-27 - SWB
+BUGFIX: If you used conflagration while still in the middle of one it would take more health instead of giving you a message
+BUGFIX: A split vote between mixed and monsters only resulted in it switching every 15 seconds
+BUGFIX: Prevented medics from trying to resurrect corpses that can't be resurrected
+CHANGE: Added a message after changing monster vote to indicate that your vote was changed
+CHANGE: Added some messages after buying respawns, player, power, weapon points to indicate the transaction was successful
+CHANGE: Conflag now only fires 30 ammo per second instead of 40
+CHANGE: Conflagration now requires a combined amount of at least 20 rockets and grenades
+CHANGE: Only 2 people can use conflag on a server at once otherwise you will receive a message saying to try again later
+CHANGE: Monster vote is carried over from the previous map until the first check interval hits
+CHANGE: Limited the maximum radius on bide (don't worry, it's still pretty big)
+CHANGE: Modified the calculation to determine how big the bide radius is (it now takes your max health and armor into account)
+CHANGE: Added 2 cubes to each stimpack dropped by players on death (no spirit or other bonuses)
+
+Rev 131 2007-11-24 - SWB
+BUGFIX: Runes no longer make explosions when teleporting away after not being touched in a while
+BUGFIX: Fixed yet another bug with medic resurrection causing crashes (this should be the last one)
+BUGFIX: Makron corpse no longer leaves behind an invisible wall blocking attacks
+BUGFIX: Fixed a few other minor issues with makron corpses not being disposed of properly
+BUGFIX: Chaingun was causing some inaccuracies in accuracy
+BUGFIX: Monster corpses/skulls could be left with a red shell around them if killed during their temporary invulnerability
+BUGFIX: New vote notification had a typo (it said "votes yes" instead of "vote yes")
+BUGFIX: Expacks and other items when destroyed would still continue to count against you
+CHANGE: Runes now take 3 minutes of inactivity before teleporting away
+CHANGE: Invulnerability can now be dropped on death
+CHANGE: Added the weapon tree antiweapon finally
+CHANGE: Gave all spectators karma id
+CHANGE: Changed the way the pointlist is displayed while holding runes or cursed (format is base+bonus or base-penalty)
+CHANGE: Lowered drop rate of runes to just 5% of deaths will drop runes
+CHANGE: Removed teleport sound from runes when they teleport away
+CHANGE: Gave high preference to lifting packs, expacks, and runes (other items will simply not be lifted at all if one of these is in range)
+CHANGE: Monster voting is now checked every 15 seconds instead of when votes are changed to prevent spamming vote changes
+CHANGE: Added rocket trail behind players using haste
+CHANGE: Added kots_gender command to set your characters gender in game
+
+Rev 129 2007-11-13 - SWB
+BUGFIX: Corpses would sometimes jump and move a little on death
+BUGFIX: Medics could possibly crash the server if attempting to resurrect something that couldn't be resurrected
+BUGFIX: Players on a spreewar weren't taking damage from certain things such as lava and slime
+BUGFIX: Fixed a bug where sometimes after a vote succeeded it will say it failed after intermission ends when switching maps
+BUGFIX: Some runes could be dropped through the floor since they are dropped from too far down initially
+BUGFIX: Fixed yet another medic crash bug
+CHANGE: Ammo steal is no longer guaranteed to steal at least 1 ammo per damage assuming an available ammo type was selected
+CHANGE: Flail and throw will now break the grappling hook regardless of whether or not it is attached to someone
+CHANGE: Using the hook after falling too far no longer causes falling damage when the hook starts pulling (to keep inline with other skills)
+CHANGE: Dexterity 5 now gives you the ability to hook the sky
+CHANGE: Dexterity 7 is now required to latch onto people with the hook
+CHANGE: Haste is now available for dexterity masters (at least for now)
+CHANGE: Monster damage types can no longer be resisted (except via the resist runes)
+CHANGE: Cut quad rage chance in half against monsters
+CHANGE: Cut vampire amount in half against monsters
+CHANGE: Added map vote reminder on death
+CHANGE: Removed bide, empathy, and karma id from the HUD when the map ends
+CHANGE: Monsters are given 1 second of invuln on respawn
+CHANGE: Added text replacements for %a and %h for health and armor (more will come later)
+CHANGE: Runes are now teleported away after not being touched for 60 seconds
+CHANGE: Mines now last 30 seconds instead of 10
+CHANGE: Boss explosions no longer add monster bonus damage resulting in massive amounts of damage
+CHANGE: Added rocket trail to artifacts
+
+REV 128 2007-11-02 - SWB
+BUGFIX: Players were losing exp for being killed when they shouldn't
+BUGFIX: Expacks, fake health, fake shards, and mines can no longer be detonated by runes
+BUGFIX: Makron torso can now be killed
+BUGFIX: Fixed a bug with the server menu updating around the time the map changes causing crashes
+BUGFIX: Damage that knocks you really far will no longer cause you to take falling damage initially
+BUGFIX: Max velocity now scales all angles back appropriately to keep the direction the same (fix for grapple)
+BUGFIX: Possibly fixed a bug where cloaked players may show empathy shield
+BUGFIX: Fake healths, mines, and shards are no destroyed on spawn pads so players take no damage
+CHANGE: Taunts on respawn are now unicasted to clients so only that client hears it now
+CHANGE: Added thump thump thump sound reminder for when players can disconnect without fear while on a spree
+CHANGE: Wisdom 7 now only takes 1 second to cloak
+CHANGE: Spirit 1 now causes the wisdom cloaker to take 25% of his cloak time to recloak
+CHANGE: Spirit 5 now causes the wisdom cloaker to take 50% of his cloak time to recloak
+CHANGE: Spirit 7 now causes the wisdom cloaker to take 100% of his cloak time to recloak
+CHANGE: In an effort to speed up clicking through end game stats you can no longer unclick once you have clicked
+
+REV 127 2007-10-27 - SWB
+BUGFIX: Empathy no longer allows attackers to vampire health from damage
+BUGFIX: Players were sometimes given credit for the same kill twice for thanks to kills
+BUGFIX: Wrong kill amount sometimes displayed at end of game
+BUGFIX: Runes could be dropped inside some walls and boxes
+BUGFIX: Chasecam was going into the walls sometimes
+BUGFIX: Fast weapon switching allowed you to switch weapons while firing
+BUGFIX: Monsters could sometimes spawn inside of monsterclip brushes causing them to get stuck\
+BUGFIX: Grapple would stay latched onto people after tballing
+BUGFIX: Your own grapple would stay out after tballing
+BUGFIX: Grapple would often cause falling damage when pulling slightly down
+CHANGE: Lowered grapple damage to about 20 health per second
+CHANGE: Enforced training limit on bide of 1 point per player level above 5
+CHANGE: Spiral now lasts only 10 seconds and has a delay of 5 seconds between spirals
+CHANGE: Spiral damage is now capped at 1000 damage per second which is reached at spiral 8
+CHANGE: Modified chasecam to start in third person mode
+CHANGE: Modified server list to update more often (ever 2 mintues)
+CHANGE: Clients with server list open will automatically update the list when the server update happens
+CHANGE: Moved armor knock resist to strength player tree
+
+REV 126 2007-10-22 - SWB
+BUGFIX: Monsters now ignore observers properly and start roaming around aimlessly again
+BUGFIX: Makron corpse no longer keeps exploding while damage is done
+BUGFIX: Medic resurrecting a corpse with monsters voted off crashed the server
+BUGFIX: Medic resurrecting corpses crashed Rev 125 servers thanks to the changes in the body queue
+BUGFIX: Quad damage obtained from quad rage is no longer dropped on death
+BUGFIX: Fixed some spiral damage bugs
+CHANGE: Gave some health boosts to prince of the air and supertank
+CHANGE: The kill command is now allowed for admins (for testing purposes)
+CHANGE: Added the other makron sounds to play randomly on respawn
+CHANGE: Tweaked monster exp
+CHANGE: Tweaked spree, spreewar, and break bonus exp a bit
+
+REV 125 2007-10-21 - SWB
+BUGFIX: In certain situations a monster could cause a crash
+BUGFIX: Players were not getting exp or sprees for thanks to kills
+BUGFIX: Runes can no longer be dropped inside boxes and walls (this happened because of a change in bounding boxes for floating)
+BUGFIX: Spirit swim out of water bonus height is no longer added for water jumps (when you swim up to low a ledge) it resulted in launching you straight up extremely high
+BUGFIX: Runes no longer activate elevators
+CHANGE: Removed some text referring to the old style of voting
+CHANGE: Indexed sounds and models used in the mod on map load like they should be so they can be auto downloaded from the server
+CHANGE: Combined monster corpses and player corpses into the same body queue
+CHANGE: Corpses that are removed from the body queue are now gibbed rather than just disappearing
+CHANGE: Increased speed of dexterity level 5 hook
+CHANGE: Dexterity 5 now gives the hook the ability to latch on to players
+CHANGE: Increased speed of dexterity level 7 hook even more
+CHANGE: Tballs are no longer reset back when dead
+CHANGE: Increased the delay between casting spirals
+CHANGE: Slightly decreased spiral damage to 125 damage per second per level
+CHANGE: Spiral damage decreases slightly the longer it's been out doing half damage in the last second it's out
+CHANGE: Expack now gets an additional 50 damage per level
+CHANGE: Limited maximum armor pickup from shards to 2x maximum armor
+CHANGE: Tech mastery prevents armor from rotting
+CHANGE: Tech 5 now gives 2 armor regen and no longer gives added resistance
+CHANGE: Tech mastery now gives the super resistance
+CHANGE: Tech mastery now gives 4 armor regen
+CHANGE: Tech now gives 5% per level resistance to armor knock
+CHANGE: Tech mastery gives 6% per level resistance to armor knock
+CHANGE: Monsters bonus damage is no longer added if the attack hits themselves (so now they can't kill themselves as easy)
+CHANGE: Increased spirit swim distance/height when jumping out of water
+CHANGE: Added the "not good enough" sound to randomly play on respawn
+ADDED: Tech 5 gives fake shards which cost 50 armor to create and cause 100 armor damage ignoring tech resist remaining damage is cut in half and goes to health
+ADDED: Three new resistance runes (these do not effect damages that ignore resistances, empathy, poison, and spawn kick)
+ADDED: Some new admin commands for testing
+
+Rev 122 2007-10-13 - SWB
+BUGFIX: Players were not being knocked back at all back after rev 119
+BUGFIX: Some runes were not floating high enough in water
+BUGFIX: Floaters that died of poison (and possibly other monsters and other causes) would stay visible for a while before disappearing
+BUGFIX: Fixed an error with the character server code that was introduced in some linux changes causing excess load on the server
+BUGFIX: A character would show up on the scoreboard as in game if there was an error automatically logging in
+BUGFIX: Monster health was rotting down when it shouldn't be
+BUGFIX: Dexterity poison resist was not being checked
+BUGFIX: Adrenaline wasn't curing poison
+BUGFIX: Medic and other monsters weren't firing from the correct place
+BUGFIX: Using the admin command to destroy runes caused some problems and could sometimes cause crashes
+BUGFIX: There was a bug with artifact character association that's been fixed
+CHANGE: Spirit flashlight now points directly at players like it should again
+CHANGE: Added some checks to help with the problems of hard reconnects R1Q2 experiences occassionally
+CHANGE: Added the ability to use the maplist cvar for setting the servers maplist file
+CHANGE: Adjusted the positioning of some HUD elements
+CHANGE: Removed the chase information from the scoreboard
+CHANGE: Made some minor tweaks to the grappling hook to help improve it
+ADDED: End of map stats
+ADDED: Ability to drop cubes
+ADDED: Spirit swim boost out of the water
+ADDED: The play_voice command from K2K (not exactly sure that it works the same way)
+ADDED: Servers menu to easily switch between servers while in game
+
+Rev 119 2007-10-07 - SWB
+BUGFIX: Adding a player point resulted in getting an extra player point on that tree until respawn
+BUGFIX: Prevented players from attempting to cloak while weapon is still firing or cooling down (this caused players to cloak and uncloak right after)
+BUGFIX: Fixed a bug that was causing sabre to appear shorter to other players
+BUGFIX: Bandolier was not obeying the correct maximum ammo values
+BUGFIX: Wisdom vampire worked while empathy shield was active
+BUGFIX: BFG blasts could cause runes to explode and teleport to another location
+BUGFIX: Map votes were reset after respawn (this would also allow changing of votes)
+BUGFIX: Fixed some minor bugs with the flashlight and laser sight that could cause problems
+CHANGE: Modified the chase cam and in eyes cameras to do a better job of centering the camera on a monster
+CHANGE: Modified the chase cam to be pulled back a little more from players and monsters
+CHANGE: Monsters move around more when no one is around
+CHANGE: Monsters can now activate elevators and buttons, etc
+CHANGE: Added health rot to rot away extra health left over after dropping runes (level 7 karma not affected)
+CHANGE: Added armor rot to rot away extra armor picked up thanks to shards
+CHANGE: Health, armor, and cubes are now limited to their maximum values when persisting between maps and servers
+CHANGE: Cloaked players screen now brightens when a flashlight is on them
+CHANGE: Persisted power cube convert, knock, deflect, poison, and quad rage settings between maps
+CHANGE: Servers automatically execute a server.cfg if one exists
+CHANGE: Monsters now have a 25% chance of dropping armor shards
+CHANGE: Players are no longer knocked back by other players in monsters only or during a spreewar
+CHANGE: Players can no longer be stunned or dizzied by other players in monsters only or during a spreewar
+CHANGE: Take monster distances into account for spawn farthest
+CHANGE: 2 tballs are now received at 6, 16, and 25 kill sprees
+CHANGE: Changed the EMP Shockwave sound to match K2K
+ADDED: Added broken glass sound on 2fers (which would also indicate 3fers, etc we just only want to hear it once)
+ADDED: Old style K2K maplists that support min and max players and priorities
+ADDED: Ability to toggle poison and quad rage on or off (mainly for testing purposes)
+ADDED: Configurable message of the day for servers
+ADDED: K2K style voting (vote monsters on/off/mixed, vote map mapname, vote yes, vote no)
+ADDED: Laser sight and laser ball
+ADDED: Tballs are now displayed in the HUD
+ADDED: Ability to allow servers with dynamic IP addresses access to the character server while still maintaining security
+
+Rev 118 2007-09-30 - SWB
+BUGFIX: Removed the black level 10 railgun beam used during testing
+BUGFIX: Fixed a bug with the flashlight spamming messages in software mode
+BUGFIX: Dropped and knocked armor shards were giving tech bonuses
+BUGFIX: Fixed a bug with sabre not hitting underneath opaque water
+CHANGE: Made poison damage spawn green particles instead of blood to indicate poison
+
+Rev 116 2007-09-24 - SWB
+BUGFIX: Weapon and armor knock counters were not being reset on respawn
+BUGFIX: Quadrage counter was not being cut in half on respawn
+BUGFIX: Throwing yourself in an area with a low ceiling resulted in getting stuck in the ceiling
+BUGFIX: Fixed an issue with runes making splash noise all the time after floating to the top
+BUGFIX: Fixed issues with runes making the bouncing noise continuously
+BUGFIX: Runes were not being destroyed by certain things on maps and teleporting like they should
+BUGFIX: Armor calculations were causing weapons to do minimum damage
+BUGFIX: Prevented exp from going below 0 to prevent certain displays from wrapping around and being a really high number
+BUGFIX: Conflagration was using the level 10 GL + rune effects
+CHANGE: Hyperblaster stun now prevents you from moving for 0.2 seconds
+CHANGE: Added glow lighting effect to all runes
+CHANGE: Added white particles (teleport effect) when level 10 railgun hits its target
+CHANGE: Changed railgun beam for level 10 to a white beam
+CHANGE: Increased the karma id radius to make it more like lift
+CHANGE: Increased the throw radius to make it more like lift
+CHANGE: Increased the flashlight radius to make it more like lift
+CHANGE: Powerups no longer show up as the selected inventory item when DF_INSTANTITEMS is on (always)
+CHANGE: Made railgun laser gradually shrink before it disappears
+CHANGE: The level 10 SG effect should have blaster trails and no white shell
+CHANGE: Added bide timeout sound
+ADDED: Initial code for testing spawn kick
+ADDED: Grenade launcher level 10 + rune dizzy effect
+
+Rev 115 2007-09-23 - SWB
+BUGFIX: Poison was happening too often at low levels and not often enough at high levels
+BUGFIX: Monsters can see despite light conditions (fix for high gl_modulate)
+BUGFIX: Monsters were giving the incorrect amount of exp from damage
+BUGFIX: Added BFG explosion sound to bide explosion
+BUGFIX: Only person that tballed should drop their rune
+BUGFIX: Character is uncloaked when using tballs
+BUGFIX: Fixed a bug where sabre wouldn't show up when firing it partially in and out of water
+BUGFIX: Fixed a bug spree war not always being divided when fragging out
+BUGFIX: Runes would sometimes be stuck making the bouncing noise if touching moving surfaces (or near them)
+BUGFIX: Modified bide to prevent it from crashing q2max
+BUGFIX: Modified spiral to prevent it from crashing q2max
+BUGFIX: Rockets were not being picked up from dropped packs
+CHANGE: Players get 1 extra cube per respawn in addition to the dexterity bonus
+CHANGE: Rocket Launcher Level 2 and higher now shows the smoke trail, but no fire trail (I'm told this is how it's supposed to be)
+CHANGE: Hyperblaster level 10 tracers now have a blue shell instead of white
+CHANGE: Increased the flashlight dot size
+CHANGE: The person who fired the rail now gets credit for deflected rails unless the rail hits himself in which case deflector gets credit
+CHANGE: Runes now float
+CHANGE: Menus now close if already open when using the same menu command
+CHANGE: Increased monster exp slightly to account for damage exp bug fix
+CHANGE: Added exp bonuses for certain boss and miniboss monsters
+CHANGE: Monsters only make the lava2 sound now in order to prevent confusion with the spree sound
+CHANGE: Added blue laser effect to railgun level 10 ability
+CHANGE: Level 10 shotgun tracers fire in a spread like the rest of the pellets
+
+Rev 110 2007-09-10 - SWB
+BUGFIX: Vitality rune had no bonuses
+BUGFIX: Players were dropping rune at the incorrect location on disconnect
+BUGFIX: Players were not dropping runes when tballing
+CHANGE: Using the kots_fly command while already flying is the same as kots_land
+CHANGE: Monsters in monsters only now spawn every 5 seconds (3x monsters mixed)
+
+Rev 108 2007-09-08 - SWB
+BUGFIX: Armor knock was looking at the wrong timer to determine if it could knock again
+BUGFIX: Pugnus wasn't giving the bonuses it should
+CHANGE: Players now drop rune at a 16 frag spree
+CHANGE: Players can no longer pick up runes on a 16 frag spree or higher
+CHANGE: Invuln on spawn is now only 75% resist like the invuln powerup
+CHANGE: Made some modifications to increase the randomness and rarity of some runes
+CHANGE: Max runes per map has no been lowered to 8
+CHANGE: Lowered the drop rate on runes
+CHANGE: BFG level 10 + rune should fire brighter
+CHANGE: HG and GL level 10 + rune grenades should have a white shell around them
+CHANGE: HB level 10 + rune tracers should have a white shell around them
+CHANGE: RL second rocket should fire in slight succession rather than at the same time
+CHANGE: Forced dmflags to spawn farthest
+CHANGE: War exp is divided up if the fraglimit is hit
+CHANGE: War exp is also divided up if the player reaches the maximum war limit of 50 frags (will only be useful if we allow fraglimits above 50)
+ADDED: Apparently the toggle for strength jump was not implemented
+
+2007-09-08 - SWB
+BUGFIX: Picking up expack rune didn't allow you to drop expacks
+BUGFIX: Upgrading player, power, and weapon points didn't take effect until you died
+BUGFIX: A level 10 sabre without the rune was causing errors
+
+2007-09-08 - SWB
+BUGFIX: Fixed all errors with exceeding the maximum number of models
+BUGFIX: Disallowed using the last model index because it causes strange issues
+BUGFIX: Monsters no longer spawn if their model cannot be indexed
+BUGFIX: Fixed a few cases were the maximum number of sounds could still be exceeded
+BUGFIX: Configstrings are now checked for changes before sending a configstring to the client
+BUGFIX: Map votes were not recounted when a player logged out or disconnected
+CHANGE: Map votes now require a simple majority to change the map
+CHANGE: Monsters no longer spawn for 45 seconds after a player is killed in mixed mode
+ADDED: Runes and Artifcacts
+ADDED: Level 10 weapon abilities when weapon is level 10 or above and holding a rune that adds to it
+ADDED: The ability for admins to create any rune or artifact on the map
+ADDED: Tball regen and movement upgrade for tball rune
+ADDED: Updated pointlists to reflect current rune bonuses
+
+2007-08-27 - SWB
+BUGFIX: Cleaned up various minor bugs
+BUGFIX: Fixed a bug that was causing various kills to be counted as telefrags
+BUGFIX: Fixed a bug that would cause the boss warning to show up even if the boss wasn't spawned
+CHANGE: Reset everyone's telefrag count back to 0
+CHANGE: Made Makron invincible for a short amount of time after popping out of Jorg so he doesn't take damage from the explosions
+ADDED: In-eyes camera mode
+
+2007-08-26 - Aldarn
+ADDED: Message to all showing the person who did highest dmg to a spree warer
+CHANGED: Toughened Jorg/Makron to be real bosses + added message when they spawn
+CHANGED: Change screen color when chasing someone cloaked
+ADDED: Radius damage when bosses explode
+
+2007-08-25 - SWB
+BUGFIX: Spectator scoreboard was 1 character short for player names
+BUGFIX: Cube convert would convert past your max cubes
+BUGFIX: Cube auto convert required level 6 instead of 5
+BUGFIX: Headshot damage is now calculated before resistances
+BUGFIX: Chase camera was not switching on player disconnect or logout
+BUGFIX: Chase camera was not switching on monster death
+BUGFIX: Crash caused when a monster you are chasing is freed while scoreboard is up
+BUGFIX: Spectator was printed in front of names of all players at map end
+BUGFIX: Machinegun was not auto switching when out of ammo
+BUGFIX: Fixed a bug that could randomly cause headshots
+BUGFIX: Chicks rocket attack started from too far away
+BUGFIX: While expack was still being thrown it only did 10 damage until it lands
+BUGFIX: Tech armor resist wasn't working properly
+BUGFIX: Picking up a mega health and then going to spectator mode could cause a crash
+CHANGE: Auto cell to cube convert no longer converts until you have 15 under your max cubes so it doesn't go over
+CHANGE: Intermission is automatically exited after 10 seconds regardless of whether players press a button
+CHANGE: No longer print out admin commands in kots_help to normal users
+CHANGE: Finished up the war exp division
+ADDED: A new admin command
+
+2007-08-25 - Aldarn
+ADDED: Duplicate IP prevented
+ADDED: Show number of players on joining server
+ADDED: Admin functions
+ADDED: War exp divided out when spree war killed
+
+2007-08-24 - SWB
+BUGFIX: Error occurred when voting for a map not in the list
+BUGFIX: REALLY fixed mega health rot (I swear!)
+BUGFIX: Timer on hud went into negatives during intermission (now it just sits at 00:00)
+BUGFIX: Spite below rage 7 would allow you to spite when at max ammo if you didn't have your respawn weapon
+BUGFIX: Armor was not being increased per level
+BUGFIX: Hand grenades weren't uncloaking
+BUGFIX: Wrong name was being shown for some assisted suicides (thanks to)
+BUGFIX: Long monster names could throw off alignment on scoreboard when chasing them
+BUGFIX: Made a number of fixes and improvements for stability
+CHANGE: Dropped player ammo and dropped quads and invulns are now liftable
+ADDED: Weapon and power resistances
+
+2007-08-22 - SWB
+BUGFIX: Crash could occur if attempting to look at stats on a monster
+BUGFIX: Chase camera should switch if monster is dead (need to test)
+BUGFIX: Corrected a few cases where a string may not have a null terminator
+BUGFIX: There was an error caused when loading info for characters without titles
+CHANGE: Decreased bide damage on death to 150 while still charging
+CHANGE: Decreased bide damage on death when done charging to half the built up damage
+
+2007-08-22 - SWB
+BUGFIX: Crash could occur if the client disconnected before they finished loading their character
+BUGFIX: Player stuck logged in if client was dropped before character finished loading
+BUGFIX: Fixed some memory corruption issues in the character server code
+BUGFIX: Fixed the megahealth rot
+BUGFIX: Makron torso was causing crashes because there was no death for the corpse
+BUGFIX: Map vote was not persisting accross map changes anymore
+BUGFIX: Monster vote was not being recalculated on player disconnect or logout
+CHANGE: Nerfed spiral slightly (150 dmg/sec per level)
+CHANGE: Allowed makron corpse to be gibbed
+CHANGE: Finished implementing titles
+ADDED: Spectator tag in front of names when spectators talk
+
+2007-08-21 - Aldarn
+ADDED: Quad obituary messages
+ADDED: Headshot obituary messages
+ADDED: Titles (need fixing)
+
+2007-08-21 - SWB
+BUGFIX: Use of uninitialized vectors in monster spawn, spiral, and headshot code
+BUGFIX: Headshots were possible on things such as poison, expack, and spiral which shouldn't be
+BUGFIX: A bug preventing throw from working was introduced in the last version
+BUGFIX: Some monsters were disappearing because they weren't linked.
+		This would happen if they spawned too far above the ground.
+		This may also have been the cause of some monsters freezing mid-air on death, but haven't tested this.
+BUGFIX: Sometimes a new player joining the game would do strange things with the monster vote
+CHANGE: Normal packs stay out for 60 seconds now before disappearing
+CHANGE: Monster vote menu now shows your current vote setting
+ADDED: 1 exp per person tballed
+ADDED: Blood trail behind normal packs
+
+2007-08-20 - SWB
+BUGFIX: Wars ended by map end were being forfeited
+BUGFIX: Headshots were showing one message per pellet
+BUGFIX: Dead monsters projectiles were causing problems
+BUGFIX: Wars ended via suicide would never end
+BUGFIX: Sprees ended via suicide were not being handled correctly
+BUGFIX: Poison is removed when the player who poisoned you leaves
+BUGFIX: Fixed another bug caused by a combination of empathy and bide explosion after death
+BUGFIX: Fixed a bug when both characters have bide and kill eachother with their death explosions
+BUGFIX: Saving the character when the client had no weapon resulted in a crash
+BUGFIX: Autolift lifted packs to you when you were dead
+CHANGE: Added ping to the scoreboard for spectators
+ADDED: Added assisted (thanks to) kills when the player suicides within 2 seconds of being damaged
+ADDED: Version number is now displayed on the menu
+ADDED: Flashlight glow and bubble has been added
+
+2007-08-19 - SWB
+BUGFIX: Some suicides were still causing loss of a frag
+BUGFIX: After death vampirism worked for a short period of time
+BUGFIX: Regeneration occurred immediately after respawn
+BUGFIX: Respawning with grenades resulted in 1 extra grenade or 2 extra if above level 5
+BUGFIX: Fixed issue with certain players scores being reset sometimes at map end (this didn't effect their real score though)
+BUGFIX: Stopped bide after death
+BUGFIX: Modified many of the areas handling strings to help prevent overflows
+BUGFIX: Monsters no longer alowed to see through non-transparent water
+BUGFIX: Dropped player ammo gave pickup bonuses from dex
+BUGFIX: Monsters no longer spawn during intermission
+BUGFIX: Maplist rotation would get reset when using goto
+BUGFIX: Fixed a bug with the nfer timer
+BUGFIX: Kills you get while dead no longer count towards your spree
+CHANGE: Expack now shows the correct trail behind it
+CHANGE: Increased spiral damage back to 200 dmg per second per level
+CHANGE: Finished up the changes to the scoreboard for spectators
+CHANGE: Modified the look of bide slightly
+CHANGE: Added messages to the center of the screen for wars and war breaks
+CHANGE: Monsters are no longer lazy, they move around more
+CHANGE: Monsters don't duck anymore except for the ones that fire while ducking
+CHANGE: Removed spirals, expacks, healths, and other player related entities when that player disconnects
+CHANGE: Allowed using mapname for sv maplist goto
+CHANGE: Cleaned up a few other things in sv maplist
+CHANGE: Cleaned up some of the character code for disconnecting and logging out
+ADDED: Added a rotation setting for sv maplist so the rotation can be modified without having to reload maplist
+
+2007-08-19 - Aldarn
+CHANGE: Throw has slightly more radius
+CHANGE: Added sound for headshot
+CHANGE: Screwed around with scoreboard - still not how i wanted it
+
+2007-08-18 - SWB
+BUGFIX: Scoreboard was showing inconsistent and unexpected values
+BUGFIX: Empathy shield was active while dead
+BUGFIX: Quad damage was not working for BFG and sabre
+BUGFIX: Flail damage was left set to 0 during testing
+BUGFIX: Killing a character using bide while using empathy shield caused an infinite loop that crashed the server
+CHANGE: Suicides no longer give negative frags
+CHANGE: Forced level time to 30 minutes
+CHANGE: BFGs kick was too much and should just be more of a rocking effect
+CHANGE: Removed the ability to use the kill command
+CHANGE: Spiral timer is no longer reset at death
+CHANGE: Used slower printing method when printing out maplist to prevent overflows on normal q2 clients
+
+2007-08-18 - Aldarn
+CHANGE: Fixed gunner grenade attack to fire upwards at enemy as well as towards them
+CHANGE: Karma sight has more volume thus showing enemy details easier
+CHANGE: Added BFG 'screen kick' ala k2k
+ADDED: Headshots, currently giving 1.5 x damage bonus
+
+2007-08-16 - SWB
+BUGFIX: Auto weapon switch to bfg wasn't working
+BUGFIX: Dying with a grenade in your hand left you unable to respawn
+BUGFIX: Map voting for the first map in the maplist was broken
+BUGFIX: Single player monsters no longer spawn in the map
+BUGFIX: EMP Shield and poison damage were not ignoring wisdom resistance
+BUGFIX: Armor was able to be picked up when already at max
+BUGFIX: BFG was doing too much damage
+BUGFIX: Monster spreewars would never be broken
+BUGFIX: Player abilities were allowed during intermission and also regenerated health etc
+BUGFIX: Monster voting was broken in the previous version
+BUGFIX: Poison and empathy no longer stun you
+BUGFIX: Monsters no longer tball with you
+BUGFIX: Unnecessary messages about votes timing out could occur during map change
+CHANGE: Cut damage based exp in half
+CHANGE: All monsters are killed when a player is on a spreewar now
+CHANGE: No monsters can spawn during a spreewar (unless a monster is on the spreewar)
+CHANGE: Conflagration now takes away 2/3 of your health plus an additional 10
+CHANGE: Conflagration grenades now have a 1 second timer before exploding
+CHANGE: Added sounds for the various spree levels and a new one when you max out at 50 frags
+
+2007-08-15 - SWB
+BUGFIX: Map voting did not work, it always took you to the next map in the list
+BUGFIX: Random map rotation wasn't working
+BUGFIX: Forced dmflags were disabling maplist on new maps
+BUGFIX: Dropping expack wasn't causing players to uncloak
+CHANGE: dmflags were being edited directly
+CHANGE: Added messages to help in the voting process
+CHANGE: Lowered wait period after starting a map to initiate a new vote to 20 seconds
+CHANGE: Added conflagration
+CHANGE: Increased maximum number of maps in the maplist to 256
+
+2007-08-14 - SWB
+BUGFIX: Fixed crash in damage calculation function caused by freed characters doing damage
+BUGFIX: Menus were writing past the char array bounds and this was likely corrupting memory causing crashes
+BUGFIX: Karma ID would sometimes display your own info when looking at corpses
+BUGFIX: Throw worked on dead monster corpses
+BUGFIX: Auto lift would teleport packs to characters that are no longer logged in
+CHANGE: Cleaned up some of the default game dll code
+
+2007-08-12 - SWB
+BUGFIX: Fixed an issue with weapon knocking a user with fast weapon switching
+		This would cause no weapon to be out and crashes if saved during this
+BUGFIX: Dropped player stims weren't ignoring max player health
+BUGFIX: Sabre firing from standing position while crouching
+BUGFIX: Quad damage is no longer dropped from quad rage
+BUGFIX: Some damage reductions were being handled as resistances
+BUGFIX: Fixed damage based exp calculating past death it was never supposed to
+BUGFIX: Enforced tighter restrictions on max exp (exp will NEVER go over max for a kill or damage, 500)
+BUGFIX: Fixed a typo with spree breaks
+BUGFIX: Cloaking wasn't enforcing correct level restrictions
+BUGFIX: Fixed some issues with flashlight but it still needs work
+CHANGE: Dropped quad damage time for multiple weapons
+CHANGE: Quad rages can no longer overlap to get increased quad time
+CHANGE: Increased time taken to cloak from 1 to 2 seconds
+CHANGE: Invuln now provides 75% damage resistance
+CHANGE: Players cannot be damaged for 2 seconds after spawn (except by themselves)
+CHANGE: Players level 0 and 1 now automatically get a rocket launcher and 10 rockets in addition to the respawn selected
+CHANGE: Quad now respawns randomly between 4-6 minutes
+CHANGE: Invuln now respawns randomly between 5-8 minutes
+CHANGE: Quad and invuln now initially spawn between 1-3 minutes into the map
+CHANGE: Darkened screen on cloaking
+CHANGE: Decreased monster exp
+CHANGE: Persisted monster vote accross levels
+CHANGE: Made monster voting menu more consistent with other menus
+
+2007-08-09 - SWB
+BUGFIX: Fixed an issue with bide that was left in during testing
+BUGFIX: Fixed pconverts toggle
+BUGFIX: Fixed pconvert converting over max cubes and rotting down
+CHANGE: Added stims to player and monster deaths they drop about 25% of the time
+CHANGE: Added armor shards to deaths when players die with more 10 or more armor remaining
+CHANGE: Modified flails knock to be a little better, but still needs work
+
+2007-08-08 - SWB
+BUGFIX: Powerups were spawning at start of map
+BUGFIX: Karma id was showing your own level
+BUGFIX: Kots health and knocked armor really liftable now
+BUGFIX: Removed spree timeout from spreeing players except spree war
+BUGFIX: Toggle for knock, deflect, and flashlight were broke
+BUGFIX: Changed armor pickup for power shield/screen
+CHANGE: Added trail to bide and changed bfg explosion
+CHANGE: Dead players now have d next to their name
+CHANGE: Effectively cut damage based exp in half
+CHANGE: Monsters spawn slightly faster in monsters only mode
+CHANGE: Ammo is now droppable, just not weapons
+CHANGE: kots_info and kots_pointlist show info for person observing now
+CHANGE: Added second rail noise to deflect
+CHANGE: Added 50% chance for each ammo type to be dropped in a monsters pack
+
+2007-08-07 - SWB
+BUGFIX: Fixed a bug that may allow a character to be loaded before a save finishes
+BUGFIX: Fixed a bug with spectators being visible
+BUGFIX: Logging out and joining as a new character resulted in backpacks thinking you were still the owner
+BUGFIX: Your own packs were being auto lifted to you on suicide
+BUGFIX: Some suicides weren't dropping packs
+BUGFIX: Rail deflect would always hit attacker
+BUGFIX: Fixed spite stopping you for a second
+BUGFIX: Fixed spiral stopping you for a second
+BUGFIX: Fixed bug with quad and invuln not spawning
+CHANGE: 3fer quad time is now 5 seconds
+CHANGE: Decreased flail distance a little bit
+CHANGE: Tripled flail knockback distance yet again
+CHANGE: Cut spiral damage in half
+CHANGE: Removed teleport effect from auto lifted packs
+CHANGE: Added nas command to disable auto weapon switching
+CHANGE: Forced monster skill level higher
+CHANGE: Optimized some of the code to run faster
+CHANGE: Optimized some of the loops to prevent infinite loops
+CHANGE: Modified sound indexing code to not crash when too many sounds are indexed
+CHANGE: Added all monsters that were removed back in the game
+CHANGE: Sorted scores by exp rather than frags
+CHANGE: Exp is now lost on suicides
+
+2007-08-06 - SWB
+BUGFIX: Cloaking would not go away when uncloaked
+BUGFIX: Tech armor regen was always 50 lower than it should have been
+BUGFIX: Knock chance was increasing with dex instead of decreasing
+BUGFIX: Knock was resetting the wrong persons counter
+BUGFIX: Forcing of weapon stay to on caused knock not to work
+BUGFIX: Kots health, fake health, mines, and dropped weapons not liftable
+BUGFIX: Kots flail was not taking munition into account when damaging self
+BUGFIX: Removed teleport effect from flail
+BUGFIX: Adjusted the rounding algorithm used for many things to be more accurate
+CHANGE: Increased timer to allow up to 4 digits for bide
+CHANGE: Added weapon knock toggle (thought this was already in there)
+CHANGE: Adrenaline and backpack now give 20 cubes
+CHANGE: Increased flail knock distance by 3x
+CHANGE: Added a 1 second delay to fake healths
+CHANGE: Removed some monsters to limit the number of sounds used
+
+
+2007-08-05 - SWB
+BUGFIX: Fixed monster count to account for medic resurrection
+BUGFIX: Bide wasn't resetting if not fired
+BUGFIX: Picking up power screen/armor caused crashes
+BUGFIX: Picking up ammo while over max reset back to max
+BUGFIX: Picking up a backpack while above default max caused ammo to reset
+BUGFIX: Fixed weapon model when using sabre
+BUGFIX: Bide damage should take place after resistances
+BUGFIX: Client obituaries when killing a monster first in the same frame caused suicides
+BUGFIX: Delayed freeing of monsters to wait for everything they left behind
+BUGFIX: Fixed a spiral crash bug when spiral hit a window
+BUGFIX: Damage based skills were working on self damage
+BUGFIX: Fixed an annoying spree timeout bug
+BUGFIX: Flail damage should be affected by munition
+CHANGE: Fixed poison, spite, and spree ending damage to not take armor
+CHANGE: Forced some server variables
+CHANGE: Removed teleport sound from flail
+CHANGE: Added empathy shield notification in HUD
+CHANGE: Added slower printing for kots_help
+CHANGE: Made fake stim limit 5
+
+2007-08-04 - SWB
+BUGFIX: SG accuracy was half what it should be
+BUGFIX: MG accuracy was half what it should be
+BUGFIX: Fixed hyperblaster ring getting stuck on
+BUGFIX: Made it so switching weapons clears the previous weapon sound
+BUGFIX: Made it so switching weapons does not detonate grenades in your hand
+BUGFIX: Grenade ticking sound wasn't played with dex 2 or higher
+BUGFIX: Weird player events occurred with dex 2 or higher (ie respawn effect on short fall)
+BUGFIX: Fixed a hud issue with bide overlapping other hud items
+BUGFIX: More than 6 expacks were allowed to be out after dying
+BUGFIX: Bide was not calculating monster damage correctly and was adding some damage that it shouldn't
+CHANGE: Fully implemented cloaking
+CHANGE: Fully implemented spreewars except for exp division on break
+CHANGE: Implemented spree quitting mechanism
+CHANGE: Removed rocket and grenade trails at appropriate levels
+CHANGE: Made power shield/screen worth 200 armor like in K2K
+CHANGE: Monster packs now only give 1 credit regardless of level
+CHANGE: Adjusted kots_throw to be more like K2K
+CHANGE: Added sound for kots_throw
+CHANGE: Forced quad drop on servers
+CHANGE: Modified the way sabre sound works a bit
+CHANGE: Added tballs
+
+2007-08-03 - SWB
+BUGFIX: Fixed a bug with machinegun damage
+BUGFIX: Fixed the spiral crash bug
+CHANGE: Flail was not causing enemies to fly very far
+CHANGE:	Added buy menu
+CHANGE: Added a link to the monster voting menu from the main menu
+CHANGE: Made spiral spin faster and beams thicker
+CHANGE: Added number of charges left for powers to HUD
+
+2007-08-02 - SWB
+BUGFIX: BFG wasn't doing 3 shots per beam
+BUGFIX: BFG wasn't firing as fast as it should
+BUGFIX: Hyperblaster was firing too fast
+BUGFIX: When character was dead during a save loading it would result in not having correct respawn stuff
+BUGFIX: Monsters' max health was being adjusted improperly causing excessive damage exp
+CHANGE: Made players immune to other players damage in monsters only
+CHANGE: Monsters can now pick up expacks, mines, etc dropped by players
+
+2007-08-01 - SWB
+CHANGE: Players can no longer drop weapons and ammo manually
+BUGFIX: Grenades were doing the amount of damage the chaingun does
+CHANGE: Grenades don't explode in your hand from timer at level 4
+CHANGE: Reduced quad rage time slightly for sabre, rl, gl, and grenades
+BUGFIX: Grenades weren't counting shots for accuracy
+BUGFIX: BFG was firing past 0 ammo
+CHANGE: Removed kickback on BFG it was annoying
+BUGFIX: Spite didn't work if you had less ammo than you were spiting (all the time)
+BUGFIX: Bullets and cells were regenning twice as fast as they should
+CHANGE: Added autologin on map change
+CHANGE: Added to charges to powers when adding points to them
+BUGFIX: Lava and slime no longer make you scream when you're imune
+BUGFIX: Frags weren't showing on char info page
+CHANGE: Health pickups now cure poison
+CHANGE: Randomized quad and invuln timers
+CHANGE: Allowed flying while underwater and fly out of water
+CHANGE: Made the spacing between players on the scoreboard slightly smaller
+
+
+2007-07-31 - SWB
+BUGFIX: Added spiral wait time
+BUGFIX: There was a bug with spiral that crashed the server (needs testing)
+BUGFIX: Dying with empathy gave wrong death msg (damn global variables)
+BUGFIX: Save interval was broken upon dying
+BUGFIX: Health above 2x max was allowed
+BUGFIX: Machinegun fired too many tracers, now fires 1 out of 6 shots (is this right?)
+CHANGE: Added kots_pconvert on/off
+CHANGE: Added sound and center message on level up
+CHANGE: Added deathmatch scoreboard

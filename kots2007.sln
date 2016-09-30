@@ -1,0 +1,49 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\game.vcxproj", "{9493CD5E-453B-4C35-B6E5-07E5DAF50874}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pthread", "pthreads\pthread.vcxproj", "{D79D0665-9FA6-44B4-8786-32C7977A9036}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "curllib", "curl\lib\curllib.vcxproj", "{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Official|Win32 = Debug_Official|Win32
+		Debug|Win32 = Debug|Win32
+		Release_Official|Win32 = Release_Official|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Debug_Official|Win32.ActiveCfg = Debug_Official|Win32
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Debug_Official|Win32.Build.0 = Debug_Official|Win32
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Debug|Win32.Build.0 = Debug|Win32
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Release_Official|Win32.ActiveCfg = Release_Official|Win32
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Release_Official|Win32.Build.0 = Release_Official|Win32
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Release|Win32.ActiveCfg = Release|Win32
+		{9493CD5E-453B-4C35-B6E5-07E5DAF50874}.Release|Win32.Build.0 = Release|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Debug_Official|Win32.ActiveCfg = Debug|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Debug_Official|Win32.Build.0 = Debug|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Debug|Win32.Build.0 = Debug|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Release_Official|Win32.ActiveCfg = Release|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Release_Official|Win32.Build.0 = Release|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Release|Win32.ActiveCfg = Release|Win32
+		{D79D0665-9FA6-44B4-8786-32C7977A9036}.Release|Win32.Build.0 = Release|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Debug_Official|Win32.ActiveCfg = Debug|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Debug_Official|Win32.Build.0 = Debug|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Debug|Win32.Build.0 = Debug|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Release_Official|Win32.ActiveCfg = Release|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Release_Official|Win32.Build.0 = Release|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Release|Win32.ActiveCfg = Release|Win32
+		{F11AF47D-4DC3-4AE6-BBEC-594546CF4C40}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
