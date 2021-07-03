@@ -84,7 +84,8 @@ void Kots_CharacterAddExpack(edict_t *ent)
 
 void Kots_CharacterAddSpiral(edict_t *ent)
 {
-	if (Kots_CharacterCanAddPower(ent))
+	if (Kots_CharacterCanAddPower(ent) &&
+		Kots_PowerCharacterCheckLevelCap(ent, KOTS_POWER_SPIRAL, ent->character->spiral + 1))
 	{
 		if (ent->character->resist == POW_SPIRAL)
 			gi.cprintf(ent, PRINT_HIGH, "You cannot train powers you resist.\n");
@@ -959,3 +960,31 @@ void Kots_CharacterSetPower(edict_t *ent)
 	}
 }
 
+qboolean Kots_PowerCharacterCheckLevelCap(edict_t *ent, int power, int total)
+{
+	// The cap only applies when you're below level KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP
+	if (ent->character->level < KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP)
+	{
+		switch (power)
+		{
+			case KOTS_POWER_SPIRAL:
+				// Only allow 1 point for every 3 levels
+				// todo: see if I can remove the +1 factor in this function for readability
+				if (total > ((ent->character->level / 3) + 1))
+				{
+					int next_level = (total - 1) * 3;
+					if (next_level > KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP)
+						next_level = KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP;
+
+					gi.cprintf(ent, PRINT_HIGH, "You cannot train this power tree again until level %d.\n", next_level);
+					return false;
+				}
+
+				break;
+			default:
+				break;
+		}
+	}
+
+	return true;
+}

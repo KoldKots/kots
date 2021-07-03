@@ -221,6 +221,7 @@ void Kots_StartGame(edict_t *ent, pmenuhnd_t *hnd)
 			Kots_ServerLoginCharacter(ent);
 			
 			gi.centerprintf(ent, "Loading character, please wait...\n");
+			gi.centerprintf(ent, "Visit www.kingoftheserver.org to see the\n current rankings for this server!\nWelcome to the KOTS2020!\nLET'S FRAG LIKE THE OLD DAYS!");
 			PMenu_Close(ent);
 		}
 	}

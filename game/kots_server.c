@@ -69,6 +69,9 @@ void Kots_FreeServer()
 	//wait for all input jobs to be completed
 	Kots_WaitForDbThreads();
 
+	// Kold - 	This is broken in the official release due to deadlock. Temporary disablement,
+	// 			since it prevents automatic server shutdown.
+	/*
 	for (i = 0; i < KOTS_MAX_DBTHREADS; i++)
 	{
 		gi.dprintf("Stopping thread %i.\n", i);
@@ -76,6 +79,7 @@ void Kots_FreeServer()
 		Kots_FreeDbThread(threads[i]);
 		threads[i] = NULL;
 	}
+	*/
 
 	gi.dprintf("Cleaning up the queues.\n");
 	//cleanup the input/output queues etc
@@ -817,7 +821,7 @@ void Kots_ServerDbNameChanged()
 void Kots_ServerSetAllowLogin(edict_t *admin, qboolean allow)
 {
 	server_login = allow;
-
+#ifndef KOTS_TEST // Useful for logging in as admin, then disabling login
 	//if login has been disabled by the server then log everyone out
 	if (!server_login)
 	{
@@ -844,7 +848,8 @@ void Kots_ServerSetAllowLogin(edict_t *admin, qboolean allow)
 			Kots_CharacterLogout(ent, true, false);
 		}
 	}
-	else
+#endif
+	if (server_login)
 	{
 		//print a message on the server console
 		gi.cprintf(admin, PRINT_HIGH, "Login has been enabled.\n");

@@ -990,9 +990,11 @@ void Blaster_Fire (edict_t *ent, vec3_t g_offset, int damage, qboolean hyper, in
 	VectorScale (forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
 
-	//SWB
+	//SWB & Kold
 	if (ent->character->cur_hyperblaster >= 10 && ent->character->rune && ent->character->rune->hyperblaster > 0)
 		fire_blaster_ex (ent, start, forward, damage, 1500, effect | EF_COLOR_SHELL, RF_SHELL_BLUE, true, MOD_HYPERBLASTER); //level 10 + rune stuns
+	else if (ent->character->cur_hyperblaster >= 6)
+		fire_blaster (ent, start, forward, damage, 2000, effect, hyper);
 	else if (ent->character->cur_hyperblaster >= 4)
 		fire_blaster (ent, start, forward, damage, 1500, effect, hyper);
 	else
@@ -1139,6 +1141,8 @@ void Machinegun_Fire (edict_t *ent)
 	int			damage = 8;
 	int			kick = 2;
 	vec3_t		offset;
+	int			hspread = DEFAULT_BULLET_HSPREAD;
+	int			vspread = DEFAULT_BULLET_VSPREAD;
 
 
 	if (!(ent->client->buttons & BUTTON_ATTACK))
@@ -1185,11 +1189,25 @@ void Machinegun_Fire (edict_t *ent)
 	VectorSet(offset, 0, 8, ent->viewheight-8);
 	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
 
+	//Kold - modify spread at levels 4 and 6
+	if (ent->character->cur_machinegun >= 6) 
+	{
+		// reduce by 40%
+		hspread = hspread * 3 / 5;
+		vspread = vspread * 3 / 5;
+	}
+	else if (ent->character->cur_machinegun >= 4)
+	{
+		// reduce by 20%
+		hspread = hspread * 4 / 5;
+		vspread = vspread * 4 / 5;
+	}
+
 	//SWB - level 10 + rune
 	if (ent->character->cur_machinegun >= 10 && ent->character->rune && ent->character->rune->machinegun > 0)
 		fire_bullet (ent, start, forward, damage, kick, DEFAULT_BULLET_HSPREAD / 5, DEFAULT_BULLET_VSPREAD / 5, MOD_MACHINEGUN);
 	else
-		fire_bullet (ent, start, forward, damage, kick, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, MOD_MACHINEGUN);
+		fire_bullet (ent, start, forward, damage, kick, hspread, vspread, MOD_MACHINEGUN);
 
 	//SWB
 	if (ent->character->cur_machinegun >= 4 && ent->client->ps.gunframe == 8)
@@ -1476,7 +1494,11 @@ void weapon_supershotgun_fire (edict_t *ent)
 	//SWB
 	int			pelletcount = DEFAULT_SSHOTGUN_COUNT ;
 
-	if (ent->character->cur_supershotgun >= 2)
+	if (ent->character->cur_supershotgun >= 6)
+		pelletcount += 16;
+	else if (ent->character->cur_supershotgun >= 4)
+		pelletcount += 8;
+	else if (ent->character->cur_supershotgun >= 2)
 		pelletcount += 4;
 
 	is_silenced = (ent->character->cur_supershotgun >= 1 ? MZ_SILENCED : is_silenced);
@@ -1506,6 +1528,7 @@ void weapon_supershotgun_fire (edict_t *ent)
 	AngleVectors (v, forward, NULL, NULL);
 	//SWB
 	//Modified pellet count
+	//Kold - reduced spread at higher levels
 	fire_shotgun (ent, start, forward, damage, kick, DEFAULT_SHOTGUN_HSPREAD, DEFAULT_SHOTGUN_VSPREAD, pelletcount/2, MOD_SSHOTGUN);
 	v[YAW]   = ent->client->v_angle[YAW] + 5;
 	AngleVectors (v, forward, NULL, NULL);

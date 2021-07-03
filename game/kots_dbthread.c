@@ -735,7 +735,7 @@ MYSQL *ConnectToDb(MYSQL *mysql)
 		{
 			//Some options get reset after connection so ensure they're correct
 			SetMysqlOptions(mysql);
-
+			gi.dprintf("DB: Successfully connected to database: %s\n", MYSQL_DB);
 			return mysql;
 		}
 	}

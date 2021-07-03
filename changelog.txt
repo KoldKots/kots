@@ -1,3 +1,18 @@
+Version 2.0.0 - 2021-07-02 - Kold
+BUGFIX: Fixed a typo in kots_db.sql causing syntax errors when imported.
+CHANGE: Buffed SSG by adding more pellets at higher levels
+CHANGE: Buffed MG by reducing bullet spread at higher levels
+CHANGE: Buffed HB by increasing damage and tracer speed at higher levels
+CHANGE: Nerfed bide by creating a particle effect while charging to warn other players
+CHANGE: Buffed dex by making hook silent at level 7
+CHANGE: Buffed dex by changing hook cube cost at level 7 from 4 to 2
+CHANGE: Increased exp rate and credit pickups by a factor of 10.
+CHANGE: Nerfed tech armor regen: now only applied when tech is mastered.
+CHANGE: Nerfed tech armor regen from 4/sec to 2/sec.
+CHANGE: Tech armor resist used to be level 3: 1.4; level 5: 1.75; level 7: 2.25. It is now level 3: 1.5; level 5+: 2.
+CHANGE: Spiral can only be trained once every three levels until one hits level 30.
+CHANGE: Modified the text that is displayed when you login to advertise the mod page and give a reunion feel.
+
 Version 1.1.0 - 2010-08-15 - SWB
 BUGFIX: Fixed a bug where the wrong text printed out for sv dbhostname.
 BUGFIX: Fixed a bug with the wrong dbhostname variable being used.

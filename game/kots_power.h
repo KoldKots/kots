@@ -16,6 +16,8 @@
 #define KOTS_SPIRAL_BEAMSIZE	30		/*Size of each beam*/
 #define KOTS_SPIRAL_SPEED		8		/*Speed of rotation in degrees per frame*/
 
+#define KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP	30
+
 typedef struct
 {
 	char *name;
@@ -47,5 +49,6 @@ void Kots_CharacterSpiral(edict_t *ent, char *args);
 void Kots_CharacterCreateSpiral(edict_t *ent, qboolean forward);
 void Kots_CharacterAddPower(edict_t *ent, char *power);
 void Kots_CharacterSetPower(edict_t *ent);
+qboolean Kots_PowerCharacterCheckLevelCap(edict_t *ent, int power, int total);
 
 #endif

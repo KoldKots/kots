@@ -212,11 +212,11 @@ int Kots_CharacterHyperblasterDamage(edict_t *ent, int damage)
 	case 3:
 		return Kots_CharacterMunitionDamage(ent, 30);
 	case 4:
-		return Kots_CharacterMunitionDamage(ent, 35);
-	case 5:
 		return Kots_CharacterMunitionDamage(ent, 40);
-	case 6:
+	case 5:
 		return Kots_CharacterMunitionDamage(ent, 45);
+	case 6:
+		return Kots_CharacterMunitionDamage(ent, 55);
 	default: // > 6
 		return Kots_CharacterMunitionDamagePlus(ent, 45, ent->character->cur_hyperblaster);
 	}

@@ -316,12 +316,7 @@ void Kots_CharacterCheckArmorRegen(edict_t *ent)
 		if (ent->client->pers.inventory[index] < maxarmor)
 		{
 			if (ent->character->cur_technical >= 7)
-				ent->client->pers.inventory[index] += 4;
-			else if (ent->character->cur_technical == 6)
-				ent->client->pers.inventory[index] += 3;
-			else
 				ent->client->pers.inventory[index] += 2;
-
 			if (ent->client->pers.inventory[index] > maxarmor)
 				ent->client->pers.inventory[index] = maxarmor;
 		}
@@ -834,7 +829,7 @@ void Kots_CharacterHook(edict_t *ent)
 		if (ent->character->cur_dexterity >= 10)
 			cubes = 1;
 		else if (ent->character->cur_dexterity >= 7)
-			cubes = 4;
+			cubes = 2;
 		else
 			cubes = 8;
 

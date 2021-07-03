@@ -47,17 +47,17 @@ qboolean Kots_PackPickup(edict_t *pack, edict_t *ent)
 
 	if (Q_stricmp(pack->pack->owner_name, ent->character->name) == 0)
 	{
-		ent->character->credits += 1;
-		ent->character->total_credits += 1;
-		ent->character->level_credits += 1;
-		gi.cprintf(ent, PRINT_HIGH, "You picked up your own pack containing 1 credit.\n");
+		ent->character->credits += 1 * KOTS_CREDIT_MULTIPLY;
+		ent->character->total_credits += 1 * KOTS_CREDIT_MULTIPLY;
+		ent->character->level_credits += 1 * KOTS_CREDIT_MULTIPLY;
+		gi.cprintf(ent, PRINT_HIGH, "You picked up your own pack containing 10 credits.\n");
 	}
 	else
 	{
-		ent->character->credits += pack->pack->credits;
-		ent->character->total_credits += pack->pack->credits;
-		ent->character->level_credits += pack->pack->credits;
-		gi.cprintf(ent, PRINT_HIGH, "You picked up %s's pack containing %i credit%s.\n", pack->pack->owner_name, pack->pack->credits, (pack->pack->credits != 1 ? "s" : ""));
+		ent->character->credits += pack->pack->credits * KOTS_CREDIT_MULTIPLY;
+		ent->character->total_credits += pack->pack->credits * KOTS_CREDIT_MULTIPLY;
+		ent->character->level_credits += pack->pack->credits * KOTS_CREDIT_MULTIPLY;
+		gi.cprintf(ent, PRINT_HIGH, "You picked up %s's pack containing %i credit%s.\n", pack->pack->owner_name, pack->pack->credits * KOTS_CREDIT_MULTIPLY, (pack->pack->credits != 1 ? "s" : ""));
 	}
 
 	//keep track of total number of packs picked up

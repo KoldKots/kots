@@ -7,7 +7,7 @@
 #define DEG2RAD( a ) ( a * M_PI ) / 180.0F
 #endif
 
-#define KOTS_VERSION				"KOTS2007 1.1.0"
+#define KOTS_VERSION				"KOTS2020 2.0.0"
 
 #ifndef HEALTH_IGNORE_MAX
 #define HEALTH_IGNORE_MAX	1
@@ -84,7 +84,11 @@ typedef enum {
 #define KOTS_EXP_2FER_MIN			20
 #define KOTS_EXP_3FER_MIN			40
 
-#define KOTS_ENABLE_MAX_WEAPON_SKILL	1
+//define experience multiplication constants
+#define KOTS_EXP_MULTIPLY			10
+#define KOTS_CREDIT_MULTIPLY		10			
+
+#define KOTS_ENABLE_MAX_WEAPON_SKILL	0
 
 // define fly constants
 #define KOTS_FLY_MAX_CHARGE			3.0
@@ -151,8 +155,8 @@ typedef enum {
 #define WIS_MASTERY		(WIS_LEVEL_BONUS * 1.5)
 
 //define technical armor resistance
-#define TECH_RESIST_NORMAL	1.4
-#define TECH_RESIST_HIGH	1.75
+#define TECH_RESIST_NORMAL	1.5
+#define TECH_RESIST_HIGH	2
 #define TECH_RESIST_SUPER	2.25
 
 //define antiweapon enhancements

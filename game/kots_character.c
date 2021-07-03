@@ -227,9 +227,9 @@ void Kots_CharacterAddDamageExp(edict_t *damager, edict_t *damaged, int damage)
 
 	exp = Kots_CharacterGetDamageExp(damager, damaged, damage);
 
-	damager->character->exp += exp;
-	damager->character->score += exp;
-	damager->character->damage_exp += exp;
+	damager->character->exp += exp * KOTS_EXP_MULTIPLY;
+	damager->character->score += exp * KOTS_EXP_MULTIPLY;
+	damager->character->damage_exp += exp * KOTS_EXP_MULTIPLY;
 }
 
 void Kots_CharacterAddKillExp(edict_t *killer, edict_t *killed)
@@ -269,8 +269,8 @@ void Kots_CharacterAddKillExp(edict_t *killer, edict_t *killed)
 	//enforce min and max exp
 	Kots_CharacterAdjustExpLimits(killed, &exp);
 
-	killer->character->exp += exp;
-	killer->character->score += exp;
+	killer->character->exp += exp * KOTS_EXP_MULTIPLY;
+	killer->character->score += exp * KOTS_EXP_MULTIPLY;
 
 	//increment number of player kills (mainly for logging algorithms)
 	killer->character->player_kills++;
@@ -893,9 +893,7 @@ void Kots_CharacterCheckArmor(edict_t *ent, int *save, int *armor)
 {
 	int total_armor = *armor;
 
-	if (ent->character->cur_technical >= 7)
-		total_armor = Kots_RandMultiply(total_armor, TECH_RESIST_SUPER);
-	else if (ent->character->cur_technical >= 5)
+	if (ent->character->cur_technical >= 5)
 		total_armor = Kots_RandMultiply(total_armor, TECH_RESIST_HIGH);
 	else if (ent->character->cur_technical >= 3)
 		total_armor = Kots_RandMultiply(total_armor, TECH_RESIST_NORMAL);
@@ -905,9 +903,7 @@ void Kots_CharacterCheckArmor(edict_t *ent, int *save, int *armor)
 	{
 		int take = *save;
 
-		if (ent->character->cur_technical >= 7)
-			take = Kots_Round(take / TECH_RESIST_SUPER);
-		else if (ent->character->cur_technical >= 3)
+		if (ent->character->cur_technical >= 5)
 			take = Kots_Round(take / TECH_RESIST_HIGH);
 		else if (ent->character->cur_technical >= 3)
 			take = Kots_Round(take / TECH_RESIST_NORMAL);
@@ -1195,12 +1191,12 @@ void Kots_CharacterKilled(edict_t *targ, edict_t *inflictor, edict_t *attacker, 
 
 		if (targ->character->exp >= explost)
 		{
-			targ->character->exp -= explost;
-			targ->character->score -= explost;
+			targ->character->exp -= explost * KOTS_EXP_MULTIPLY;
+			targ->character->score -= explost * KOTS_EXP_MULTIPLY;
 		}
 		else
 		{
-			targ->character->score -= targ->character->exp;
+			targ->character->score -= targ->character->exp * KOTS_EXP_MULTIPLY;
 			targ->character->exp = 0;
 		}
 
@@ -1480,8 +1476,8 @@ void Kots_CharacterDivideWarExp(edict_t *warent)
 			{
 				percent = (float)spreewar.dmgs[i] / totaldmg;
 				bonusexp = (int)(KOTS_EXP_MAX * percent); // total bonus exp is max
-				cl_ent->character->exp += bonusexp;
-				cl_ent->character->score += bonusexp;
+				cl_ent->character->exp += bonusexp * KOTS_EXP_MULTIPLY;
+				cl_ent->character->score += bonusexp * KOTS_EXP_MULTIPLY;
 				gi.cprintf(cl_ent,PRINT_HIGH,"You got %i bonus exp for doing %i damage (%03.2f%%) on %s's SpreeWar!\n",bonusexp,spreewar.dmgs[i],percent * 100,Kots_CharacterGetName(warent));
 				
 				if(spreewar.dmgs[i] > highest_dmg)
@@ -1849,6 +1845,9 @@ void Kots_CharacterClientEffects(edict_t *ent)
 		//add rocket trail behind players using haste
 		if (ent->character->next_hastecomplete > level.time)
 			ent->s.effects |= EF_ROCKET;
+
+		if (ent->character->bideon && ent->character->bidestart > level.time - 10)
+			ent->s.effects |= EF_FLAG1;
 
 		//check character cloaking state
 		Kots_CharacterCheckCloak(ent);
@@ -2463,7 +2462,7 @@ int Kots_CharacterGetPurchasedPlayerPoints(edict_t *ent)
 
 int Kots_CharacterGetNextPlayerPointCost(edict_t *ent)
 {
-	return 8000 + Kots_CharacterGetPurchasedPlayerPoints(ent) * 1000;
+	return (8000 + Kots_CharacterGetPurchasedPlayerPoints(ent) * 1000);
 }
 
 int Kots_CharacterGetTotalWeaponPoints(edict_t *ent)
@@ -2483,7 +2482,7 @@ int Kots_CharacterGetPurchasedWeaponPoints(edict_t *ent)
 
 int Kots_CharacterGetNextWeaponPointCost(edict_t *ent)
 {
-	return 4000 + Kots_CharacterGetPurchasedWeaponPoints(ent) * 500;
+	return (4000 + Kots_CharacterGetPurchasedWeaponPoints(ent) * 500);
 }
 
 int Kots_CharacterGetTotalPowerPoints(edict_t *ent)
@@ -2500,7 +2499,7 @@ int Kots_CharacterGetPurchasedPowerPoints(edict_t *ent)
 
 int Kots_CharacterGetNextPowerPointCost(edict_t *ent)
 {
-	return 12000 + Kots_CharacterGetPurchasedPowerPoints(ent) * 1500;
+	return (12000 + Kots_CharacterGetPurchasedPowerPoints(ent) * 1500);
 }
 
 int Kots_CharacterGetSpawnCost(int spawns)

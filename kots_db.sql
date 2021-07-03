@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
   `gender` char(1) NOT NULL default 'M',
   `king_id` int(4) unsigned default NULL,
   `allow_login` tinyint(1) NOT NULL default '1',
-  `respec_points` int(4) NOT NULL default '0'
+  `respec_points` int(4) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name_ix` USING BTREE (`name`),
   KEY `rune_id_ix` USING BTREE (`rune_id`),

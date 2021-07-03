@@ -33,7 +33,7 @@ void CTFResetGrapple(edict_t *self)
 			self->owner->character->last_hookrelease = level.time;
 
 		if (self->owner->character->cur_dexterity >= 7)
-			volume = 0.2;
+			volume = 0;
 		else if (self->owner->character->cur_dexterity >= 5)
 			volume = 0.5;
 
@@ -92,7 +92,7 @@ void CTFGrappleTouch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t
 	self->solid = SOLID_NOT;
 
 	if (self->owner->character->cur_dexterity >= 7)
-		volume = 0.2;
+		volume = 0;
 	else if (self->owner->character->cur_dexterity >= 5)
 		volume = 0.5;
 
@@ -217,7 +217,7 @@ void CTFGrapplePull(edict_t *self)
 
 				
 				if (self->owner->character->cur_dexterity >= 7)
-					volume = 0.2;
+					volume = 0;
 				else if (self->owner->character->cur_dexterity >= 5)
 					volume = 0.5;
 
@@ -262,7 +262,7 @@ void CTFGrapplePull(edict_t *self)
 			float volume = 1.0;
 
 			if (self->owner->character->cur_dexterity >= 7)
-				volume = 0.2;
+				volume = 0;
 			else if (self->owner->character->cur_dexterity >= 5)
 				volume = 0.5;
 
@@ -360,7 +360,7 @@ void CTFGrappleFire (edict_t *ent, vec3_t g_offset, int damage, int effect)
 		ent->client->kick_angles[0] = -1;
 		
 		if (ent->character->cur_dexterity >= 7)
-			volume = 0.2;
+			volume = 0;
 		else if (ent->character->cur_dexterity >= 5)
 			volume = 0.5;
 
