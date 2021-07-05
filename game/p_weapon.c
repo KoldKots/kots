@@ -1495,9 +1495,9 @@ void weapon_supershotgun_fire (edict_t *ent)
 	int			pelletcount = DEFAULT_SSHOTGUN_COUNT ;
 
 	if (ent->character->cur_supershotgun >= 6)
-		pelletcount += 16;
+		pelletcount += 10;
 	else if (ent->character->cur_supershotgun >= 4)
-		pelletcount += 8;
+		pelletcount += 6;
 	else if (ent->character->cur_supershotgun >= 2)
 		pelletcount += 4;
 

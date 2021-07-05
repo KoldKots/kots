@@ -212,7 +212,9 @@ void InitGame (void)
 	kots_motd = gi.cvar("motd", "motd.txt", CVAR_SERVERINFO);
 	kots_prevmaps = gi.cvar("prevmaps", "5", CVAR_SERVERINFO);
 	gamever = gi.cvar("gamever", "", CVAR_SERVERINFO | CVAR_NOSET); 
-	gamedir = gi.cvar("gamedir", "", CVAR_NOSET);
+	// Kold - force this to kots2020 to enforce consistent behavior,
+	//        since some clients do not populate it (Q2PRO)
+	gamedir = gi.cvar("gamedir", "kots2020", CVAR_NOSET);
 	hostname = gi.cvar("hostname", "", CVAR_SERVERINFO);
 	mapname = gi.cvar("mapname", "", CVAR_SERVERINFO | CVAR_NOSET);
 	port = gi.cvar("port", "", CVAR_SERVERINFO | CVAR_NOSET);

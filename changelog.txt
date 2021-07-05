@@ -1,3 +1,8 @@
+Version 2.0.0 - 2021-07-04 - Kold
+BUGFIX: Forced gamedir to kots2020 for consistent behavior across clients, since Q2PRO doesn't populate gamedir
+CHANGE: Nerfed SSG by reducing pellet increase in 2.0.0
+CHANGE: Modified reunion splash
+
 Version 2.0.0 - 2021-07-02 - Kold
 BUGFIX: Fixed a typo in kots_db.sql causing syntax errors when imported.
 CHANGE: Buffed SSG by adding more pellets at higher levels
