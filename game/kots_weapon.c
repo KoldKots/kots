@@ -2,6 +2,9 @@
 #include "kots_resist.h"
 #include "kots_runes.h"
 
+qboolean is_quad;
+byte     is_silenced;
+
 //Weapon names and functions to add or resist them
 #define TotalWeaponPoints 24
 weaponpoint_t WeaponPoints[TotalWeaponPoints] =

@@ -1,4 +1,6 @@
 #include "kots_mysql_helper.h"
+#include <stdlib.h>
+#include <string.h>
 
 //creates an iterator to more easily manage results and row values
 MYSQL_ITERATOR *mysql_iterator_create(MYSQL *mysql)
@@ -112,8 +114,10 @@ void *mysql_iterator_getvalue(MYSQL_ITERATOR *iterator, const char *name)
 
 	if (iterator->currentrow)
 		for (i = 0; i < iterator->numfields; i++)
+		{
 			if (strcmp(iterator->fields[i].name, name) == 0)
 				return iterator->currentrow[i];
+		}
 
 	return NULL;
 }

@@ -13,6 +13,8 @@
 #include "kots_conpersist.h"
 #include "kots_menu.h"
 
+spreewar_t spreewar;
+
 //prototypes used in this file
 void Kots_Maplist_CheckVote(edict_t *ent);
 static int CheckArmor (edict_t *ent, vec3_t point, vec3_t normal, int damage, int te_sparks, int dflags);

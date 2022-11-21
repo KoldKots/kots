@@ -5,6 +5,10 @@
 //track monsters on map
 array_t *monsters = NULL;
 
+int KOTS_MONSTER_VOTE;
+int KOTS_MONSTER_NEXT_SPAWN;
+int KOTS_MONSTER_NEXT_VOTE_INTERVAL;
+
 void SP_monster_makron(edict_t *self);
 
 #define MonsterCount 22

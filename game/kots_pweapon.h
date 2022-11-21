@@ -6,8 +6,8 @@
 //Variables moved to this header in order to allow separation
 //of normal q2 weapons from kots weapons
 
-qboolean	is_quad;
-byte		is_silenced;
+extern qboolean is_quad;
+extern byte     is_silenced;
 
 //function prototypes needed by kots weapons
 void P_ProjectSource (gclient_t *client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);

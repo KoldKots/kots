@@ -4,6 +4,8 @@
 
 #define KOTS_MAPVOTE_TIMEOUT 30
 
+maplist_t maplist;
+
 //keep track of previously visited maps
 array_t *prevmaps;
 array_t *failed_votes;

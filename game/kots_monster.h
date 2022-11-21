@@ -21,9 +21,9 @@
 #define KOTS_MONSTERS_MIXED						2
 #define KOTS_MONSTERS_ONLY						3
 
-int KOTS_MONSTER_VOTE;
-int KOTS_MONSTER_NEXT_SPAWN;
-int KOTS_MONSTER_NEXT_VOTE_INTERVAL;
+extern int KOTS_MONSTER_VOTE;
+extern int KOTS_MONSTER_NEXT_SPAWN;
+extern int KOTS_MONSTER_NEXT_VOTE_INTERVAL;
 
 typedef struct kots_monster_s
 {

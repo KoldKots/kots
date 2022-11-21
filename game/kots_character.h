@@ -446,7 +446,7 @@ typedef struct
 	int		dmgs[MAX_CLIENTS];
 } spreewar_t;
 
-spreewar_t spreewar;
+extern spreewar_t spreewar;
 
 //Added Includes to .cpp files now, no need for this
 

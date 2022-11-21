@@ -61,6 +61,7 @@ void Kots_InitializeServer()
 
 void Kots_FreeServer()
 {
+
 	int i;
 	
 	//free the other services
@@ -94,6 +95,7 @@ void Kots_FreeServer()
 	//free the other services
 	gi.dprintf("Cleaning up mute list.\n");
 	Kots_MuteFree();
+
 }
 
 void Kots_ServerProcessOutput()

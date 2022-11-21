@@ -42,7 +42,7 @@ typedef struct
 	int fails;				//number of failed attempts to vote for the map
 } votefail_t;
 
-maplist_t maplist;
+extern maplist_t maplist;
 
 void Kots_Maplist_Init();
 void Kots_Maplist_Free();
