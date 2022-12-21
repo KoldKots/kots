@@ -221,7 +221,13 @@ void Kots_StartGame(edict_t *ent, pmenuhnd_t *hnd)
 			Kots_ServerLoginCharacter(ent);
 			
 			gi.centerprintf(ent, "Loading character, please wait...\n");
-			gi.centerprintf(ent, "Visit www.kingoftheserver.org to see the\n current rankings for this server!\nhttps://discord.gg/uZdBxkbCzP #kots\nWelcome to the KOTS2020!\nLET'S FRAG LIKE THE OLD DAYS!");
+			gi.centerprintf(ent, "Visit www.kingoftheserver.org to see the\n"
+									"current rankings for this server!\n"
+									"https://discord.gg/uZdBxkbCzP #kots\n"
+									"Welcome to KOTS2020!\n"
+									"LET'S FRAG LIKE THE OLD DAYS!\n"
+									"Weekly timeslots:\n"
+									"Tuesday 8-10PM EST, Saturdays 6-8PM EST\n");
 			PMenu_Close(ent);
 		}
 	}
