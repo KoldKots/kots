@@ -59,7 +59,7 @@ void Array_SetCapacity(array_t *array, ULONG capacity)
 
 	if (array->capacity > capacity)
 	{
-		fprintf(stderr, "Error trying to set capacity lower than current capacity (OLD: %d, NEW: %d).", array->capacity, capacity);
+		fprintf(stderr, "Error trying to set capacity lower than current capacity (OLD: %ld, NEW: %ld).", array->capacity, capacity);
 		exit(1);
 	}
 	else if (array->capacity == capacity && capacity > 0)
@@ -214,7 +214,7 @@ void *Array_GetValueAt(array_t *array, ULONG index)
 {
 	if (index < 0 || index >= array->length)
 	{
-		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %d, INDEX: %d).", array->length, index);
+		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %ld, INDEX: %ld).", array->length, index);
 		exit(1);
 	}
 
@@ -225,7 +225,7 @@ void Array_SetValueAt(array_t *array, ULONG index, void *value)
 {
 	if (index < 0 || index >= array->length)
 	{
-		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %d, INDEX: %d).", array->length, index);
+		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %ld, INDEX: %ld).", array->length, index);
 		exit(1);
 	}
 
@@ -253,7 +253,7 @@ void Array_InsertAt(array_t *array, void *value, ULONG index)
 
 	if (index < 0 || index > array->length)
 	{
-		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %d, INDEX: %d).", array->length, index);
+		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %ld, INDEX: %ld).", array->length, index);
 		exit(1);
 	}
 
@@ -300,7 +300,7 @@ void *Array_PopAt(array_t *array, ULONG index)
 
 	if (index < 0 || index >= array->length)
 	{
-		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %d, INDEX: %d).", array->length, index);
+		fprintf(stderr, "Error accessing array index outside of bounds (LENGTH: %ld, INDEX: %ld).", array->length, index);
 		exit(1);
 	}
 
