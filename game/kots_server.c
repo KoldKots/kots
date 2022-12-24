@@ -1084,7 +1084,7 @@ void MysqlSaveCharacter(dbthread_t *thread, jobitem_t *job)
 		"call `SavePower2`(%i, %i, %i, %i, %i, %i, %i, %i);\n"
 		"call `SavePersist`(%i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i);\n"
 		"call `SaveStats2`(%i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i, %i);\n"
-		"call `SaveSettings2`(%i, %i, %i, %i);",
+		"call `SaveSettings2`(%i, %i, %i, %i, %i);",
 
 		//save character parameters
 		character->id, character->level, character->exp, character->gender,
@@ -1125,7 +1125,7 @@ void MysqlSaveCharacter(dbthread_t *thread, jobitem_t *job)
 		character->total_credits, character->total_packs,
 
 		//save settings parameters
-		character->id, character->using_highjump, character->using_spiritswim, character->using_pconvert
+		character->id, character->using_highjump, character->using_spiritswim, character->using_pconvert, character->laserhook_color
 		);
 
 	job->result = MysqlExecQuery(thread, job, querylength);
@@ -1265,6 +1265,7 @@ static void MysqlLoginCharacter(dbthread_t *thread, jobitem_t *job)
 				character->using_highjump = mysql_iterator_getint(iterator, "highjump");
 				character->using_spiritswim = mysql_iterator_getint(iterator, "spiritswim");
 				character->using_pconvert = mysql_iterator_getint(iterator, "pconvert");
+				character->laserhook_color = mysql_iterator_getint(iterator, "laserhook_color");
 
 				//set return value to success
 				job->result = KOTS_SERVER_SUCCESS;
@@ -1375,6 +1376,7 @@ static void MysqlLoadCharacter(dbthread_t *thread, jobitem_t *job)
 				character->using_highjump = mysql_iterator_getint(iterator, "highjump");
 				character->using_spiritswim = mysql_iterator_getint(iterator, "spiritswim");
 				character->using_pconvert = mysql_iterator_getint(iterator, "pconvert");
+				character->laserhook_color = mysql_iterator_getint(iterator, "laserhook_color");
 
 				//set return value to success
 				job->result = KOTS_SERVER_SUCCESS;

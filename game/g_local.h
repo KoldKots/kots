@@ -906,6 +906,7 @@ typedef struct
 	int				intermission_screen;
 
 	//settings to persist between maps
+	int				laserhook_color;
 	qboolean		using_pconvert;
 	qboolean		using_deflect;
 	qboolean		using_knock;

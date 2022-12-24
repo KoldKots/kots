@@ -128,6 +128,7 @@ command_t kots_commands[] =
 	"kots_hgspeed", "Enables/disables fixed HG speed", Kots_HgSpeed, false,
 	"kots_hgfuse", "Enables/disables shorter HG fuse", Kots_HgFuse, false,
 	"kots_respec", "Allows you to respec (reset) one or more player points", Kots_Respec, false,
+	"kots_hookcolor", "Allows you to set the color of the laserhook (red, blue, green, orange, yellow)", Kots_HookColor, false,
 	"droprune", "Drops the rune you are currently holding", Kots_DropRune, false,
 	"maplist", "View the maplist", Kots_Maplist, false,
 	"play_voice", "Plays the specified sound originating from your player", Kots_PlayVoice, false,
@@ -1119,6 +1120,16 @@ void Kots_Respec(edict_t *ent, char *args)
 		gi.cprintf(ent, PRINT_HIGH, "You must be logged in first.\n");
 	else
 		Kots_CharacterRespecPlayer(ent, (gi.argc() > 1 ? gi.argv(1) : ""));
+}
+
+void Kots_HookColor(edict_t *ent, char *args)
+{
+	if (level.intermissiontime)
+		return;
+	else if (!ent->character->is_loggedin)
+		gi.cprintf(ent, PRINT_HIGH, "You must be logged in first.\n");
+	else
+		Kots_CharacterHookColor(ent, args);
 }
 
 qboolean Kots_Command(edict_t *ent, char *cmd)

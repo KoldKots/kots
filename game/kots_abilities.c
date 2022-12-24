@@ -2305,3 +2305,23 @@ void Kots_CharacterDetonate(edict_t *ent)
 		VectorCopy(oldvelocity, ent->client->oldvelocity);
 	}
 }
+
+
+void Kots_CharacterHookColor(edict_t *ent, char *value)
+{
+	if (Q_stricmp(value, "red") == 0)
+		ent->character->laserhook_color = LASERHOOK_COLOR_RED;
+	else if (Q_stricmp(value, "blue") == 0)
+		ent->character->laserhook_color = LASERHOOK_COLOR_BLUE;
+	else if (Q_stricmp(value, "green") == 0)
+		ent->character->laserhook_color = LASERHOOK_COLOR_GREEN;
+	else if (Q_stricmp(value, "yellow") == 0)
+		ent->character->laserhook_color = LASERHOOK_COLOR_YELLOW;
+	else if (Q_stricmp(value, "orange") == 0)
+		ent->character->laserhook_color = LASERHOOK_COLOR_ORANGE;
+	else
+		gi.cprintf(ent, PRINT_HIGH, "Invalid color.\n");
+		return;
+
+	gi.cprintf(ent, PRINT_HIGH, "Color changed.\n");
+}

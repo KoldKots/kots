@@ -2,9 +2,9 @@
 #include "kots_utils.h"
 #include "kots_pweapon.h"
 
-#define KOTS_HOOK_FIRESPEED_DEFAULT		1200
+#define KOTS_HOOK_FIRESPEED_DEFAULT		800
 #define KOTS_HOOK_FIRESPEED_LEVEL5		1200
-#define KOTS_HOOK_FIRESPEED_LEVEL7		1200
+#define KOTS_HOOK_FIRESPEED_LEVEL7		1500
 
 #define KOTS_HOOK_PULLSPEED_DEFAULT		800
 #define KOTS_HOOK_PULLSPEED_LEVEL5		1000
@@ -25,22 +25,12 @@ void CTFPlayerResetGrapple(edict_t *ent)
 void CTFResetGrapple(edict_t *self)
 {
 	if (self->owner->client->ctf_grapple) {
-		float volume = 1.0;
 		gclient_t *cl;
 
 		//keep track of the last time we released the hook for falling damage
 		if (self->owner->client->ctf_grapplestate > CTF_GRAPPLE_STATE_FLY)
 			self->owner->character->last_hookrelease = level.time;
 
-		if (self->owner->character->cur_dexterity >= 7)
-			volume = 0;
-		else if (self->owner->character->cur_dexterity >= 5)
-			volume = 0.5;
-
-		if (self->owner->client->silencer_shots)
-			volume = 0.2;
-
-		gi.sound (self->owner, CHAN_RELIABLE+CHAN_WEAPON, gi.soundindex("weapons/grapple/grreset.wav"), volume, ATTN_NORM, 0);
 		cl = self->owner->client;
 		cl->ctf_grapple = NULL;
 		cl->ctf_grapplereleasetime = level.time;
@@ -52,8 +42,6 @@ void CTFResetGrapple(edict_t *self)
 
 void CTFGrappleTouch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t *surf)
 {
-	float volume = 1.0;
-
 	if (other == self->owner)
 		return;
 
@@ -91,17 +79,6 @@ void CTFGrappleTouch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t
 
 	self->solid = SOLID_NOT;
 
-	if (self->owner->character->cur_dexterity >= 7)
-		volume = 0;
-	else if (self->owner->character->cur_dexterity >= 5)
-		volume = 0.5;
-
-	if (self->owner->client->silencer_shots)
-		volume = 0.2;
-
-	gi.sound (self->owner, CHAN_RELIABLE+CHAN_WEAPON, gi.soundindex("weapons/grapple/grpull.wav"), volume, ATTN_NORM, 0);
-	gi.sound (self, CHAN_WEAPON, gi.soundindex("weapons/grapple/grhit.wav"), volume, ATTN_NORM, 0);
-
 	gi.WriteByte (svc_temp_entity);
 	gi.WriteByte (TE_SPARKS);
 	gi.WritePosition (self->s.origin);
@@ -109,68 +86,6 @@ void CTFGrappleTouch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t
 		gi.WriteDir (vec3_origin);
 	else
 		gi.WriteDir (plane->normal);
-	gi.multicast (self->s.origin, MULTICAST_PVS);
-}
-
-// draw beam between grapple and self
-void CTFGrappleDrawCable(edict_t *self)
-{
-	vec3_t	offset, start, end, f, r;
-	vec3_t	dir;
-	float	distance;
-
-	AngleVectors (self->owner->client->v_angle, f, r, NULL);
-	VectorSet(offset, 16, 16, self->owner->viewheight-8);
-	P_ProjectSource (self->owner->client, self->owner->s.origin, offset, f, r, start);
-
-	VectorSubtract(start, self->owner->s.origin, offset);
-
-	VectorSubtract (start, self->s.origin, dir);
-	distance = VectorLength(dir);
-	// don't draw cable if close
-	if (distance < 64)
-		return;
-
-#if 0
-	if (distance > 256)
-		return;
-
-	// check for min/max pitch
-	vectoangles (dir, angles);
-	if (angles[0] < -180)
-		angles[0] += 360;
-	if (fabs(angles[0]) > 45)
-		return;
-
-	trace_t	tr; //!!
-
-	tr = gi.trace (start, NULL, NULL, self->s.origin, self, MASK_SHOT);
-	if (tr.ent != self) {
-		CTFResetGrapple(self);
-		return;
-	}
-#endif
-
-	// adjust start for beam origin being in middle of a segment
-//	VectorMA (start, 8, f, start);
-
-	VectorCopy (self->s.origin, end);
-	// adjust end z for end spot since the monster is currently dead
-//	end[2] = self->absmin[2] + self->size[2] / 2;
-
-	gi.WriteByte (svc_temp_entity);
-#if 0 //def USE_GRAPPLE_CABLE
-	gi.WriteByte (TE_GRAPPLE_CABLE);
-	gi.WriteShort (self->owner - g_edicts);
-	gi.WritePosition (self->owner->s.origin);
-	gi.WritePosition (end);
-	gi.WritePosition (offset);
-#else
-	gi.WriteByte (TE_MEDIC_CABLE_ATTACK);
-	gi.WriteShort (self - g_edicts);
-	gi.WritePosition (end);
-	gi.WritePosition (start);
-#endif
 	gi.multicast (self->s.origin, MULTICAST_PVS);
 }
 
@@ -225,7 +140,6 @@ void CTFGrapplePull(edict_t *self)
 					volume = 0.2;
 
 				T_Damage (self->enemy, self, self->owner, self->velocity, self->s.origin, vec3_origin, 1, 1, 0, MOD_GRAPPLE);
-				//gi.sound (self, CHAN_WEAPON, gi.soundindex("weapons/grapple/grhurt.wav"), volume, ATTN_NORM, 0);
 			}
 		}
 		if (self->enemy->deadflag) { // he died
@@ -233,8 +147,6 @@ void CTFGrapplePull(edict_t *self)
 			return;
 		}
 	}
-
-	CTFGrappleDrawCable(self);
 
 	if (self->owner->client->ctf_grapplestate > CTF_GRAPPLE_STATE_FLY) {
 		// pull player toward grapple
@@ -259,18 +171,8 @@ void CTFGrapplePull(edict_t *self)
 
 		if (self->owner->client->ctf_grapplestate == CTF_GRAPPLE_STATE_PULL &&
 			vlen < 64) {
-			float volume = 1.0;
-
-			if (self->owner->character->cur_dexterity >= 7)
-				volume = 0;
-			else if (self->owner->character->cur_dexterity >= 5)
-				volume = 0.5;
-
-			if (self->owner->client->silencer_shots)
-				volume = 0.2;
 
 			self->owner->client->ps.pmove.pm_flags |= PMF_NO_PREDICTION;
-			gi.sound (self->owner, CHAN_RELIABLE+CHAN_WEAPON, gi.soundindex("weapons/grapple/grhang.wav"), volume, ATTN_NORM, 0);
 			self->owner->client->ctf_grapplestate = CTF_GRAPPLE_STATE_HANG;
 		}
 
@@ -290,6 +192,31 @@ void CTFGrapplePull(edict_t *self)
 	}
 }
 
+// move the two ends of the laser beam to the proper positions
+void CTFGrapple_Think(edict_t *self) {
+    vec3_t forward, right, offset, start;
+
+    // stupid check for NULL pointers ...
+    if(!(self && self->owner && self->owner->owner && self->owner->owner->client)) {
+        G_FreeEdict(self);
+        return; 
+    }
+
+    // put start position into start
+    AngleVectors (self->owner->owner->client->v_angle, forward, right, NULL);
+    VectorSet(offset, 0, 0, self->owner->owner->viewheight-8);
+    P_ProjectSource(self->owner->owner->client, self->owner->owner->s.origin, offset, forward, right, start);
+
+    // move the two ends
+    VectorCopy(start, self->s.origin);
+    VectorCopy(self->owner->s.origin, self->s.old_origin);
+
+    gi.linkentity(self);
+
+    // set up to go again
+    self->nextthink = level.time + FRAMETIME;
+}
+
 void CTFFireGrapple (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, int effect)
 {
 	edict_t	*grapple;
@@ -298,26 +225,54 @@ void CTFFireGrapple (edict_t *self, vec3_t start, vec3_t dir, int damage, int sp
 	VectorNormalize (dir);
 
 	grapple = G_Spawn();
-	VectorCopy (start, grapple->s.origin);
-	VectorCopy (start, grapple->s.old_origin);
+	grapple->movetype = MOVETYPE_FLYMISSILE;
+	grapple->solid = SOLID_BBOX;
+	grapple->clipmask = MASK_SHOT;
+	grapple->owner = self;
+
 	vectoangles (dir, grapple->s.angles);
 	VectorScale (dir, speed, grapple->velocity);
-	grapple->movetype = MOVETYPE_FLYMISSILE;
-	grapple->clipmask = MASK_SHOT;
-	grapple->solid = SOLID_BBOX;
-	grapple->s.effects |= effect;
-	VectorClear (grapple->mins);
-	VectorClear (grapple->maxs);
-	grapple->s.modelindex = gi.modelindex ("models/weapons/grapple/hook/tris.md2");
-//	grapple->s.sound = gi.soundindex ("misc/lasfly.wav");
-	grapple->owner = self;
+
 	grapple->touch = CTFGrappleTouch;
-//	grapple->nextthink = level.time + FRAMETIME;
-//	grapple->think = CTFGrappleThink;
 	grapple->dmg = damage;
 	self->client->ctf_grapple = grapple;
 	self->client->ctf_grapplestate = CTF_GRAPPLE_STATE_FLY; // we're firing, not on hook
-	gi.linkentity (grapple);
+
+	VectorCopy (start, grapple->s.origin);
+	VectorCopy (start, grapple->s.old_origin);
+
+	VectorClear (grapple->mins);
+	VectorClear (grapple->maxs);
+
+	edict_t *laser;
+
+	laser = G_Spawn();
+    laser->movetype = MOVETYPE_NONE;
+    laser->solid = SOLID_NOT;
+    laser->s.renderfx |= RF_BEAM | RF_TRANSLUCENT;
+    laser->s.modelindex = 1;         // must be non-zero
+    laser->owner = grapple;
+
+    // set the beam diameter
+    laser->s.frame = 4;
+
+    // set the color
+	if (self->character->laserhook_color)
+	    laser->s.skinnum = self->character->laserhook_color;
+	else
+	    laser->s.skinnum = LASERHOOK_COLOR_RED;
+
+    laser->think = CTFGrapple_Think;
+
+    VectorSet(laser->mins, -8, -8, -8);
+    VectorSet(laser->maxs, 8, 8, 8);
+    gi.linkentity(laser);
+
+    self->spawnflags |= 0x80000001;
+    self->svflags &= ~SVF_NOCLIENT;
+    CTFGrapple_Think(laser);
+
+	gi.linkentity(grapple);
 
 	tr = gi.trace (self->s.origin, NULL, NULL, grapple->s.origin, grapple, MASK_SHOT);
 	if (tr.fraction < 1.0)
@@ -352,7 +307,7 @@ void CTFGrappleFire (edict_t *ent, vec3_t g_offset, int damage, int effect)
 
 		AngleVectors (ent->client->v_angle, forward, right, NULL);
 	//	VectorSet(offset, 24, 16, ent->viewheight-8+2);
-		VectorSet(offset, 24, 8, ent->viewheight-8+2);
+		VectorSet(offset, 0, 0, ent->viewheight-8+2);
 		VectorAdd (offset, g_offset, offset);
 		P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
 
@@ -367,16 +322,8 @@ void CTFGrappleFire (edict_t *ent, vec3_t g_offset, int damage, int effect)
 		if (ent->client->silencer_shots)
 			volume = 0.2;
 
-		gi.sound (ent, CHAN_RELIABLE+CHAN_WEAPON, gi.soundindex("weapons/grapple/grfire.wav"), volume, ATTN_NORM, 0);
+		gi.sound (ent, CHAN_RELIABLE+CHAN_WEAPON, gi.soundindex("flyer/Flyatck3.wav"), volume, ATTN_NORM, 0);
 		CTFFireGrapple (ent, start, forward, damage, speed, effect);
-
-#if 0
-		// send muzzle flash
-		gi.WriteByte (svc_muzzleflash);
-		gi.WriteShort (ent-g_edicts);
-		gi.WriteByte (MZ_BLASTER);
-		gi.multicast (ent->s.origin, MULTICAST_PVS);
-#endif
 
 		PlayerNoise(ent, start, PNOISE_WEAPON);
 	}

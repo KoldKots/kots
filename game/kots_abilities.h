@@ -84,5 +84,6 @@ void Kots_CharacterCheckHaste(edict_t *ent, pmove_t *pm);
 void Kots_CharacterDetonate(edict_t *ent);
 void Kots_CharacterFlyCheckCharge(edict_t *ent);
 void Kots_CharacterCheckHook(edict_t *ent);
+void Kots_CharacterHookColor(edict_t *ent, char *value);
 
 #endif

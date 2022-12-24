@@ -97,7 +97,7 @@ typedef enum {
 
 // define hook constants
 #define KOTS_HOOK_MAX_TIME			5.0
-#define KOTS_HOOK_COOLDOWN			0.5
+#define KOTS_HOOK_COOLDOWN			0.05
 
 //define genders
 #define KOTS_GENDER_MALE			'M'
@@ -388,6 +388,7 @@ typedef struct character_s
 	float next_flycharge;
 
 	//character state values
+	int laserhook_color;
 	int is_flashlighted;
 	qboolean is_poisoned;
 	qboolean is_stealth;

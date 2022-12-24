@@ -111,6 +111,7 @@ void Kots_Revert(edict_t *ent, char *args);
 void Kots_RCon(edict_t *ent, char *args);
 void Kots_Stats(edict_t *ent, char *args);
 void Kots_Respec(edict_t *ent, char *player);
+void Kots_HookColor(edict_t *ent, char *args);
 qboolean Kots_Command(edict_t *ent, char *cmd);
 
 #endif
