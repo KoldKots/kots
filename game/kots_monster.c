@@ -316,12 +316,14 @@ void Kots_MonsterCheckSpawn()
 	if (level.intermissiontime)
 		return;
 
+#ifndef KOTS_PVP_ONLY
 	//determine new vote setting
 	if (level.time >= KOTS_MONSTER_NEXT_VOTE_INTERVAL)
 	{
 		KOTS_MONSTER_NEXT_VOTE_INTERVAL = level.time + KOTS_MONSTERS_VOTE_INTERVAL;
 		Kots_MonsterCheckVote();
 	}
+#endif
 
 	//determine if we should spawn a new monster and the next interval
 	if (level.time >= KOTS_MONSTER_NEXT_SPAWN)

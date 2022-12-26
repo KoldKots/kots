@@ -251,8 +251,11 @@ void InitGame (void)
 	game.clients = gi.TagMalloc (game.maxclients * sizeof(game.clients[0]), TAG_GAME);
 	globals.num_edicts = game.maxclients+1;
 
-	//default monsters to mixed
+#ifdef KOTS_PVP_ONLY
+	KOTS_MONSTER_VOTE = KOTS_MONSTERS_OFF;
+#else
 	KOTS_MONSTER_VOTE = KOTS_MONSTERS_MIXED;
+#endif
 }
 
 //=========================================================

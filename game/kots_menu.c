@@ -23,8 +23,10 @@ pmenu_t kotsmenu[KotsMenuCount] = {
 	{ "Set Respawn",			PMENU_ALIGN_LEFT, Kots_MenuShowRespawn },
 	{ "Set Resist",				PMENU_ALIGN_LEFT, Kots_MenuShowResist },
 	{ "Buy Menu",				PMENU_ALIGN_LEFT, Kots_MenuShowBuy },
+#ifndef KOTS_PVP_ONLY
 	{ NULL,						PMENU_ALIGN_LEFT, NULL },
 	{ "Monster Voting",			PMENU_ALIGN_LEFT, Kots_VoteMenuShow },
+#endif
 	{ NULL,						PMENU_ALIGN_LEFT, NULL },
 	{ NULL,						PMENU_ALIGN_RIGHT, NULL }
 };
