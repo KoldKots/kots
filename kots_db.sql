@@ -148,6 +148,7 @@ CREATE TABLE IF NOT EXISTS `characters_settings` (
   `spiritswim` tinyint(1) NOT NULL default '1',
   `pconvert` tinyint(1) NOT NULL default '0',
   `laserhook_color` int(1) NOT NULL default '0',
+  `cgconvert` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`character_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -765,7 +766,7 @@ BEGIN
                               c.dexterity, c.strength, c.karma, c.wisdom, c.technical, c.spirit, c.rage, c.vithealth, c.vitarmor, c.munition, c.playerpoints,
                               d.expack, d.spiral, d.bide, d.kotsthrow, d.antiweapon, d.powerpoints,
                               f.kills, f.killed, f.telefrags, f.twofers, f.threefers, f.highestfer, f.sprees, f.spreewars, f.spreesbroken, f.spreewarsbroken, f.longestspree, f.suicides, f.teleports, f.timeplayed,
-                              g.highjump, g.spiritswim, g.pconvert, g.laserhook_color
+                              g.highjump, g.spiritswim, g.pconvert, g.laserhook_color, g.cgconvert
                 from          characters a inner join
                               characters_weapon b on a.id = b.character_id inner join
                               characters_player c on a.id = c.character_id inner join
@@ -903,7 +904,7 @@ BEGIN
               d.expack, d.spiral, d.bide, d.kotsthrow, d.antiweapon, d.powerpoints, d.powersbought,
               e.health, e.armor, e.weapon, e.persist, e.shotgun as persist_shotgun, e.supershotgun as persist_supershotgun, e.machinegun as persist_machinegun, e.chaingun as persist_chaingun, e.grenadelauncher as persist_grenadelauncher, e.rocketlauncher as persist_rocketlauncher, e.hyperblaster as persist_hyperblaster, e.railgun as persist_railgun, e.bfg as persist_bfg, e.shells, e.bullets, e.grenades, e.rockets, e.cells, e.slugs,
               f.kills, f.killed, f.telefrags, f.twofers, f.threefers, f.highestfer, f.sprees, f.spreewars, f.spreesbroken, f.spreewarsbroken, f.longestspree, f.suicides, f.teleports, f.timeplayed, f.total_credits, f.total_packs,
-              g.highjump, g.spiritswim, g.pconvert, g.laserhook_color, a.respec_points
+              g.highjump, g.spiritswim, g.pconvert, g.laserhook_color, g.cgconvert, a.respec_points
       from          characters a inner join
               characters_weapon b on a.id = b.character_id inner join
               characters_player c on a.id = c.character_id inner join
@@ -1111,7 +1112,8 @@ CREATE PROCEDURE `SaveSettings2`(
         highjump tinyint(1),
         spiritswim tinyint(1),
         pconvert tinyint(1),
-        laserhook_color int(1)
+        laserhook_color int(1),
+        cgconvert tinyint(1)
 )
 BEGIN
 
@@ -1119,7 +1121,8 @@ BEGIN
         set           a.highjump = highjump,
                       a.spiritswim = spiritswim,
                       a.pconvert = pconvert,
-                      a.laserhook_color = laserhook_color
+                      a.laserhook_color = laserhook_color,
+                      a.cgconvert = cgconvert
         where         a.character_id = id;
 
 END

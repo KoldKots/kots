@@ -64,6 +64,7 @@ void Kots_FakeShard(edict_t *ent, char *args);
 void Kots_Flashlight(edict_t *ent, char *args);
 void Kots_SpiritSwim(edict_t *ent, char *args);
 void Kots_Armor(edict_t *ent, char *args);
+void Kots_AmmoConvert(edict_t *ent, char *args);
 void Kots_PowerConvert(edict_t *ent, char *args);
 void Kots_Deflect(edict_t *ent, char *args);
 void Kots_Knock(edict_t *ent, char *args);

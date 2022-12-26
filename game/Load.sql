@@ -26,7 +26,7 @@ BEGIN
                               c.dexterity, c.strength, c.karma, c.wisdom, c.technical, c.spirit, c.rage, c.vithealth, c.vitarmor, c.munition, c.playerpoints,
                               d.expack, d.spiral, d.bide, d.kotsthrow, d.antiweapon, d.powerpoints,
                               f.kills, f.killed, f.telefrags, f.twofers, f.threefers, f.highestfer, f.sprees, f.spreewars, f.spreesbroken, f.spreewarsbroken, f.longestspree, f.suicides, f.teleports, f.timeplayed,
-                              g.highjump, g.spiritswim, g.pconvert
+                              g.highjump, g.spiritswim, g.pconvert, g.laserhook_color, g.cgconvert
                 from          characters a inner join
                               characters_weapon b on a.id = b.character_id inner join
                               characters_player c on a.id = c.character_id inner join

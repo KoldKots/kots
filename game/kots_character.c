@@ -985,6 +985,8 @@ void Kots_CharacterRunFrame(edict_t *ent)
 				Kots_CharacterCheckKnockCounter(ent);
 				Kots_CharacterCheckCubeRegen(ent);
 				Kots_CharacterCheckConvertCells(ent);
+				// Kold - Prioritize cell to cube conversion over ammo to bullet conversion
+				Kots_CharacterCheckConvertAmmo(ent);
 				Kots_CharacterCheckCubeRot(ent);
 				Kots_CharacterCheckArmorRot(ent);
 				Kots_CharacterCheckHealthRot(ent);

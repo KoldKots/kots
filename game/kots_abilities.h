@@ -53,6 +53,8 @@ void Kots_CharacterCheckEmpathyDamage(edict_t *targ, edict_t *attacker, int dama
 void Kots_CharacterEmpathyUseCubes(edict_t *ent);
 void Kots_CharacterKotsArmor(edict_t *ent);
 void Kots_CharacterCheckKotsArmor(edict_t *ent);
+void Kots_CharacterConvertAmmoToggle(edict_t *ent, char *value);
+void Kots_CharacterCheckConvertAmmo(edict_t *ent);
 void Kots_CharacterConvertCellsToggle(edict_t *ent, char *value);
 void Kots_CharacterConvertCells(edict_t *ent);
 qboolean Kots_CharacterCheckRailDeflect(edict_t *targ, edict_t *attacker, vec3_t dir, int damage);

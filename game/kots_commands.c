@@ -77,6 +77,7 @@ command_t kots_commands[] =
 	"kots_empathy", "Enables/disables empathy shield", Kots_Empathy, false,
 	"kots_armor", "Uses cubes to create armor", Kots_Armor, false,
 	"kots_pconvert", "Converts power cells into cubes", Kots_PowerConvert, false,
+	"kots_ammoconvert", "Converts all ammo into bullets (for the chaingun)", Kots_AmmoConvert, false,
 	"kots_deflect", "Enables/disables railgun deflection", Kots_Deflect, false,
 	"kots_jump", "Enables/disables strength jump", Kots_Jump, false,
 	"kots_knock", "Enables/disables weapon knock", Kots_Knock, false,
@@ -704,6 +705,14 @@ void Kots_PowerConvert(edict_t *ent, char *args)
 		Kots_CharacterConvertCells(ent);
 	else
 		Kots_CharacterConvertCellsToggle(ent, args);
+}
+
+void Kots_AmmoConvert(edict_t *ent, char *args)
+{
+	if (!ent->character->is_loggedin || level.intermissiontime)
+		return;
+
+	Kots_CharacterConvertAmmoToggle(ent, args);
 }
 
 void Kots_Deflect(edict_t *ent, char *args)

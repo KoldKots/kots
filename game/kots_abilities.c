@@ -1327,6 +1327,85 @@ void Kots_CharacterConvertCells(edict_t *ent)
 	}
 }
 
+
+void Kots_CharacterConvertAmmoToggle(edict_t *ent, char *value)
+{
+    if (Q_stricmp(value, "on") == 0)
+        ent->character->using_cgconvert = true;
+    else if (Q_stricmp(value, "off") == 0)
+        ent->character->using_cgconvert = false;
+    else if (!ent->character->using_cgconvert)
+        ent->character->using_cgconvert = true;
+    else
+        ent->character->using_cgconvert = false;
+
+    if (ent->character->using_cgconvert)
+        gi.cprintf(ent, PRINT_HIGH, "Ammo convert activated.\n");
+    else
+        gi.cprintf(ent, PRINT_HIGH, "Ammo convert deactivated.\n");
+}
+
+void Kots_CharacterCheckConvertAmmo(edict_t *ent)
+{
+    int convertible_ammo_indeces[] =
+    {
+        ITEM_INDEX(FindItem("Shells")),
+        ITEM_INDEX(FindItem("Cells")),
+        ITEM_INDEX(FindItem("Grenades")),
+        ITEM_INDEX(FindItem("Rockets")),
+        ITEM_INDEX(FindItem("Slugs")),
+    };
+
+    // eg. 5 grenades need to be turned to 50 bullets -> multiplication by 10
+    const int ammo_conversion_factor[] =
+    {
+        5,  // Shels
+        1,  // Cells
+        10, // Grenades
+        10, // Rockets
+        5,  // Slugs
+    };
+
+    if (ent->character->cur_chaingun >= 4 && ent->character->respawn_weapon == WEAP_CHAINGUN && ent->character->using_cgconvert)
+    {
+        int bullet_max = Kots_CharacterGetMaxAmmo(ent, AMMO_BULLETS);
+        int bullet_index = ITEM_INDEX(FindItem("Bullets"));
+
+        printf("Ammo amount: %d\n", ent->client->pers.inventory[convertible_ammo_indeces[2]]);
+
+        for (int i = 0; i < sizeof(convertible_ammo_indeces) / sizeof(int); i++)
+        {
+            // Make sure the amount missing from max is at least the value of one converted ammo -- otherwise we're wasting ammo during the conversion
+            if ((bullet_max - ent->client->pers.inventory[bullet_index]) >= ammo_conversion_factor[i])
+            {
+                // If there's ammo to convert
+                if (ent->client->pers.inventory[convertible_ammo_indeces[i]])
+                {
+                    int bullets_to_max = bullet_max - ent->client->pers.inventory[bullet_index];
+
+                    // If there's enough ammo to cover the entire missing amount
+                    if (bullets_to_max <= (ent->client->pers.inventory[convertible_ammo_indeces[i]] * ammo_conversion_factor[i]))
+                    {
+                        // Intentional integer truncation -- prevents ammo waste
+                        ent->client->pers.inventory[convertible_ammo_indeces[i]] -= bullets_to_max / ammo_conversion_factor[i];
+                        ent->client->pers.inventory[bullet_index] += (bullets_to_max / ammo_conversion_factor[i]) * ammo_conversion_factor[i];
+                        break;
+                    }
+                    else
+                    {
+                        ent->client->pers.inventory[bullet_index] += (ent->client->pers.inventory[convertible_ammo_indeces[i]] * ammo_conversion_factor[i]);
+                        ent->client->pers.inventory[convertible_ammo_indeces[i]] = 0;
+                    }
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+}
+
 qboolean Kots_CharacterCheckRailDeflect(edict_t *targ, edict_t *attacker, vec3_t dir, int damage)
 {
 	if (targ->character->cur_spirit >= 7)

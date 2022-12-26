@@ -399,6 +399,7 @@ typedef struct character_s
 	qboolean using_empathy;
 	qboolean using_spiritswim;
 	qboolean using_pconvert;
+	qboolean using_cgconvert;
 
 	//pointers
 	edict_t *karma_id_ent;
