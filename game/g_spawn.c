@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -329,7 +329,7 @@ char *ED_NewString (char *string)
 {
     char    *newb, *new_p;
     int     i,l;
-    
+
     l = strlen(string) + 1;
 
     newb = gi.TagMalloc (l, TAG_LEVEL);
@@ -349,7 +349,7 @@ char *ED_NewString (char *string)
         else
             *new_p++ = string[i];
     }
-    
+
     return newb;
 }
 
@@ -432,7 +432,7 @@ char *ED_ParseEdict (char *data, edict_t *ent)
 
 // go through all the dictionary pairs
     while (1)
-    {   
+    {
     // parse key
         com_token = COM_Parse (&data);
         if (com_token[0] == '}')
@@ -441,8 +441,8 @@ char *ED_ParseEdict (char *data, edict_t *ent)
             gi.error ("ED_ParseEntity: EOF without closing brace");
 
         strncpy (keyname, com_token, sizeof(keyname)-1);
-        
-    // parse value  
+
+    // parse value
         com_token = COM_Parse (&data);
         if (!data)
             gi.error ("ED_ParseEntity: EOF without closing brace");
@@ -450,7 +450,7 @@ char *ED_ParseEdict (char *data, edict_t *ent)
         if (com_token[0] == '}')
             gi.error ("ED_ParseEntity: closing brace without data");
 
-        init = true;    
+        init = true;
 
     // keynames with a leading underscore are used for utility comments,
     // and are immediately discarded by quake
@@ -559,7 +559,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 
     //SWB - reset mapvote settings
     Kots_Maplist_ClearVoteInfo();
-    
+
     //SWB - reset intermission values
     level.intermission_screen = KOTS_INTERMISSION_SCORE;
     level.intermission_nextscreen = 0;
@@ -600,7 +600,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 // parse ents
     while (1)
     {
-        // parse the opening brace  
+        // parse the opening brace
         com_token = COM_Parse (&entities);
         if (!entities)
             break;
@@ -624,7 +624,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
             {
                 if ( ent->spawnflags & SPAWNFLAG_NOT_DEATHMATCH )
                 {
-                    G_FreeEdict (ent);  
+                    G_FreeEdict (ent);
                     inhibit++;
                     continue;
                 }
@@ -637,7 +637,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
                     (((skill->value == 2) || (skill->value == 3)) && (ent->spawnflags & SPAWNFLAG_NOT_HARD))
                     )
                     {
-                        G_FreeEdict (ent);  
+                        G_FreeEdict (ent);
                         inhibit++;
                         continue;
                     }
@@ -664,7 +664,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
     G_FindTeams ();
 
     PlayerTrail_Init ();
-    
+
     //SWB - reset war info
     memset(&spreewar, 0, sizeof(spreewar));
 
@@ -710,7 +710,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 
 #endif
 
-char *single_statusbar = 
+char *single_statusbar =
 "yb -24 "
 
 // health
@@ -761,7 +761,7 @@ char *single_statusbar =
 "   pic 9 "
 "endif "
 
-//  help / weapon icon 
+//  help / weapon icon
 "if 11 "
 "   xv  148 "
 "   pic 11 "
@@ -820,7 +820,7 @@ char *dm_statusbar =
 "   pic 9 "
 "endif "
 
-//  help / weapon icon 
+//  help / weapon icon
 "if 11 "
 "   xv  148 "
 "   pic 11 "
@@ -1038,9 +1038,9 @@ void SP_worldspawn (edict_t *ent)
     gi.soundindex ("*death3.wav");
     gi.soundindex ("*death4.wav");
     gi.soundindex ("*fall1.wav");
-    gi.soundindex ("*fall2.wav");   
+    gi.soundindex ("*fall2.wav");
     gi.soundindex ("*gurp1.wav");       // drowning damage
-    gi.soundindex ("*gurp2.wav");   
+    gi.soundindex ("*gurp2.wav");
     gi.soundindex ("*jump1.wav");       // player jump
     gi.soundindex ("*pain25_1.wav");
     gi.soundindex ("*pain25_2.wav");
@@ -1075,7 +1075,7 @@ void SP_worldspawn (edict_t *ent)
     gi.soundindex ("player/watr_out.wav");  // feet leaving water
 
     gi.soundindex ("player/watr_un.wav");   // head going underwater
-    
+
     gi.soundindex ("player/u_breath1.wav");
     gi.soundindex ("player/u_breath2.wav");
 
@@ -1167,40 +1167,40 @@ void SP_worldspawn (edict_t *ent)
 
     // 0 normal
     gi.configstring(CS_LIGHTS+0, "m");
-    
+
     // 1 FLICKER (first variety)
     gi.configstring(CS_LIGHTS+1, "mmnmmommommnonmmonqnmmo");
-    
+
     // 2 SLOW STRONG PULSE
     gi.configstring(CS_LIGHTS+2, "abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba");
-    
+
     // 3 CANDLE (first variety)
     gi.configstring(CS_LIGHTS+3, "mmmmmaaaaammmmmaaaaaabcdefgabcdefg");
-    
+
     // 4 FAST STROBE
     gi.configstring(CS_LIGHTS+4, "mamamamamama");
-    
+
     // 5 GENTLE PULSE 1
     gi.configstring(CS_LIGHTS+5,"jklmnopqrstuvwxyzyxwvutsrqponmlkj");
-    
+
     // 6 FLICKER (second variety)
     gi.configstring(CS_LIGHTS+6, "nmonqnmomnmomomno");
-    
+
     // 7 CANDLE (second variety)
     gi.configstring(CS_LIGHTS+7, "mmmaaaabcdefgmmmmaaaammmaamm");
-    
+
     // 8 CANDLE (third variety)
     gi.configstring(CS_LIGHTS+8, "mmmaaammmaaammmabcdefaaaammmmabcdefmmmaaaa");
-    
+
     // 9 SLOW STROBE (fourth variety)
     gi.configstring(CS_LIGHTS+9, "aaaaaaaazzzzzzzz");
-    
+
     // 10 FLUORESCENT FLICKER
     gi.configstring(CS_LIGHTS+10, "mmamammmmammamamaaamammma");
 
     // 11 SLOW PULSE NOT FADE TO BLACK
     gi.configstring(CS_LIGHTS+11, "abcdefghijklmnopqrrqponmlkjihgfedcba");
-    
+
     // styles 32-62 are assigned by the light program for switchable lights
 
     // 63 testing

@@ -86,7 +86,7 @@ typedef enum {
 
 //define experience multiplication constants
 #define KOTS_EXP_MULTIPLY           50
-#define KOTS_CREDIT_MULTIPLY        50          
+#define KOTS_CREDIT_MULTIPLY        50
 
 #define KOTS_ENABLE_MAX_WEAPON_SKILL    0
 
@@ -418,7 +418,7 @@ typedef struct character_persist_s
 
     //determine whether or not to persist
     //we should persist if dead and possibly other situations
-    qboolean persist; 
+    qboolean persist;
 
     //has weapons?
     qboolean shotgun;

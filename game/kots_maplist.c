@@ -249,7 +249,7 @@ int Kots_Maplist_Load(char *filename)
             return 1; // normal exit
         }
     }
-       
+
     return 0;  // abnormal exit -- couldn't open file
 }
 
@@ -257,7 +257,7 @@ int Kots_Maplist_GetPlayerCount()
 {
     int i;
     int count = 0;
-    
+
     for (i = 1; i <= maxclients->value; i++)
         if (g_edicts[i].inuse)
             count++;
@@ -341,7 +341,7 @@ int Kots_Maplist_GetRandomMap()
         Array_PushBack(valid, entry);
         total += entry->priority; //tally up priority
     }
-    
+
     //if we don't have enough maps then just pick any map
     if (valid->length < MAPLIST_MINMAPS)
     {
@@ -412,7 +412,7 @@ int Kots_Maplist_GetRandomMap()
         {
             entry = (mapentry_t *)valid->values[i];
             priority += entry->priority;
-            
+
             if (priority > rand_index)
             {
                 rand_index = entry->index;
@@ -420,7 +420,7 @@ int Kots_Maplist_GetRandomMap()
             }
         }
     }
-    
+
     //delete the array
     Array_Delete(valid);
 
@@ -503,7 +503,7 @@ void Kots_Maplist_Show(edict_t *ent)
             Kots_SlowPrint(ent, "Current map: %s (not in maplist)\n");
         else
             Kots_SlowPrint(ent, "Current map: #%d %s\n", maplist.currentmap + 1 , Kots_Maplist_GetName(maplist.currentmap));
-    
+
     }
 }
 
@@ -706,7 +706,7 @@ void Kots_Maplist_CheckVoteTimeout()
         return;
     else if (level.mapvotestarted > level.time - KOTS_MAPVOTE_TIMEOUT) // timeout
         return;
-    
+
     for (i=0 ; i<game.maxclients ; i++) // reset votes
     {
         cl_ent = g_edicts + 1 + i;
@@ -788,7 +788,7 @@ void Kots_Maplist_VoteCommand(edict_t *ent)
         {
             //determine if it was recently played
             int prev_index = GetPreviousMapIndex(mapname);
-            
+
             //don't allow voting for maps that were recently played
             if (prev_index >= 0)
             {
@@ -808,7 +808,7 @@ void Kots_Maplist_VoteCommand(edict_t *ent)
         level.mapvotestarted = level.time;
 
         gi.bprintf(PRINT_MEDIUM, "%s started a map vote for %s. Type 'vote yes' or 'vote no' to vote.\n", ent->client->pers.netname, mapname);
-    
+
         gi.sound (ent, CHAN_VOICE, gi.soundindex("world/x_light.wav"), 1, ATTN_NONE, 0); // play a sound
 
         Kots_Maplist_Vote(ent, MAPVOTE_YES); // this guy votes yes

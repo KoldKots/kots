@@ -34,7 +34,7 @@ BEGIN
                               characters_stats f on a.id = f.character_id inner join
                               characters_settings g on a.id = g.character_id
                 where         a.id = id;
-                
+
                 set return_val = 0;
         end if;
 

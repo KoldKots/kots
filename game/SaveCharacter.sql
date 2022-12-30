@@ -30,5 +30,5 @@ BEGIN
                       a.isadmin = isadmin,
                                           a.respec_points = respec_points
         where         a.id = id;
-        
+
 END

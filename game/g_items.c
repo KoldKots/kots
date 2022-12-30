@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -604,7 +604,7 @@ void Drop_Ammo (edict_t *ent, gitem_t *item)
     else
         dropped->count = ent->client->pers.inventory[index];
 
-    if (ent->client->pers.weapon && 
+    if (ent->client->pers.weapon &&
         ent->client->pers.weapon->tag == AMMO_GRENADES &&
         item->tag == AMMO_GRENADES &&
         ent->client->pers.inventory[index] - dropped->count <= 0) {
@@ -894,7 +894,7 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
         }
 
         // flash the screen
-        other->client->bonus_alpha = 0.25;  
+        other->client->bonus_alpha = 0.25;
 
         // show icon and name on status bar
         other->client->ps.stats[STAT_PICKUP_ICON] = gi.imageindex(ent->item->icon);
@@ -990,7 +990,7 @@ edict_t *Drop_Item_ex (edict_t *ent, gitem_t *item, vec3_t mins, vec3_t maxs)
         gi.setmodel (dropped, dropped->item->world_model);
 
     dropped->solid = SOLID_TRIGGER;
-    dropped->movetype = MOVETYPE_TOSS;  
+    dropped->movetype = MOVETYPE_TOSS;
     dropped->touch = drop_temp_touch;
     dropped->owner = ent;
 
@@ -1074,7 +1074,7 @@ void droptofloor (edict_t *ent)
     else
         gi.setmodel (ent, ent->item->world_model);
     ent->solid = SOLID_TRIGGER;
-    ent->movetype = MOVETYPE_TOSS;  
+    ent->movetype = MOVETYPE_TOSS;
     ent->touch = Touch_Item;
 
     v = tv(0,0,-128);
@@ -1281,7 +1281,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 
 //======================================================================
 
-gitem_t itemlist[] = 
+gitem_t itemlist[] =
 {
     {
         NULL
@@ -1294,7 +1294,7 @@ gitem_t itemlist[] =
 /*QUAKED item_armor_body (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "item_armor_body", 
+        "item_armor_body",
         Pickup_Armor,
         NULL,
         NULL,
@@ -1317,7 +1317,7 @@ gitem_t itemlist[] =
 /*QUAKED item_armor_combat (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "item_armor_combat", 
+        "item_armor_combat",
         Pickup_Armor,
         NULL,
         NULL,
@@ -1340,7 +1340,7 @@ gitem_t itemlist[] =
 /*QUAKED item_armor_jacket (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "item_armor_jacket", 
+        "item_armor_jacket",
         Pickup_Armor,
         NULL,
         NULL,
@@ -1363,7 +1363,7 @@ gitem_t itemlist[] =
 /*QUAKED item_armor_shard (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "item_armor_shard", 
+        "item_armor_shard",
         Pickup_Armor,
         NULL,
         NULL,
@@ -1388,7 +1388,7 @@ gitem_t itemlist[] =
 */
     {
         //SWB - in kots power screen is treated as 400 armor
-        "item_power_screen", 
+        "item_power_screen",
         Pickup_Armor,
         NULL,
         NULL,
@@ -1434,7 +1434,7 @@ gitem_t itemlist[] =
 
 
     //
-    // WEAPONS 
+    // WEAPONS
     //
 
 /* weapon_blaster (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1445,7 +1445,7 @@ always owned, never in the world
 //Blaster is not used in kots
 #if 0
     {
-        "weapon_blaster", 
+        "weapon_blaster",
         NULL,
         Use_Weapon,
         NULL,
@@ -1469,7 +1469,7 @@ always owned, never in the world
 /*QUAKED weapon_shotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "weapon_shotgun", 
+        "weapon_shotgun",
         Pickup_Weapon,
         Use_Weapon,
         Drop_Weapon,
@@ -1492,7 +1492,7 @@ always owned, never in the world
 /*QUAKED weapon_supershotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "weapon_supershotgun", 
+        "weapon_supershotgun",
         Pickup_Weapon,
         Use_Weapon,
         Drop_Weapon,
@@ -1515,7 +1515,7 @@ always owned, never in the world
 /*QUAKED weapon_machinegun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "weapon_machinegun", 
+        "weapon_machinegun",
         Pickup_Weapon,
         Use_Weapon,
         Drop_Weapon,
@@ -1538,7 +1538,7 @@ always owned, never in the world
 /*QUAKED weapon_chaingun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "weapon_chaingun", 
+        "weapon_chaingun",
         Pickup_Weapon,
         Use_Weapon,
         Drop_Weapon,
@@ -1630,7 +1630,7 @@ always owned, never in the world
 /*QUAKED weapon_hyperblaster (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "weapon_hyperblaster", 
+        "weapon_hyperblaster",
         Pickup_Weapon,
         Use_Weapon,
         Drop_Weapon,
@@ -1653,7 +1653,7 @@ always owned, never in the world
 /*QUAKED weapon_railgun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "weapon_railgun", 
+        "weapon_railgun",
         Pickup_Weapon,
         Use_Weapon,
         Drop_Weapon,
@@ -1701,7 +1701,7 @@ always owned, never in the world
 /*QUAKED weapon_sabre
 */
     {
-        "weapon_sabre", 
+        "weapon_sabre",
         NULL,
         Use_Weapon,
         NULL,
@@ -1847,7 +1847,7 @@ always owned, never in the world
 /*QUAKED item_quad (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
     {
-        "item_quad", 
+        "item_quad",
         Pickup_Powerup,
         Use_Quad,
         Drop_General,
@@ -2398,7 +2398,7 @@ tank commander's head
         KOTS_ITEM_LIFTABLE | KOTS_ITEM_MONSTERTOUCHABLE | KOTS_ITEM_IDABLE | KOTS_ITEM_REMOVE | KOTS_ITEM_TELEFRAG,
 /* precache */ ""
     },
-    
+
     {
         "kots_rocketmine",
         Kots_MinePickup,
@@ -2419,7 +2419,7 @@ tank commander's head
         KOTS_ITEM_LIFTABLE | KOTS_ITEM_MONSTERTOUCHABLE | KOTS_ITEM_IDABLE | KOTS_ITEM_REMOVE | KOTS_ITEM_TELEFRAG,
 /* precache */ ""
     },
-    
+
     {
         "kots_grenademine",
         Kots_MinePickup,
@@ -2441,7 +2441,7 @@ tank commander's head
 /* precache */ ""
     },
     {
-        "kots_knocked_shard", 
+        "kots_knocked_shard",
         Kots_CharacterPickupArmor,
         NULL,
         NULL,
@@ -2461,7 +2461,7 @@ tank commander's head
 /* precache */ ""
     },
     {
-        "kots_dead_stim", 
+        "kots_dead_stim",
         Kots_CharacterPickupHealth,
         NULL,
         NULL,
@@ -2481,7 +2481,7 @@ tank commander's head
 /* precache */ ""
     },
     {
-        "kots_dead_shard", 
+        "kots_dead_shard",
         Kots_CharacterPickupArmor,
         NULL,
         NULL,
@@ -2501,7 +2501,7 @@ tank commander's head
 /* precache */ ""
     },
     {
-        "kots_rune", 
+        "kots_rune",
         Kots_RunePickup,
         NULL,
         NULL,

@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -130,7 +130,7 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 
     index = ITEM_INDEX(ent->item);
 
-    if ( ( ((int)(dmflags->value) & DF_WEAPONS_STAY) || coop->value) 
+    if ( ( ((int)(dmflags->value) & DF_WEAPONS_STAY) || coop->value)
         && other->client->pers.inventory[index])
     {
         if (!(ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM) ) )
@@ -162,7 +162,7 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
         }
     }
 
-    if (other->client->pers.weapon != ent->item && 
+    if (other->client->pers.weapon != ent->item &&
         (other->client->pers.inventory[index] == 1) &&
         ( !deathmatch->value || other->client->pers.weapon == FindItem("blaster") ) )
         other->client->newweapon = ent->item;
@@ -241,7 +241,7 @@ void ChangeWeapon (edict_t *ent)
     {
             ent->s.frame = FRAME_pain301;
             ent->client->anim_end = FRAME_pain304;
-            
+
     }
 }
 
@@ -443,7 +443,7 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
             {
                 ent->s.frame = FRAME_pain304+1;
                 ent->client->anim_end = FRAME_pain301;
-                
+
             }
         }
 
@@ -483,7 +483,7 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
             {
                 ent->s.frame = FRAME_pain304+1;
                 ent->client->anim_end = FRAME_pain301;
-                
+
             }
         }
         return;
@@ -494,7 +494,7 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
         if ( ((ent->client->latched_buttons|ent->client->buttons) & BUTTON_ATTACK) )
         {
             ent->client->latched_buttons &= ~BUTTON_ATTACK;
-            if ((!ent->client->ammo_index) || 
+            if ((!ent->client->ammo_index) ||
                 ( ent->client->pers.inventory[ent->client->ammo_index] >= ent->client->pers.weapon->quantity))
             {
 
@@ -609,7 +609,7 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
     int     speed;
     float   radius = 160;
     int     radius_damage = 120;
-    
+
     //SWB - calculate damages
     damage = Kots_CharacterGrenadeDamage(ent, damage);
 
@@ -641,12 +641,12 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
         speed = 800;
     else
         speed = GRENADE_MAXSPEED - GRENADE_MINSPEED;
-    
+
     //SWB - if less than 3 or not using fixed speed then calculate speed on how long it was held
     if (ent->character->cur_grenade < 3 || !ent->client->pers.kots_persist.hg_fixedspeed)
         speed = GRENADE_MINSPEED + (GRENADE_TIMER - timer) * ((speed - GRENADE_MINSPEED) / GRENADE_TIMER);
 
-    //SWB - Add to shot count 
+    //SWB - Add to shot count
     ++ent->character->shots;
     fire_grenade2 (ent, start, forward, damage, speed, timer, radius, radius_damage, held);
 
@@ -834,7 +834,7 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 
     if (ent->character->cur_grenadelauncher >= 2)
         radius = 160;
-    
+
     if (ent->character->cur_grenadelauncher >= 10 && ent->character->rune && ent->character->rune->grenadelauncher > 0)
         speed = 1200;
     else if (ent->character->cur_grenadelauncher >= 4)
@@ -908,7 +908,7 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
         speed = 800;
     if (ent->character->cur_rocketlauncher >= 4)
         damage_radius = 144;
-    
+
     //SWB
     damage = Kots_CharacterRocketLauncherDamage(ent, damage);
     is_silenced = (ent->character->cur_rocketlauncher >= 1 ? MZ_SILENCED : is_silenced);
@@ -1070,7 +1070,7 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
                 effect = EF_HYPERBLASTER;
             else
                 effect = 0;
-            
+
             //SWB
             damage = 15;
             damage = Kots_CharacterHyperblasterDamage(ent, damage);
@@ -1151,12 +1151,12 @@ void Machinegun_Fire (edict_t *ent)
         ent->client->ps.gunframe++;
         return;
     }
-            
+
     //SWB
     if (ent->client->ps.gunframe == 9)
         ent->client->ps.gunframe = 4;
     else
-        ent->client->ps.gunframe++; 
+        ent->client->ps.gunframe++;
 
     if (ent->client->pers.inventory[ent->client->ammo_index] < 1)
     {
@@ -1190,7 +1190,7 @@ void Machinegun_Fire (edict_t *ent)
     P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
 
     //Kold - modify spread at levels 4 and 6
-    if (ent->character->cur_machinegun >= 6) 
+    if (ent->character->cur_machinegun >= 6)
     {
         // reduce by 40%
         hspread = hspread * 3 / 5;
@@ -1416,7 +1416,7 @@ void weapon_shotgun_fire (edict_t *ent)
 
     VectorSet(offset, 0, 8,  ent->viewheight-8);
     P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
-    
+
     //SWB
     damage = Kots_CharacterShotgunDamage(ent, damage);
     is_silenced = (ent->character->cur_shotgun >= 3 ? MZ_SILENCED : is_silenced);
@@ -1444,13 +1444,13 @@ void weapon_shotgun_fire (edict_t *ent)
         for (i = 0; i < 5; i++)
         {
             VectorCopy(forward, dir);
-            dir[0] += crandom() / 15.0; 
-            dir[1] += crandom() / 15.0; 
+            dir[0] += crandom() / 15.0;
+            dir[1] += crandom() / 15.0;
             dir[2] += crandom() / 15.0;
-            //VectorCopy(ent->client->v_angle, dir); 
+            //VectorCopy(ent->client->v_angle, dir);
             //dir[YAW] += (i - 2) * 10;
             //AngleVectors (dir, forward, NULL, NULL);
-            fire_blaster_ex(ent, start, dir, damage, 1500, EF_BLASTER, 0, false, MOD_SHOTGUN); 
+            fire_blaster_ex(ent, start, dir, damage, 1500, EF_BLASTER, 0, false, MOD_SHOTGUN);
         }
     }
 

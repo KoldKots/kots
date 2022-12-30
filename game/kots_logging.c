@@ -191,7 +191,7 @@ struct loginfo_s *Kots_ServerBuildLogInfo(char *reason)
 
     //get the number of players in game
     Kots_GetPlayers(&players, &spectators);
-    
+
     //print out the server info
     size = sizeof(info->info);
     pos = Kots_snprintf(info->info, size, "Log Reason: %s\nServer Info:\nName = %s\nMap = %s\nPlayers = %i\nSpectators = %i\n\n",

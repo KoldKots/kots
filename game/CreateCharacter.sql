@@ -6,23 +6,23 @@ CREATE PROCEDURE `CreateCharacter2`(
 BEGIN
 
         declare id int;
-        
+
                 /* NOTE: For list of return values see kots_server.h */
 
         if exists (select 1 from settings a where a.name = 'disable_login' and value = '1')
         then
-        
+
                         /* Login has been disabled */
                         set return_val = 8;
-        
+
         elseif exists (select 1 from characters a where a.name = name for update)
         then
-        
+
                         /* Character already exists */
                         set return_val = 5;
-        
+
         else
-        
+
             insert into characters (name, pass, datecreated)
             values (name, MD5(pass), NOW());
 
@@ -36,7 +36,7 @@ BEGIN
 
                         /* Everythign was successful */
             set return_val = 0;
-            
+
         end if;
 
 END

@@ -16,7 +16,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -100,9 +100,9 @@ typedef enum
     DAMAGE_AIM          // auto targeting recognizes this
 } damage_t;
 
-typedef enum 
+typedef enum
 {
-    WEAPON_READY, 
+    WEAPON_READY,
     WEAPON_ACTIVATING,
     WEAPON_DROPPING,
     WEAPON_FIRING
@@ -231,15 +231,15 @@ typedef struct
 #define IT_POWERUP      32
 
 // gitem_t->weapmodel for weapons indicates model index
-#define WEAP_BLASTER            1 
-#define WEAP_SHOTGUN            2 
-#define WEAP_SUPERSHOTGUN       3 
-#define WEAP_MACHINEGUN         4 
-#define WEAP_CHAINGUN           5 
-#define WEAP_GRENADES           6 
-#define WEAP_GRENADELAUNCHER    7 
-#define WEAP_ROCKETLAUNCHER     8 
-#define WEAP_HYPERBLASTER       9 
+#define WEAP_BLASTER            1
+#define WEAP_SHOTGUN            2
+#define WEAP_SUPERSHOTGUN       3
+#define WEAP_MACHINEGUN         4
+#define WEAP_CHAINGUN           5
+#define WEAP_GRENADES           6
+#define WEAP_GRENADELAUNCHER    7
+#define WEAP_ROCKETLAUNCHER     8
+#define WEAP_HYPERBLASTER       9
 #define WEAP_RAILGUN            10
 #define WEAP_BFG                11
 #define WEAP_ANTI               12
@@ -352,7 +352,7 @@ typedef struct
     int         body_que;           // dead bodies
 
     int         power_cubes;        // ugly necessity for coop
-    
+
     // Aldarn - globals for map voting makes it simpler //
     int         mapvote;            // index in maplist of map being voted for
     float       mapvotestarted;     // when the vote was started
@@ -367,7 +367,7 @@ typedef struct
     //indicates that there is no talking until the next level
     qboolean    is_silenced;
     qboolean    map_ended;
-    
+
 } level_locals_t;
 
 
@@ -615,7 +615,7 @@ extern cvar_t *port;
 #define FFL_NOSPAWN         2
 
 typedef enum {
-    F_INT, 
+    F_INT,
     F_FLOAT,
     F_LSTRING,          // string on disk, pointer in memory, TAG_LEVEL
     F_GSTRING,          // string on disk, pointer in memory, TAG_GAME
@@ -1102,7 +1102,7 @@ struct edict_s
 
     // FIXME: move these fields to a server private sv_entity_t
     link_t      area;               // linked to a division node or leaf
-    
+
     int         num_clusters;       // if -1, use headnode instead
     int         clusternums[MAX_ENT_CLUSTERS];
     int         headnode;           // unused if num_clusters != -1
@@ -1127,7 +1127,7 @@ struct edict_s
 
     char        *model;
     float       freetime;           // sv.time when the object was freed
-    
+
     //
     // only used locally in game, not by server
     //
@@ -1236,7 +1236,7 @@ struct edict_s
     // common data blocks
     moveinfo_t      moveinfo;
     monsterinfo_t   monsterinfo;
-    
+
     //SWB
     struct character_s  *character;
     struct pack_s       *pack;

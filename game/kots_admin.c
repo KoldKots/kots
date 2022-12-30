@@ -114,7 +114,7 @@ void Kots_Admin_ListIP(edict_t *ent)
         cl_ent = g_edicts + 1 + i;
         if (!cl_ent->inuse)
             continue;
-        
+
         gi.cprintf(ent,PRINT_HIGH,"%-16s %s\n", cl_ent->client->pers.netname, cl_ent->client->pers.kots_persist.ip_address);
     }
 }
@@ -143,8 +143,8 @@ void Kots_Admin_Curse(edict_t *ent, edict_t *other)
         return;
     }
 
-    gi.bprintf(PRINT_MEDIUM, "%s was cursed by %s!\n", ent->client->pers.netname, other->client->pers.netname); 
-    other->character->is_cursed = true; 
+    gi.bprintf(PRINT_MEDIUM, "%s was cursed by %s!\n", ent->client->pers.netname, other->client->pers.netname);
+    other->character->is_cursed = true;
     Kots_Admin_KickUser(ent, other);
 }
 

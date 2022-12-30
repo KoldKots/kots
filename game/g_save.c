@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -127,7 +127,7 @@ field_t fields[] = {
 field_t     levelfields[] =
 {
     {"changemap", LLOFS(changemap), F_LSTRING},
-                   
+
     {"sight_client", LLOFS(sight_client), F_EDICT},
     {"sight_entity", LLOFS(sight_entity), F_EDICT},
     {"sound_entity", LLOFS(sound_entity), F_EDICT},
@@ -194,7 +194,7 @@ void InitGame (void)
     spectator_password = gi.cvar ("spectator_password", "", CVAR_USERINFO);
     needpass = gi.cvar ("needpass", "0", CVAR_SERVERINFO);
     filterban = gi.cvar ("filterban", "1", 0);
- 
+
     g_select_empty = gi.cvar ("g_select_empty", "0", CVAR_ARCHIVE);
 
     run_pitch = gi.cvar ("run_pitch", "0.002", 0);
@@ -211,7 +211,7 @@ void InitGame (void)
     kots_public = gi.cvar("public", "1", CVAR_SERVERINFO);
     kots_motd = gi.cvar("motd", "motd.txt", CVAR_SERVERINFO);
     kots_prevmaps = gi.cvar("prevmaps", "5", CVAR_SERVERINFO);
-    gamever = gi.cvar("gamever", "", CVAR_SERVERINFO | CVAR_NOSET); 
+    gamever = gi.cvar("gamever", "", CVAR_SERVERINFO | CVAR_NOSET);
     // Kold - force this to kots2020 to enforce consistent behavior,
     //        since some clients do not populate it (Q2PRO)
     gamedir = gi.cvar("gamedir", "kots2020", CVAR_NOSET);
@@ -441,7 +441,7 @@ void WriteClient (FILE *f, gclient_t *client)
 {
     field_t     *field;
     gclient_t   temp;
-    
+
     // all of the ints, floats, and vectors stay as they are
     temp = *client;
 

@@ -276,7 +276,7 @@ int Kots_CharacterMunitionDamagePlus(edict_t *ent, float damage, int weapon_leve
     {
         if (ent->character->cur_munition == 0)
             return Kots_RandMultiply(damage, 1 + KOTS_BONUS_WEAPON * (weapon_level - 6));
-        else 
+        else
             return Kots_RandMultiply(damage, 1 + (KOTS_BONUS_WEAPON * (weapon_level - 6)) + (MUNITION_BONUS * ent->character->cur_munition));
     }
     else

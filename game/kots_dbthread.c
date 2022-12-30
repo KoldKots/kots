@@ -101,7 +101,7 @@ void Kots_WaitForDbThreads()
         gi.dprintf("DB: %i jobs are still queued. Waiting for them to complete...\n", input->length);
         pthread_cond_wait(&condition, &input_lock);
     }
-    
+
     pthread_mutex_unlock(&input_lock);
 
     pthread_mutex_lock(&output_lock);
@@ -131,7 +131,7 @@ void Kots_WaitForDbThreads()
         if (!found)
             break;
     }
-    
+
     gi.dprintf("DB: All jobs are complete.\n");
     pthread_mutex_unlock(&output_lock);
 }
@@ -155,7 +155,7 @@ int Kots_WaitForSave(jobitem_t *this_job)
         if (job && job->function == MysqlSaveCharacter)
         {
             info = (character_info_t *)job->args;
-            
+
             if (Q_stricmp(this_info->name, info->name) == 0)
             {
                 found = 1;
@@ -163,7 +163,7 @@ int Kots_WaitForSave(jobitem_t *this_job)
             }
         }
     }
-    
+
     pthread_mutex_unlock(&output_lock);
 
     //wait if we found one
@@ -191,7 +191,7 @@ int Kots_CheckForNewerSaves(jobitem_t *this_job)
         if (job && job->function == MysqlSaveCharacter)
         {
             info = (character_info_t *)job->args;
-            
+
             if (Q_stricmp(this_info->name, info->name) == 0 && job->queue_time >= this_job->queue_time)
             {
                 found = 1;
@@ -199,7 +199,7 @@ int Kots_CheckForNewerSaves(jobitem_t *this_job)
             }
         }
     }
-    
+
     pthread_mutex_unlock(&output_lock);
 
     //skip if we found a newer save
@@ -273,7 +273,7 @@ jobitem_t *Kots_CreateJobItem(char *name)
 
     //set the name of the job
     job->name = strdup(name);
-    
+
     return job;
 }
 
@@ -310,7 +310,7 @@ void Kots_CloseDbConnections(dbthread_t *thread, jobitem_t *job)
     //Now that all jobs have completed let's close all the connections
     for (i = 0; i < KOTS_MAX_DBTHREADS; i++)
         OnConnectionTimeout(threads[i]);
-    
+
     pthread_mutex_unlock(&output_lock);
     pthread_mutex_unlock(&input_lock);
 }
@@ -709,7 +709,7 @@ MYSQL *ConnectToDb(MYSQL *mysql)
         strcpy(&database_name[0], dbname);
     else
         strcpy(&database_name[0], MYSQL_DB);
-    
+
     if (dbuser[0] != '\0')
     {
         strcpy(&username[0], dbuser);
@@ -720,7 +720,7 @@ MYSQL *ConnectToDb(MYSQL *mysql)
         strcpy(&username[0], MYSQL_USER);
         strcpy(&pass[0], MYSQL_PASS);
     }
-    
+
     if (dbhostname[0] != '\0')
         strcpy(&host_name[0], dbhostname);
     else

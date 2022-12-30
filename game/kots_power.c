@@ -315,11 +315,11 @@ void Kots_CharacterThrowOther(edict_t *ent)
             VectorSubtract(best->velocity, best->s.origin, best->velocity);
             best->velocity[2] = 500; // always throw slightly up
             gi.sound(best, CHAN_AUTO, gi.soundindex("misc/windfly.wav"), 1, ATTN_NORM, 0);
-            
+
             //if enemy is trying to use the grapple then break it
             if (best->client && best->client->ctf_grapple)
                 CTFPlayerResetGrapple(best);
-            
+
             --ent->character->throwsleft;
             ent->character->next_throw = level.time + 2.0;
 
@@ -371,7 +371,7 @@ void Kots_CharacterThrowOther(edict_t *ent)
                 VectorSubtract(tr.ent->velocity, tr.ent->s.origin, tr.ent->velocity);
                 tr.ent->velocity[2] = 500; // always throw self slightly up
                 gi.sound(tr.ent, CHAN_AUTO, gi.soundindex("misc/windfly.wav"), 1, ATTN_NORM, 0);
-                
+
                 --ent->character->throwsleft;
                 ent->character->next_throw = level.time + 1.0;
 
@@ -381,7 +381,7 @@ void Kots_CharacterThrowOther(edict_t *ent)
             }
 
             VectorCopy (tr.endpos, from);
-            
+
             if (++count >= MAX_EDICTS)
                 break;
         }
@@ -485,7 +485,7 @@ void Kots_Fire_Bide (edict_t *self, vec3_t start, vec3_t dir, int damage, int sp
     bide->movetype = MOVETYPE_FLYMISSILE;
     bide->clipmask = MASK_SHOT;
     bide->solid = SOLID_BBOX;
-    bide->s.effects = EF_COLOR_SHELL | EF_TELEPORTER; // Aldarn - this isn't right       
+    bide->s.effects = EF_COLOR_SHELL | EF_TELEPORTER; // Aldarn - this isn't right
     bide->s.renderfx = RF_SHELL_RED | RF_SHELL_GREEN | RF_FULLBRIGHT; // Or this?
     VectorClear (bide->mins);
     VectorClear (bide->maxs);
@@ -518,7 +518,7 @@ void Kots_Bide_Fire (edict_t *ent)
     //must have had a rune to start it with so go back to original start damage
     if (bide_start > ent->character->bidedmg)
         bide_start = 150 + (50 * ent->character->bide);
-    
+
     //maximum damage is 10 times our starting amount
     max_damage = bide_start * 10;
     bide_damage = ent->character->bidedmg - bide_start;
@@ -551,7 +551,7 @@ void Kots_CharacterBide(edict_t *ent)
 
         gi.cprintf(ent,PRINT_HIGH,"Bide cast for %i damage!\n",ent->character->bidedmg);
         gi.positioned_sound (ent->s.origin, ent, CHAN_WEAPON, gi.soundindex("world/lite_out.wav"), 1, ATTN_NORM, 0);
-        
+
         //reset bide timer and damage
         ent->character->bideon = false;
         ent->character->bidestart = 0;
@@ -657,7 +657,7 @@ void Kots_SpiralBeamThink(edict_t *ent)
 
         //set the next movement time
         ent->nextthink = level.time + FRAMETIME;
-        
+
         //create area to hit
         VectorSet(ent->maxs, ent->s.frame, ent->s.frame, ent->s.frame);
         VectorCopy(ent->maxs, ent->mins);
@@ -672,7 +672,7 @@ void Kots_SpiralBeamThink(edict_t *ent)
             dmg += ceil(dmg * percent);
 
             VectorCopy(ent->moveinfo.end_origin, moveto);
-            ignore = NULL; 
+            ignore = NULL;
             while (true)
             {
                 trace = gi.trace(moveto, ent->mins, ent->maxs, ent->moveinfo.start_origin, ignore, MASK_SHOT);
@@ -696,7 +696,7 @@ void Kots_SpiralBeamThink(edict_t *ent)
                 }
 
                 VectorCopy(trace.endpos, moveto);
-                
+
                 if (++count >= MAX_EDICTS)
                     break;
             }
@@ -712,7 +712,7 @@ void Kots_SpiralBeamThink(edict_t *ent)
                 }
             }
         }
-        
+
         //create next movement point
         ent->s.angles[2] += KOTS_SPIRAL_SPEED;
         VectorSet(angle, 0, ent->s.angles[2], 0);
@@ -738,7 +738,7 @@ void Kots_SpiralBeamThink(edict_t *ent)
         }
 
         ent->s.origin[2] = trace.endpos[2] + 10;
-        
+
         //create top point 30 degrees from bottom
         angle[1] = ent->s.angles[2] + 35;
         AngleVectors(angle, angle, NULL, NULL);
@@ -761,8 +761,8 @@ void Kots_SpiralBeamThink(edict_t *ent)
         //keep the old movement info
         VectorCopy(ent->s.origin, ent->moveinfo.start_origin);
         VectorCopy(ent->s.old_origin, ent->moveinfo.end_origin);
-    
-        //check if we're partly in water 
+
+        //check if we're partly in water
         trace = gi.trace(ent->s.old_origin, NULL, NULL, ent->s.origin, NULL, MASK_WATER);
         if (trace.fraction < 1.0)
         {
@@ -843,7 +843,7 @@ void Kots_CharacterCreateSpiral(edict_t *ent, qboolean forward)
     }
 
     gi.linkentity(spiral);
-    
+
     //create the  beams
     for (i = 0; i < 4; i++)
     {
@@ -852,7 +852,7 @@ void Kots_CharacterCreateSpiral(edict_t *ent, qboolean forward)
         beam->owner = ent;
         beam->goalentity = spiral;
         beam->think = Kots_SpiralBeamThink;
-        beam->s.angles[2] = i * 90; //use this angle to determine angle from center 
+        beam->s.angles[2] = i * 90; //use this angle to determine angle from center
         beam->s.frame = KOTS_SPIRAL_BEAMSIZE; //diameter
         beam->s.skinnum = 0xdcdddedf; //yellow
         beam->s.renderfx = RF_BEAM | RF_TRANSLUCENT;
@@ -870,12 +870,12 @@ void Kots_CharacterCreateSpiral(edict_t *ent, qboolean forward)
         //kick off the beams movement
         beam->think(beam);
     }
-    
+
     //reduce spirals by 1
-    --ent->character->spiralsleft; 
+    --ent->character->spiralsleft;
     ent->character->next_spiral = level.time + KOTS_SPIRAL_TIME;
 
-    //set the damage here otherwise the initial beam move will cause damage 
+    //set the damage here otherwise the initial beam move will cause damage
     spiral->dmg_radius = Kots_CharacterMunitionDamage(ent, ent->character->cur_spiral * KOTS_SPIRAL_DAMAGE);
 
     //ensure the maximum damage is capped
@@ -922,7 +922,7 @@ void Kots_CharacterSetPower(edict_t *ent)
             if (Q_stricmp(other->client->pers.netname, name) == 0)
             {
                 powerpoint_t *power_tree = Kots_GetPowerTree(power);
-                
+
                 if (!power_tree)
                 {
                     gi.cprintf(ent, PRINT_HIGH, "Unrecognized power %s.\n", power);

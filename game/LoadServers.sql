@@ -12,5 +12,5 @@ BEGIN
     from    `servers`
     where   is_public = 1
     having  status = 1;
-        
+
 END

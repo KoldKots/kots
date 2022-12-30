@@ -326,7 +326,7 @@ void Kots_CharacterSetWeapon(edict_t *ent)
             if (Q_stricmp(other->client->pers.netname, name) == 0)
             {
                 weaponpoint_t *weapon_tree = Kots_GetWeaponTree(weapon);
-                
+
                 if (!weapon_tree)
                 {
                     gi.cprintf(ent, PRINT_HIGH, "Unrecognized weapon, %s.\n", weapon);

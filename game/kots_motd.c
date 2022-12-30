@@ -16,7 +16,7 @@ void Kots_PrintMotd(edict_t *ent)
     fp = fopen(va("%s/%s", gamedir->string, kots_motd->string), "r");
     if (fp)
     {
-        //read the motd 
+        //read the motd
         while (fgets(line, sizeof(line), fp))
         {
             strncat(motd, line, sizeof(motd) - length);
@@ -31,7 +31,7 @@ void Kots_PrintMotd(edict_t *ent)
             }
             else if (line_length == (sizeof(line) - 1))
             {
-                //force line breaks if necessary 
+                //force line breaks if necessary
                 strcat(motd, "\n");
                 length++;
             }

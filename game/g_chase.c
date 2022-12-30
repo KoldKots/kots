@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -77,7 +77,7 @@ void UpdateChaseCam(edict_t *ent)
 
     ownerv[2] += targ->viewheight;
 
-    //SWB - account for monsters 
+    //SWB - account for monsters
     if (targ->client)
         VectorCopy(targ->client->v_angle, angles);
     else
@@ -92,7 +92,7 @@ void UpdateChaseCam(edict_t *ent)
         angles[PITCH] = 56;
     AngleVectors (angles, forward, right, NULL);
     VectorNormalize(forward);
-    
+
     if (ent->client->chase_mode == KOTS_SPECTATOR_MODE_CHASE)
     {
         if (targ->client)
@@ -167,7 +167,7 @@ void UpdateChaseCam(edict_t *ent)
     }
     else
     {
-        
+
     }
 
     if (targ->deadflag) {
@@ -179,7 +179,7 @@ void UpdateChaseCam(edict_t *ent)
             ent->client->ps.viewangles[YAW] = targ->client->killer_yaw;
         else
             ent->client->ps.viewangles[YAW] = targ->s.angles[YAW];
-            
+
     } else {
 
         //SWB - account for monsters

@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -316,7 +316,7 @@ void ClientObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
             case MOD_BFG_BLAST:
                 message = "should have used a smaller gun";
                 break;
-                
+
             //kots suicides
             case MOD_SMITE:
                 if (IsNeutral(self))
@@ -1084,7 +1084,7 @@ void LookAtKiller (edict_t *self, edict_t *inflictor, edict_t *attacker)
     }
     if (self->client->killer_yaw < 0)
         self->client->killer_yaw += 360;
-    
+
 
 }
 
@@ -1295,7 +1295,7 @@ void InitKotsPersist (gclient_t *client)
     client->pers.kots_persist.hg_resettimer = true;
     client->pers.kots_persist.hg_fixedspeed = true;
     client->pers.kots_persist.hg_shortfuse = true;
-    
+
     //not technically a persistant value but only needs to be set once at connection
     client->chase_mode = KOTS_SPECTATOR_MODE_FREE;
 }
@@ -1304,7 +1304,7 @@ void InitKotsPersist (gclient_t *client)
 ==================
 SaveClientData
 
-Some information that should be persistant, like health, 
+Some information that should be persistant, like health,
 is still stored in the edict structure, so it needs to
 be mirrored out to the client structure before all the
 edicts are wiped.
@@ -1338,7 +1338,7 @@ void SaveClientData (void)
 
             Kots_CharacterLogout(ent, false, false);
             Kots_CharacterClearEdicts(ent);
- 
+
             //we want to stay logged in for the next map so reset this to true
             game.clients[i].pers.kots_persist.is_loggedin = true;
             need_persist = true; //signal that we should persist info after this a gamemap probably occurred
@@ -1804,7 +1804,7 @@ void respawn (edict_t *self)
     gi.AddCommandString ("menu_loadgame\n");
 }
 
-/* 
+/*
  * only called when pers.spectator changes
  * note that resp.spectator should be the opposite of pers.spectator here
  */
@@ -1817,8 +1817,8 @@ void spectator_respawn (edict_t *ent)
 
     if (ent->client->pers.spectator) {
         char *value = Info_ValueForKey (ent->client->pers.userinfo, "spectator");
-        if (*spectator_password->string && 
-            strcmp(spectator_password->string, "none") && 
+        if (*spectator_password->string &&
+            strcmp(spectator_password->string, "none") &&
             strcmp(spectator_password->string, value)) {
             gi.cprintf(ent, PRINT_HIGH, "Spectator password incorrect.\n");
             ent->client->pers.spectator = false;
@@ -1846,7 +1846,7 @@ void spectator_respawn (edict_t *ent)
         // he was a spectator and wants to join the game
         // he must have the right password
         char *value = Info_ValueForKey (ent->client->pers.userinfo, "password");
-        if (*password->string && strcmp(password->string, "none") && 
+        if (*password->string && strcmp(password->string, "none") &&
             strcmp(password->string, value)) {
             gi.cprintf(ent, PRINT_HIGH, "Password incorrect.\n");
             ent->client->pers.spectator = true;
@@ -1878,7 +1878,7 @@ void spectator_respawn (edict_t *ent)
 
     ent->client->respawn_time = level.time;
 
-    if (ent->client->pers.spectator) 
+    if (ent->client->pers.spectator)
     {
         gi.bprintf (PRINT_HIGH, "%s has moved to the sidelines\n", ent->client->pers.netname);
     }
@@ -2066,7 +2066,7 @@ void PutClientInServer (edict_t *ent)
 =====================
 ClientBeginDeathmatch
 
-A client has just connected to the server in 
+A client has just connected to the server in
 deathmatch mode, so clear everything out before starting them.
 =====================
 */
@@ -2174,7 +2174,7 @@ void ClientBegin (edict_t *ent)
 
     // make sure all view stuff is valid
     ClientEndServerFrame (ent);
-    
+
     //SWB
     //start the character stuff
     Kots_CharacterClientBegin(ent);
@@ -2339,8 +2339,8 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
     if (deathmatch->value && *value && strcmp(value, "0") == 0) {
         int i, numspec;
 
-        if (*spectator_password->string && 
-            strcmp(spectator_password->string, "none") && 
+        if (*spectator_password->string &&
+            strcmp(spectator_password->string, "none") &&
             strcmp(spectator_password->string, value)) {
             Info_SetValueForKey(userinfo, "rejmsg", "Spectator password required or incorrect.");
             return false;
@@ -2358,7 +2358,7 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
     } else {
         // check for a password
         value = Info_ValueForKey (userinfo, "password");
-        if (*password->string && strcmp(password->string, "none") && 
+        if (*password->string && strcmp(password->string, "none") &&
             strcmp(password->string, value)) {
             Info_SetValueForKey(userinfo, "rejmsg", "Password required or incorrect.");
             return false;
@@ -2371,7 +2371,7 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
 
     //SWB - Initialize the persistent kots info
     InitKotsPersist(ent->client);
-    
+
     if (ip_address)
     {
         char *port = strstr(ip_address, ":");
@@ -2382,7 +2382,7 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
 
         Kots_strncpy(ent->client->pers.kots_persist.ip_address, ip_address, length);
 
-        //check if the ip address is banned 
+        //check if the ip address is banned
         if (Kots_CheckIpBan(ent))
         {
             Info_SetValueForKey(userinfo, "rejmsg", "Your IP address is banned. Please contact an admin.");
@@ -2402,7 +2402,7 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
         if (!game.autosaved || !ent->client->pers.weapon)
             InitClientPersistant (ent->client);
     }
-    
+
     ClientUserinfoChanged (ent, userinfo);
 
     if (game.maxclients > 1)
@@ -2446,7 +2446,7 @@ void ClientDisconnect (edict_t *ent)
     //SWB - clear entity state information otherwise R1Q2 will complain
     memset(&ent->s, 0, sizeof(ent->s));
 
-    
+
     //SWB - Reset the character info
     Kots_CharacterInit(ent);
 
@@ -2527,7 +2527,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
     {
         client->ps.pmove.pm_type = PM_FREEZE;
         // can exit intermission after five seconds
-        //if (level.time > level.intermissiontime + 5.0 
+        //if (level.time > level.intermissiontime + 5.0
             //&& (ucmd->buttons & BUTTON_ANY) )
             //level.exitintermission = true;
 
@@ -2594,7 +2594,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
         // perform a pmove
         gi.Pmove (&pm);
-        
+
         //SWB
         Kots_CharacterThink(ent, &pm);
 
@@ -2643,8 +2643,8 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
             VectorCopy (pm.viewangles, client->v_angle);
             VectorCopy (pm.viewangles, client->ps.viewangles);
         }
-                    
-        //we have to move the player after client think so we do it here  
+
+        //we have to move the player after client think so we do it here
         if (ent->client->ctf_grapple)
         {
             if (ent->character->cur_dexterity >= 3)
@@ -2707,7 +2707,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
             default:
                 client->chase_mode = KOTS_SPECTATOR_MODE_CHASE;
                 GetChaseTarget(ent);
-                
+
                 //may not have anyone to chase so we have to check again
                 if (client->chase_mode == KOTS_SPECTATOR_MODE_CHASE)
                     gi.cprintf(ent, PRINT_MEDIUM, "Chase camera mode.\n");

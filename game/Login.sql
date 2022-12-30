@@ -15,41 +15,41 @@ BEGIN
 
     if exists (select 1 from settings a where a.name = 'disable_login' and value = '1')
     then
-    
+
         /* Login has been disabled */
         set return_val = 8;
-        
+
     else
-    
+
         select a.id, a.pass, a.lastsaved, a.loggedin, a.allow_login into id, realpass, lastsaved, isloggedin, allow_login
         from characters a where a.name = name limit 1 for update;
 
         if id is null
         then
-        
+
             /* Character doesn't exist */
             set return_val = 2;
-                
+
         elseif (realpass <> MD5(pass))
         then
-        
+
             /* Incorrect password */
             set return_val = 3;
 
         elseif (isloggedin AND lastsaved is not null AND DATE_ADD(lastsaved, interval 10 minute) > NOW())
         then
-        
+
             /* Already logged in */
             set return_val = 4;
-            
+
         elseif not allow_login
         then
-        
+
             /* Login for this character has been disabled */
             set return_val = 8;
 
         else
-        
+
             update        characters a
             set           loggedin = 1,
                             lastsaved = NOW()
@@ -80,9 +80,9 @@ BEGIN
                             characters_settings g on a.id = g.character_id left join
                             kings h on a.king_id = h.id
             where         a.id = id;
-            
+
             set return_val = 0;
-        
+
         end if;
     end if;
 

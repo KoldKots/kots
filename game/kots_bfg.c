@@ -10,7 +10,7 @@ void weapon_kotsbfg_fire (edict_t *ent)
     vec3_t  forward, right;
     int     damage = 35;
     int     ammo_cost = 3;
-    //int       num = 12; // Aldarn - make it higher for more view fuckage 
+    //int       num = 12; // Aldarn - make it higher for more view fuckage
     //SWB - number was WAY too high
     // Aldarn - number was too low :P
     if (ent->character->cur_bfg >= 10 && ent->character->rune && ent->character->rune->bfg > 0)
@@ -127,7 +127,7 @@ void fire_kotsbfg (edict_t *self, vec3_t start, vec3_t dir, int damage)
         if (++count >= MAX_EDICTS)
             break;
     }
-    
+
     gi.WriteByte (svc_temp_entity);
     gi.WriteByte (TE_LASER_SPARKS);
     gi.WriteByte (4);

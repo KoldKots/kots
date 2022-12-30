@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -17,7 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-    
+
 // q_shared.h -- included first by ALL program modules
 
 
@@ -106,7 +106,7 @@ typedef enum {false, true}  qboolean;
 
 #define PRINT_ALL           0
 #define PRINT_DEVELOPER     1       // only print when "developer 1"
-#define PRINT_ALERT         2       
+#define PRINT_ALERT         2
 
 
 // destination class for gi.multicast()
@@ -465,7 +465,7 @@ typedef struct
 
 // pmove_state_t is the information necessary for client side movement
 // prediction
-typedef enum 
+typedef enum
 {
     // can accelerate and turn
     PM_NORMAL,
@@ -1206,7 +1206,7 @@ typedef struct
     int         gunframe;
 
     float       blend[4];       // rgba full screen effect
-    
+
     float       fov;            // horizontal field of view
 
     int         rdflags;        // refdef flags
@@ -1216,7 +1216,7 @@ typedef struct
 
 
 // ==================
-// PGM 
+// PGM
 #define VIDREF_GL       1
 #define VIDREF_SOFT     2
 #define VIDREF_OTHER    3

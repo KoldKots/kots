@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -230,7 +230,7 @@ static void fire_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage, i
             if (tr.ent->takedamage)
             {
                 T_Damage (tr.ent, self, self, aimdir, tr.endpos, tr.plane.normal, damage, kick, DAMAGE_BULLET, mod);
-                
+
                 //SWB
                 ++self->character->hits;
             }
@@ -409,7 +409,7 @@ void fire_blaster (edict_t *self, vec3_t start, vec3_t dir, int damage, int spee
         VectorMA (bolt->s.origin, -10, dir, bolt->s.origin);
         bolt->touch (bolt, tr.ent, NULL, NULL);
     }
-}   
+}
 
 
 /*
@@ -433,7 +433,7 @@ void Grenade_Explode (edict_t *ent)
         if (ent->owner->character)
             hits = ent->owner->character->hits;
     }
-    
+
     //FIXME: if we are onground then raise our Z just a bit since we are a point?
     if (ent->enemy)
     {
@@ -470,7 +470,7 @@ void Grenade_Explode (edict_t *ent)
 
     //SWB - changed radius damage to come from edict
     T_RadiusDamage(ent, ent->owner, ent->radius_dmg, ent->enemy, ent->dmg_radius, mod);
-    
+
     if (ent->owner && ent->owner->inuse && ent->owner->character)
     {
         //if we shouldn't count hits and some were done then clear them
@@ -571,7 +571,7 @@ void fire_grenade_ex (edict_t *self, vec3_t start, vec3_t aimdir, int damage, in
     //SWB - remove grenade trails at appropriate level
     if (!use_level || self->character->cur_grenadelauncher < 3)
         grenade->s.effects |= EF_GRENADE;
-    
+
     //SWB - add a white shell to level 10 + rune grenades
     if (use_level && self->character->cur_grenadelauncher >= 10 && self->character->rune && self->character->rune->grenadelauncher > 0)
     {
@@ -583,7 +583,7 @@ void fire_grenade_ex (edict_t *self, vec3_t start, vec3_t aimdir, int damage, in
     VectorClear (grenade->mins);
     VectorClear (grenade->maxs);
 
-    //SWB - make grenades not go into the ground so much 
+    //SWB - make grenades not go into the ground so much
     //VectorSet(grenade->mins, -4, -4, -4);
     //VectorSet(grenade->maxs, 4, 4, 4);
 
@@ -596,7 +596,7 @@ void fire_grenade_ex (edict_t *self, vec3_t start, vec3_t aimdir, int damage, in
     grenade->dmg_radius = damage_radius;
     grenade->radius_dmg = radius_damage;
     grenade->classname = "grenade";
-    
+
     //SWB - if this shouldn't count towards accuracy
     if (!accuracy)
         grenade->viewheight = 1;
@@ -621,7 +621,7 @@ void fire_grenade2 (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int 
     VectorSet (grenade->avelocity, 300, 300, 300);
     grenade->movetype = MOVETYPE_BOUNCE;
     grenade->clipmask = MASK_SHOT;
-    grenade->solid = SOLID_TRIGGER; //SWB - make grenades explode when you walk on them 
+    grenade->solid = SOLID_TRIGGER; //SWB - make grenades explode when you walk on them
 
     //SWB - remove grenade trails at appropriate level
     if (self->character->cur_grenade < 2)
@@ -719,7 +719,7 @@ void rocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *su
     }
 
     T_RadiusDamage(ent, ent->owner, ent->radius_dmg, other, ent->dmg_radius, MOD_R_SPLASH);
-    
+
     if (ent->owner && ent->owner->inuse && ent->owner->character)
     {
         //if we shouldn't count hits and some were done in radius damage then clear them
@@ -859,7 +859,7 @@ void fire_rail2 (edict_t *self, edict_t *other, vec3_t start, vec3_t aimdir, int
         }
 
         VectorCopy (tr.endpos, from);
-    
+
         if (++count >= MAX_EDICTS)
             break;
     }
@@ -893,7 +893,7 @@ void fire_rail2 (edict_t *self, edict_t *other, vec3_t start, vec3_t aimdir, int
         //if (self->client)
             //color = strtol(Info_ValueForKey(self->client->pers.userinfo, "color") + 2, NULL, 16);
 
-        CreateLaser(self, start, tr.endpos, EF_PLASMA, color, 8, 2, 1.0); 
+        CreateLaser(self, start, tr.endpos, EF_PLASMA, color, 8, 2, 1.0);
     }
 
     if (water)

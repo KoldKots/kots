@@ -27,7 +27,7 @@ typedef struct
     char mapname[MAPLIST_MAX_FILENAME];     //name of the map
     int index;
 } mapentry_t;
-       
+
 typedef struct
 {
     char filename[MAPLIST_MAX_FILENAME];    //filename on server

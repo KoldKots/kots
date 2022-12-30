@@ -20,7 +20,7 @@ void VectorCreateVelocity (vec3_t start, vec3_t end, vec3_t velocity)
 }
 
 void Laser_PreThink(edict_t *self)
-{   
+{
     VectorCopy(self->moveinfo.start_origin, self->s.origin);
     VectorCopy(self->moveinfo.end_origin, self->s.old_origin);
     //VectorCreateVelocity(self->s.old_origin, self->s.origin, self->velocity);
@@ -36,7 +36,7 @@ void Laser_PreThink(edict_t *self)
         self->s.frame = self->max_health + (int)((difference / total_time) * time_ellapsed);
     }
 
-    if (level.time >= self->delay) 
+    if (level.time >= self->delay)
     {
         G_FreeEdict(self);
         return;
@@ -67,12 +67,12 @@ Each byte of the long represents 1 stage of the laser and each of the 4 bytes ge
 0xf2f3f0f1 - inner = red, outer = blue
 0xf3f2f1f0 - inner = blue, outer = red
 0xdad0dcd2 - inner = green, outer = yellow
-0xd0dad2dc - inner = yellow, outer = green 
+0xd0dad2dc - inner = yellow, outer = green
 */
 edict_t *CreateLaser(edict_t *owner, vec3_t start, vec3_t end, int effects, int color, int diameter, int final_diameter, float time)
 {
     edict_t *laser = G_Spawn();
-    laser->classname = "laser"; 
+    laser->classname = "laser";
     laser->owner = owner;
     laser->think = Laser_PreThink;
     laser->nextthink = level.time + FRAMETIME;
@@ -84,7 +84,7 @@ edict_t *CreateLaser(edict_t *owner, vec3_t start, vec3_t end, int effects, int 
     laser->clipmask = MASK_ALL;
     laser->model = NULL;
     laser->s.modelindex = 1;
-    laser->max_health = diameter; //store original diameter here 
+    laser->max_health = diameter; //store original diameter here
     laser->health = final_diameter; //store final diameter here
     laser->wait = level.time; //store original time created here for calculating final size
     laser->delay = level.time + time;

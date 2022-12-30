@@ -94,7 +94,7 @@ void weapon_sabre_fire (edict_t *ent)
                 length = 140;
                 color = 0xf2f2f0f0; //red
             }
-            else //level 10 + rune ability 
+            else //level 10 + rune ability
             {
                 length = 160;
                 color = 0xf3f2f1f0;
@@ -102,7 +102,7 @@ void weapon_sabre_fire (edict_t *ent)
             break;
     }
 
-    AngleVectors (ent->client->v_angle, forward, right, NULL); 
+    AngleVectors (ent->client->v_angle, forward, right, NULL);
     VectorSet(offset, 8, 8, ent->viewheight-8);
     P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
 

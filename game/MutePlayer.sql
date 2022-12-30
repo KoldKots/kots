@@ -12,12 +12,12 @@ BEGIN
 
         if id is null
         then
-        
+
                                 if character_id = 0
                                 then
                                         set character_id = 0;
                                 end if;
-        
+
                 insert into             mutelist
                                                                 (ip_address, name, character_id, date_muted)
                                 values                  (ip_address, name, character_id, NOW());

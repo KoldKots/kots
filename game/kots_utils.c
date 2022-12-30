@@ -268,11 +268,11 @@ qboolean loc_CanSee (edict_t *targ, edict_t *inflictor)
         return false; // bmodels not supported
 
     loc_buildboxpoints(targpoints, targ->s.origin, targ->mins, targ->maxs);
-    
+
     VectorCopy(inflictor->s.origin, viewpoint);
     viewpoint[2] += inflictor->viewheight;
 
-    for (i = 0; i < 8; i++) 
+    for (i = 0; i < 8; i++)
     {
         trace = gi.trace (viewpoint, vec3_origin, vec3_origin, targpoints[i], inflictor, MASK_SOLID);
         if (trace.fraction == 1.0)

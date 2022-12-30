@@ -95,7 +95,7 @@ int Kots_HudSort(void *a, void *b)
 
             if (ent1->client->resp.score + ent1->character->level_killed > 0)
                 ratio1 = ent1->client->resp.score / (float)(ent1->client->resp.score + ent1->character->level_killed);
-            
+
             if (ent2->client->resp.score + ent2->character->level_killed > 0)
                 ratio2 = ent2->client->resp.score / (float)(ent2->client->resp.score + ent2->character->level_killed);
 
@@ -114,7 +114,7 @@ int Kots_HudSort(void *a, void *b)
 
             if (ent1->character->level_dealt + ent1->character->level_taken > 0)
                 ratio1 = ent1->character->level_dealt / (float)(ent1->character->level_dealt + ent1->character->level_taken);
-            
+
             if (ent2->character->level_dealt + ent2->character->level_taken > 0)
                 ratio2 = ent2->character->level_dealt / (float)(ent2->character->level_dealt + ent2->character->level_taken);
 
@@ -216,7 +216,7 @@ int Kots_HudScoreboardWriteTitle(edict_t *ent, int screen, char *entry, int size
         Com_sprintf (entry, size,
             "yv 10 string2 \"  Player            Packs    Credits  Avg\" ");
         break;
-        
+
     case KOTS_INTERMISSION_SCORE:
     default:
         Com_sprintf (entry, size,
@@ -359,7 +359,7 @@ int Kots_HudScoreboardWriteEntry(edict_t *ent, edict_t *current, int screen, cha
             packs, credits, avg);
         break;
         }
-        
+
     case KOTS_INTERMISSION_SCORE:
     default:
         Com_sprintf (entry, size,
@@ -383,7 +383,7 @@ void Kots_HudScoreboard(edict_t *ent)
     int     screen = ent->client->pers.kots_persist.intermission_screen;
     edict_t *current;
     array_t *players = Kots_HudGetSortedArray();
-    
+
     //ensure we show correct screen in intermission
     if (level.intermissiontime)
         screen = level.intermission_screen;
@@ -410,7 +410,7 @@ void Kots_HudScoreboard(edict_t *ent)
 
         //now print the rest of the entry and add the length to j
         j += Kots_HudScoreboardWriteEntry(ent, current, screen, entry + j, size - j);
-        
+
         //ensure we won't go over the max string length
         if (len + j > size)
             break;
@@ -480,8 +480,8 @@ void Kots_HudIntermissionCheckScreen()
         {
             if (!ent->inuse)
                 continue;
-    
-            //if any are false then 
+
+            //if any are false then
             if (!ent->client->intermission_clicked)
                 return;
 

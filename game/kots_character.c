@@ -62,7 +62,7 @@ int Kots_CharacterGetDamageExp(edict_t *attacker, edict_t *target, int damage)
 {
     //get maximum health to compare
     int max = target->max_health;
-    
+
     //determine the total kill exp for the character
     int exp = Kots_CharacterGetKillExp(attacker, target);
 
@@ -107,18 +107,18 @@ int Kots_CharacterGetKillExp(edict_t *killer, edict_t *killed)
             //calculated differently to avoid steep cost from low level ratios
             if (killer->character->level > killed->character->level)
                 return KOTS_EXP_BASE - ((killer->character->level - killed->character->level) * 2);
-            
+
             //otherwise for higher level enemies simply find the difference
             //this gives lower levels more experience at first until the switch to the new calculations
             //for every 5 levels above there's an extra boost as well
             else
                 return KOTS_EXP_BASE * (killed->character->level - killer->character->level + ((killed->character->level - killer->character->level) / 5 + 1));
         }
-        
+
         //if we're a higher level than the target then simply take a ratio of the base exp
         else if (killer->character->level > killed->character->level)
             return Kots_Round(KOTS_EXP_BASE * (killed->character->level / (float)killer->character->level));
-        
+
         else //base system on maximum exp, in order to get maximum exp target must be 4x higher level
             return Kots_Round(KOTS_EXP_BASE + ((KOTS_EXP_MAX - KOTS_EXP_BASE) / 3.0) * ((killed->character->level - killer->character->level) / (float)killer->character->level));
     }
@@ -165,7 +165,7 @@ int Kots_CharacterGetMaxArmor(edict_t *ent)
 
 int Kots_CharacterGetMaxArmorRegen(edict_t *ent)
 {
-    return (ent->character->cur_antiweapon * 30) + (ent->character->cur_wantiweapon * ANTIWEAPON_REGEN_BONUS) + 
+    return (ent->character->cur_antiweapon * 30) + (ent->character->cur_wantiweapon * ANTIWEAPON_REGEN_BONUS) +
         (ent->character->level * CHAR_ARMOR_REGEN_BONUS) + 50;
 }
 
@@ -397,14 +397,14 @@ void Kots_CharacterLogin(edict_t *ent)
 
     spectator_respawn(ent);
     gi.sound(ent, CHAN_AUTO, gi.soundindex ("misc/bigtele.wav"), 1, ATTN_NORM, 0);
-    
+
     //kick off the initial server frame to prepare everything
     Kots_CharacterInitAfterSpawn(ent);
 
     //if character had a rune from a previous map attempt to give it to him
     if (ent->client->pers.kots_persist.rune_id)
         Kots_RuneGive(ent, ent->client->pers.kots_persist.rune_id);
-            
+
     Kots_RuneCheckAssociated(ent);
 
     if (ent->client && ent->client->pers.kots_persist.using_lasersight && ent->character->cur_technical >= 7)
@@ -529,7 +529,7 @@ void Kots_CharacterRespawn(edict_t *ent)
     //do calculations now since they're not done if you're dead
     Kots_CharacterInitAfterSpawn(ent);
     Kots_CharacterBeginServerFrame(ent);
-    
+
     ent->health = ent->max_health;
 
     if (ent->character->tballs < 2)
@@ -539,7 +539,7 @@ void Kots_CharacterRespawn(edict_t *ent)
     ent->character->expacksleft = ent->character->cur_expack * 2;
     ent->character->bidesleft = ent->character->cur_bide;
     ent->character->spiralsleft = ent->character->cur_spiral * 2;
-    
+
     //give invuln when we first respawn
     if (ent->client)
     {
@@ -598,7 +598,7 @@ void Kots_CharacterSelectRespawn(edict_t *ent)
         gitem_t *ammo;
         int index;
         int ammo_bonus = (ent->character->level < 5 ? 1 : 2); //2x ammo at 5
-        
+
         //decrement number of respawns
         --ent->character->respawns;
 
@@ -684,7 +684,7 @@ void Kots_CharacterCheckResistances(edict_t *targ, edict_t *attacker, int *take,
         if (targ->character->cur_spirit >= 6)
             *take -= Kots_RandMultiply(*take, 0.5);
         break;
-        
+
     case MOD_BIDE:
     case MOD_BIDERADIUS:
         if (attacker->character->resist == POW_BIDE)
@@ -692,7 +692,7 @@ void Kots_CharacterCheckResistances(edict_t *targ, edict_t *attacker, int *take,
         if (targ->character->resist == POW_BIDE)
             *take -= Kots_RandMultiply(*take, 0.25);
         break;
-        
+
     case MOD_SPIRAL:
         if (attacker->character->resist == POW_SPIRAL )
             *take -= Kots_RandMultiply(*take, 0.5);
@@ -805,7 +805,7 @@ void Kots_CharacterCheckResistances(edict_t *targ, edict_t *attacker, int *take,
             break;
         }
     }
-    
+
 
     switch (mod)
     {
@@ -909,7 +909,7 @@ void Kots_CharacterCheckArmor(edict_t *ent, int *save, int *armor)
             take = Kots_Round(take / TECH_RESIST_HIGH);
         else if (ent->character->cur_technical >= 3)
             take = Kots_Round(take / TECH_RESIST_NORMAL);
-        
+
         //ensure we don't take more armor than we have
         if (take > *armor)
             *armor = 0;
@@ -930,7 +930,7 @@ void Kots_CharacterPreThink(edict_t *ent, pmove_t *pm)
     //the character is logged in
     if (ent->character->is_loggedin)
     {
-        //only perform these when the character is not dead 
+        //only perform these when the character is not dead
         if (ent->health > 0)
         {
             Kots_CharacterCheckFly(ent, pm);
@@ -948,7 +948,7 @@ void Kots_CharacterThink(edict_t *ent, pmove_t *pm)
     {
         //only perform these when the character is not dead
         if (ent->health > 0)
-        { 
+        {
             Kots_CharacterCheckDoubleJump(ent, pm);
             Kots_CharacterCheckSpiritSwim(ent, pm);
             Kots_CharacterCheckHaste(ent, pm);
@@ -960,7 +960,7 @@ void Kots_CharacterRunFrame(edict_t *ent)
 {
     //only perform these actions when
     //the character is logged in
-    if (ent->character->is_loggedin && !level.intermissiontime) 
+    if (ent->character->is_loggedin && !level.intermissiontime)
     {
         //only perform these when the character is not dead
         if (ent->health > 0)
@@ -1010,7 +1010,7 @@ void Kots_CharacterRunFrame(edict_t *ent)
                 Kots_CharacterEmpathyUseCubes(ent);
                 Kots_CharacterCloakUseCubes(ent);
             }
-            
+
             Kots_CharacterCheckHook(ent);
             Kots_CharacterFlyCheckCharge(ent);
             Kots_CharacterCheckConflagration(ent);
@@ -1184,7 +1184,7 @@ void Kots_CharacterKilled(edict_t *targ, edict_t *inflictor, edict_t *attacker, 
     if (!thanksto && (!attacker || targ == attacker || !attacker->character))
     {
         int explost = Kots_CharacterGetKillExp(targ, targ);
-        
+
         //determine how much extra exp we lost
         if (spreewar.warent == targ)
             explost += KOTS_EXP_SPREEWAR_MIN;
@@ -1231,7 +1231,7 @@ void Kots_CharacterKilled(edict_t *targ, edict_t *inflictor, edict_t *attacker, 
         if (targ->client && attacker->client)
             level.last_playerkilled = level.time;
     }
-    
+
     //reset some spree values
     targ->character->spree = 0;
     targ->character->spreetimer = 0;
@@ -1415,7 +1415,7 @@ void Kots_CharacterEndSpree(edict_t *ent, qboolean allow_forfeit)
             Kots_CenterPrintAll("%s's war ended with a wimper!\n", ent->character->name);
             memset(&spreewar, 0, sizeof(spreewar));
         }
-        
+
         //reset spree values just to be thorough
         ent->character->spree = 0;
         ent->character->spreetimer = 0;
@@ -1451,7 +1451,7 @@ void Kots_CharacterCheckSpreeBreak(edict_t *attacker, edict_t *targ, int *exp)
         ++attacker->character->spreesbroken;
         gi.bprintf(PRINT_HIGH, "%s's %i frag spree was broken by %s.\n", Kots_CharacterGetName(targ), targ->character->spree, Kots_CharacterGetName(attacker));
         *exp *= KOTS_EXP_BREAK_BONUS;
-        
+
         if ((*exp) < KOTS_EXP_BREAK_MIN)
             *exp = KOTS_EXP_BREAK_MIN;
     }
@@ -1483,16 +1483,16 @@ void Kots_CharacterDivideWarExp(edict_t *warent)
                 cl_ent->character->exp += bonusexp * KOTS_EXP_MULTIPLY;
                 cl_ent->character->score += bonusexp * KOTS_EXP_MULTIPLY;
                 gi.cprintf(cl_ent,PRINT_HIGH,"You got %i bonus exp for doing %i damage (%03.2f%%) on %s's SpreeWar!\n",bonusexp,spreewar.dmgs[i],percent * 100,Kots_CharacterGetName(warent));
-                
+
                 if(spreewar.dmgs[i] > highest_dmg)
                 {
                     highest_dmg = spreewar.dmgs[i];
                     highest_percent = percent;
                     highest_user = cl_ent;
                 }
-                
+
                 spreewar.dmgs[i] = 0;
-            }   
+            }
         }
 
         gi.bprintf(PRINT_HIGH,"%s did the highest damage of %i (%03.2f%%) on %s's spree!\n",Kots_CharacterGetName(highest_user),highest_dmg,highest_percent * 100,Kots_CharacterGetName(warent));
@@ -1578,7 +1578,7 @@ void Kots_CharacterCheckSpree(edict_t *attacker, edict_t *targ, int *exp)
 
             if ((*exp) < KOTS_EXP_SPREEWAR_MIN)
                 *exp = KOTS_EXP_SPREEWAR_MIN;
-            
+
             if (attacker->character->spree > attacker->character->longestspree)
                 attacker->character->longestspree = attacker->character->spree;
         }
@@ -1610,7 +1610,7 @@ void Kots_CharacterCheckNfer(edict_t *ent, int *exp)
 {
     ++ent->character->nfer;
     ent->character->nfertimer = level.time + KOTS_NFER_TIMER;
-    
+
     if (ent->character->nfer > 1)
     {
         gi.bprintf(PRINT_HIGH, "%s got a %ifer.\n", Kots_CharacterGetName(ent), ent->character->nfer);
@@ -1657,13 +1657,13 @@ void Kots_CharacterPersist(edict_t *ent, character_t *character, character_persi
 {
     //even though cubes isn't a "persist" value it sort of makes sense to limit it here because it is "persisted"
     int max_cubes;
-    
-    //ensure that we remove all rune abilities to prevent them from affecting max armor and health 
+
+    //ensure that we remove all rune abilities to prevent them from affecting max armor and health
     if (ent->character->rune)
         Kots_RuneRemoveAbilities(ent, ent->character->rune);
 
     max_cubes = Kots_CharacterGetMaxCubes(ent);
-    
+
     if (character->cubes > max_cubes)
         character->cubes = max_cubes;
 
@@ -1773,7 +1773,7 @@ gitem_t *Kots_GetWeaponById(int weaponid)
 char *Kots_CharacterGetResistName(int resist)
 {
     gitem_t *weapon;
-    
+
     switch (resist)
     {
     case WEAP_NONE:
@@ -1860,7 +1860,7 @@ void Kots_CharacterClientEffects(edict_t *ent)
 
 void Kots_CharacterBeginServerFrame(edict_t *ent)
 {
-    if (!ent->character->is_loggedin || ent->health <= 0) 
+    if (!ent->character->is_loggedin || ent->health <= 0)
         return;
 
     //monsters have their own max health so don't recalculate
@@ -1895,7 +1895,7 @@ void Kots_CharacterEndServerFrame(edict_t *ent)
 
     if (!ent->client)
         UpdateAllChaseCams(ent);
-    
+
     //monsters get client effects set here
     if (ent->svflags & SVF_MONSTER)
     {
@@ -1930,7 +1930,7 @@ void Kots_CharacterEndServerFrame(edict_t *ent)
     if (ent->character->using_empathy && !(ent->svflags & SVF_NOCLIENT))
         ent->s.effects |= EF_POWERSCREEN;
 
-    //check for emp shockwave hit 
+    //check for emp shockwave hit
     //if (ent->character->next_empdone > level.time)
         //ent->s.effects |= EF_GRENADE;
     //else
@@ -2024,7 +2024,7 @@ void Kots_CharacterPerformDamageCalculations(edict_t *targ, edict_t *attacker, i
             }
         }
     }
-    
+
     // check for invuln
     if (((targ->client && targ->client->invincible_framenum > level.framenum) && !(dflags & DAMAGE_NO_PROTECTION))
         || (targ->character->next_candamage > level.time))
@@ -2119,7 +2119,7 @@ void Kots_CharacterPerformDamageCalculations(edict_t *targ, edict_t *attacker, i
 
         if (attacker->character->spreetimer)
             attacker->character->spreetimer = level.time + KOTS_SPREE_TIMER;
-        
+
         targ->character->last_damaged = level.time;
         targ->character->last_damagedby = attacker;
 
@@ -2215,7 +2215,7 @@ static int CheckArmor (edict_t *ent, vec3_t point, vec3_t normal, int damage, in
         save = damage;
     else
         save = ceil(((gitem_armor_t *)armor->info)->normal_protection*damage);
-    
+
     //if this is not an all armor type attack
     if (!(dflags & DAMAGE_ALL_ARMOR))
         Kots_CharacterCheckArmor(ent, &save, &client->pers.inventory[index]);
@@ -2322,7 +2322,7 @@ void Kots_CharacterUpdateKarmaIdStats(edict_t *ent)
             char message[MAX_QPATH];
 
             ent->character->next_karma_hud = level.time + 0.1;
-            
+
             //create the karma message
             if (ent->character->karma_id_ent->character && ent->character->karma_id_ent->character->is_loggedin)
             {
@@ -2365,7 +2365,7 @@ void Kots_CharacterClientBegin(edict_t *ent)
         //so we don't mess up anything that relies on it
         ent->client->pers.kots_persist.is_loggedin = false;
 
-        //reset the persistant value 
+        //reset the persistant value
         Kots_ServerLoginCharacter(ent);
     }
     else //no need to show the menu if we're logging in
@@ -2382,7 +2382,7 @@ void Kots_CharacterCheckCubeRot(edict_t *ent)
 
     if (overmax <= 0)
         return;
-    
+
     //rot depending on how far over max we are
     if (overmax <= 50)
         ent->character->cubes -= 1;
@@ -2394,7 +2394,7 @@ void Kots_CharacterCheckCubeRot(edict_t *ent)
     //make sure we don't rot too many cubes
     if (ent->character->cubes < max)
         ent->character->cubes = max;
-        
+
 }
 
 void Kots_CharacterCheckArmorRot(edict_t *ent)
@@ -2409,7 +2409,7 @@ void Kots_CharacterCheckArmorRot(edict_t *ent)
 
             if (overmax <= 0)
                 return;
-            
+
             //rot depending on how far over max we are
             if (overmax <= 50)
                 ent->client->pers.inventory[index] -= 1;
@@ -2434,7 +2434,7 @@ void Kots_CharacterCheckHealthRot(edict_t *ent)
 
         if (overmax <= 0)
             return;
-        
+
         //rot depending on how far over max we are
         if (overmax <= 50)
             ent->health -= 1;

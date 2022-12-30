@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -324,7 +324,7 @@ void EndDMLevel (void)
         maplist.currentmap = level.mapvote;
         return;
     }
-    
+
     if (level.nextmap[0]) // go to a specific map
         BeginIntermission (CreateTargetChangeLevel (level.nextmap) );
     else {  // search for a changelevel
@@ -351,7 +351,7 @@ void CheckNeedPass (void)
 
     // if password or spectator_password has changed, update needpass
     // as needed
-    if (password->modified || spectator_password->modified) 
+    if (password->modified || spectator_password->modified)
     {
         password->modified = spectator_password->modified = false;
 
@@ -488,7 +488,7 @@ void G_RunFrame (void)
         if (level.map_ended)
         {
             char *mapname;
-            
+
             if (maplist.currentmap != -1)
             {
                 //need to copy the map name since we'll be removing it
@@ -502,7 +502,7 @@ void G_RunFrame (void)
             //print out the error to the server and players
             gi.dprintf("ERROR: There appears to have been an error loading map %s.\n", mapname);
             gi.bprintf(PRINT_HIGH, "Server couldn't load map '%s'. Restarting current map...\n", mapname);
-            
+
             //restart the current map
             level.changemap = G_CopyString(level.mapname);
             ExitLevel();
@@ -561,7 +561,7 @@ void G_RunFrame (void)
 
     // build the playerstate_t structures for all players
     ClientEndServerFrames ();
-    
+
     // Aldarn - Expire map vote
     Kots_Maplist_CheckVoteTimeout(NULL);
 

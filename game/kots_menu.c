@@ -535,7 +535,7 @@ void Kots_MenuPlayerAdd(edict_t *ent, pmenuhnd_t *hnd)
     pmenuhnd_t temphnd = {NULL, hnd->cur, 0, NULL};
     int available = ent->character->playerpoints;
     Kots_Player(ent, player_menu_args[hnd->cur - 3]);
-    
+
     //if changed refresh the menu
     if (available != ent->character->playerpoints)
         Kots_MenuShowPlayer(ent, &temphnd);
@@ -621,7 +621,7 @@ void Kots_MenuPowerAdd(edict_t *ent, pmenuhnd_t *hnd)
     pmenuhnd_t temphnd = {NULL, hnd->cur, 0, NULL};
     int available = ent->character->powerpoints;
     Kots_Power(ent, power_menu_args[hnd->cur - 3]);
-    
+
     //if changed refresh the menu
     if (available != ent->character->powerpoints)
         Kots_MenuShowPower(ent, &temphnd);
@@ -795,7 +795,7 @@ void Kots_MenuCreateServers(edict_t *ent)
 
     j = 3;
     count = 0;
-    if (kots_servers->length == 0) 
+    if (kots_servers->length == 0)
     {
         Kots_MenuPrint(&servers_menu[j], "No servers found.");
         servers_menu[j].SelectFunc = NULL;

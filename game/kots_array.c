@@ -73,7 +73,7 @@ void Array_SetCapacity(array_t *array, ULONG capacity)
     //set new values in array to NULL
     for (i = array->capacity; i < capacity; i++)
         array->values[i] = NULL;
-    
+
     array->capacity = capacity;
 }
 
@@ -323,7 +323,7 @@ void Array_Remove(array_t *array, void *value)
 void Array_DeleteAt(array_t *array, ULONG index)
 {
     void *value = Array_PopAt(array, index);
-    
+
     if (array->FreeItem)
         array->FreeItem(value);
 }
@@ -343,7 +343,7 @@ void Array_DeleteAll(array_t *array)
         array->FreeItem(array->values[i]);
         array->values[i] = NULL;
     }
-    
+
     array->length = 0;
 }
 

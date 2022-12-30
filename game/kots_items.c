@@ -134,11 +134,11 @@ edict_t *Kots_PackDrop(edict_t *targ, edict_t *attacker)
         pack->pack->credits = (targ->character->level / 2) + 1;
         if (pack->pack->credits > 20)
             pack->pack->credits = 20;
-        
+
     }
     else
     {
-        //monsters give fewer credits 
+        //monsters give fewer credits
         pack->pack->credits = (targ->character->level / 6) + 1;
         if (pack->pack->credits > 2)
             pack->pack->credits = 2;
@@ -196,7 +196,7 @@ void Kots_CharacterDropFakeHealth(edict_t *ent, char *pickup_name)
         edict_t *health = Drop_Item(ent, item);
         health->dmg = 200;
         health->think = Kots_FakeHealthMakeTouchable;
-        
+
         ent->character->cubes -= 50;
         ++ent->character->fakehealths;
         ent->character->next_fakehealth = level.time + 1;
@@ -209,7 +209,7 @@ void Kots_CharacterDropFakeHealth(edict_t *ent, char *pickup_name)
 qboolean Kots_MinePickup(edict_t *item, edict_t *ent)
 {
     vec3_t      origin;
-    
+
     if (!ent->client && !(ent->svflags & SVF_MONSTER))
         return false;
 
@@ -297,7 +297,7 @@ void Kots_CharacterDropShards(edict_t *ent)
     if (ent->client)
     {
         armor = ent->client->pers.inventory[ARMOR_INDEX];
-        
+
         if (armor < 10)
             return;
     }
@@ -341,7 +341,7 @@ void Kots_CharacterDropShards(edict_t *ent)
         {
             *angle += (360 / shards) + rand() % 30;
             shard = Drop_Item(ent, item);
-            shard->count = quantity; 
+            shard->count = quantity;
         }
 
         //reset the old angle
@@ -386,7 +386,7 @@ void Kots_CharacterDropFakeShard(edict_t *ent)
             edict_t *shard = Drop_Item(ent, item);
             shard->think = Kots_FakeShardMakeTouchable;
             shard->dmg = 200;
-            
+
             ent->client->pers.inventory[index] -= 50;
             ++ent->character->fakeshards;
             ent->character->next_fakeshard = level.time + 1.0;

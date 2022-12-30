@@ -69,7 +69,7 @@ void Kots_MonsterRecreateAll()
         if (ent->character && (ent->svflags & SVF_MONSTER))
         {
             //if the monster hasn't been hurt recreate it to adjust the level
-            if (ent->health == ent->max_health) 
+            if (ent->health == ent->max_health)
                 Kots_MonsterStart(ent);
         }
     }
@@ -100,7 +100,7 @@ void Kots_MonsterCreate(edict_t *ent)
     for (i = 1; i <= maxclients->value ; i++)
     {
         player = g_edicts + i;
-        
+
         if (player->inuse && player->character && player->character->is_loggedin)
         {
             ++count;
@@ -108,7 +108,7 @@ void Kots_MonsterCreate(edict_t *ent)
         }
     }
 
-    
+
     ent->character->monster_build = &monster_builds[rand() % MonsterBuildCount];
     if (count > 0)
         ent->character->level = ceil(((float)sum / count) + (rand() % 6));
@@ -220,7 +220,7 @@ void Kots_MonsterCreateBuild(edict_t *ent)
         Kots_MonsterMasterSkill(ent, &ent->character->spirit);
     else if (build->rage == 1.0)
         Kots_MonsterMasterSkill(ent, &ent->character->rage);
-    
+
     //add to main abilities here first
     if (build->dexterity > 0)
         Kots_MonsterAddSkill(ent, &ent->character->dexterity, (int)ceil(ent->character->playerpoints * build->dexterity), 5);
@@ -529,7 +529,7 @@ qboolean Kots_MonsterDropToFloor(edict_t *ent)
     ent->s.origin[2] += 1;
     VectorCopy (ent->s.origin, end);
     end[2] -= 8192;
-    
+
     trace = gi.trace (ent->s.origin, ent->mins, ent->maxs, end, ent, MASK_MONSTERSOLID);
 
     //either it's way too far down or it's all solid
@@ -620,7 +620,7 @@ edict_t *Kots_MonsterFindRandomEdict()
 
         if (!ent->inuse)
             continue;
-        
+
         return ent;
 
     } while (i != start);
@@ -701,10 +701,10 @@ qboolean Kots_MonsterFindGoal(edict_t *ent)
         }
     }
 
-    if (best) 
+    if (best)
     {
         ent->goalentity = ent->movetarget = ent->enemy = best;
-        
+
         if (ent->monsterinfo.walk)
             ent->monsterinfo.walk(ent);
         else if (ent->monsterinfo.run)
@@ -811,13 +811,13 @@ void Kots_MonsterCheckVote()
 
         if(average)
         {
-            if(average <= 1.5) //no mons 
+            if(average <= 1.5) //no mons
             {
                 //if the vote didn't change then don't bother doing anything
                 if (KOTS_MONSTER_VOTE != KOTS_MONSTERS_OFF)
                 {
                     KOTS_MONSTER_VOTE = KOTS_MONSTERS_OFF;
-                    
+
                     for(i=1;i<=maxclients->value;i++)
                     {
                         if ((cl_ent=&g_edicts[i]) && cl_ent->inuse)
@@ -828,7 +828,7 @@ void Kots_MonsterCheckVote()
                     }
                 }
             }
-            else if(average > 1.5 && average <= 2.5) //mixed 
+            else if(average > 1.5 && average <= 2.5) //mixed
             {
                 //if the vote didn't change then don't bother doing anything
                 if (KOTS_MONSTER_VOTE != KOTS_MONSTERS_MIXED)

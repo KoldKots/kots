@@ -89,7 +89,7 @@ qboolean Kots_Teleport( edict_t *other )
 //*************************************************************************************
 //*************************************************************************************
 
-void T_RadiusTeleport( edict_t *inflictor, edict_t *attacker, float damage, 
+void T_RadiusTeleport( edict_t *inflictor, edict_t *attacker, float damage,
                        edict_t *ignore, float radius )
 {
     int     x;
@@ -182,7 +182,7 @@ void T_RadiusTeleport( edict_t *inflictor, edict_t *attacker, float damage,
             }
         }
         else
-        { 
+        {
             gi.bprintf( PRINT_HIGH,"%s teleports away\n", attacker_name);
         }
     }
@@ -331,7 +331,7 @@ void fire_T_Ballz (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int s
 
 //*************************************************************************************
 //*************************************************************************************
-// Function: 
+// Function:
 //*************************************************************************************
 //*************************************************************************************
 
@@ -350,13 +350,13 @@ void Kots_Use_T_Ball(edict_t *ent, char *args)
 
     if (ent->character->tballs <= 0)
     {
-        gi.cprintf(ent, PRINT_MEDIUM, "You don't have any tballs.\n" );      
+        gi.cprintf(ent, PRINT_MEDIUM, "You don't have any tballs.\n" );
         return;
     }
- 
+
     if ( ent->character->spree >= 25 )
     {
-        gi.cprintf(ent, PRINT_MEDIUM, "No tballing while on a spree war!\n" );      
+        gi.cprintf(ent, PRINT_MEDIUM, "No tballing while on a spree war!\n" );
         return;
     }
 

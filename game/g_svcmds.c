@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ==============================================================================
 
 PACKET FILTERING
- 
+
 
 You can add or remove addresses from the filter list with:
 
@@ -80,13 +80,13 @@ static qboolean StringToFilter (char *s, ipfilter_t *f)
     int     i, j;
     byte    b[4];
     byte    m[4];
-    
+
     for (i=0 ; i<4 ; i++)
     {
         b[i] = 0;
         m[i] = 0;
     }
-    
+
     for (i=0 ; i<4 ; i++)
     {
         if (*s < '0' || *s > '9')
@@ -94,7 +94,7 @@ static qboolean StringToFilter (char *s, ipfilter_t *f)
             gi.cprintf(NULL, PRINT_HIGH, "Bad filter address: %s\n", s);
             return false;
         }
-        
+
         j = 0;
         while (*s >= '0' && *s <= '9')
         {
@@ -109,10 +109,10 @@ static qboolean StringToFilter (char *s, ipfilter_t *f)
             break;
         s++;
     }
-    
+
     f->mask = *(unsigned *)m;
     f->compare = *(unsigned *)b;
-    
+
     return true;
 }
 
@@ -140,7 +140,7 @@ qboolean SV_FilterPacket (char *from)
             break;
         i++, p++;
     }
-    
+
     in = *(unsigned *)m;
 
     for (i=0 ; i<numipfilters ; i++)
@@ -159,7 +159,7 @@ SV_AddIP_f
 void SVCmd_AddIP_f (void)
 {
     int     i;
-    
+
     if (gi.argc() < 3) {
         gi.cprintf(NULL, PRINT_HIGH, "Usage:  addip <ip-mask>\n");
         return;
@@ -177,7 +177,7 @@ void SVCmd_AddIP_f (void)
         }
         numipfilters++;
     }
-    
+
     if (!StringToFilter (gi.argv(2), &ipfilters[i]))
         ipfilters[i].compare = 0xffffffff;
 }
@@ -259,7 +259,7 @@ void SVCmd_WriteIP_f (void)
         gi.cprintf (NULL, PRINT_HIGH, "Couldn't open %s\n", name);
         return;
     }
-    
+
     fprintf(f, "set filterban %d\n", (int)filterban->value);
 
     for (i=0 ; i<numipfilters ; i++)
@@ -267,7 +267,7 @@ void SVCmd_WriteIP_f (void)
         *(unsigned *)b = ipfilters[i].compare;
         fprintf (f, "sv addip %i.%i.%i.%i\n", b[0], b[1], b[2], b[3]);
     }
-    
+
     fclose (f);
 }
 
@@ -342,25 +342,25 @@ void    ServerCommand (void)
     else if (Q_stricmp (cmd, "writeip") == 0)
         SVCmd_WriteIP_f ();
     else if (Q_stricmp (cmd, "maplist") == 0) // Aldarn - for initiating maplist
-        Kots_Maplist_ServerCommand(); 
+        Kots_Maplist_ServerCommand();
     else if (Q_stricmp (cmd, "user") == 0)
-        SVCmd_User_f(); 
+        SVCmd_User_f();
     else if (Q_stricmp (cmd, "pass") == 0)
-        SVCmd_Pass_f(); 
+        SVCmd_Pass_f();
     else if (Q_stricmp (cmd, "dbname") == 0)
-        SVCmd_DbName_f(); 
+        SVCmd_DbName_f();
     else if (Q_stricmp (cmd, "dbhostname") == 0)
-        SVCmd_DbHostName_f(); 
+        SVCmd_DbHostName_f();
     else if (Q_stricmp (cmd, "allowlogin") == 0)
-        Kots_ServerSetAllowLogin(NULL, true); 
+        Kots_ServerSetAllowLogin(NULL, true);
     else if (Q_stricmp (cmd, "nologin") == 0)
-        Kots_ServerSetAllowLogin(NULL, false); 
+        Kots_ServerSetAllowLogin(NULL, false);
     else if (Q_stricmp (cmd, "debugdb") == 0)
-        SVCmd_DbDebug_f(); 
+        SVCmd_DbDebug_f();
     else if (Q_stricmp (cmd, "update") == 0)
-        SVCmd_Update_f(); 
+        SVCmd_Update_f();
     else if (Q_stricmp (cmd, "revert") == 0)
-        SVCmd_Revert_f(); 
+        SVCmd_Revert_f();
     else
         gi.cprintf (NULL, PRINT_HIGH, "Unknown server command \"%s\"\n", cmd);
 }

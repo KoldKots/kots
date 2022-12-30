@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -313,10 +313,10 @@ mframe_t jorg_frames_death1 [] =
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
-    ai_move,    0,  NULL,           
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
-    ai_move,    0,  NULL,           
+    ai_move,    0,  NULL,
+    ai_move,    0,  NULL,
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,       // 30
@@ -333,10 +333,10 @@ mframe_t jorg_frames_death1 [] =
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
-    ai_move,    0,  NULL,           
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
-    ai_move,    0,  NULL,           
+    ai_move,    0,  NULL,
+    ai_move,    0,  NULL,
     ai_move,    0,  NULL,
     ai_move,    0,  MakronToss,
     ai_move,    0,  BossExplode     // 50
@@ -351,7 +351,7 @@ mframe_t jorg_frames_attack2 []=
     ai_charge,  0,  NULL,
     ai_charge,  0,  NULL,
     ai_charge,  0,  NULL,
-    ai_charge,  0,  jorgBFG,        
+    ai_charge,  0,  jorgBFG,
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
     ai_move,    0,  NULL,
@@ -402,12 +402,12 @@ void jorg_reattack1(edict_t *self)
         else
         {
             self->s.sound = 0;
-            self->monsterinfo.currentmove = &jorg_move_end_attack1; 
+            self->monsterinfo.currentmove = &jorg_move_end_attack1;
         }
     else
     {
         self->s.sound = 0;
-        self->monsterinfo.currentmove = &jorg_move_end_attack1; 
+        self->monsterinfo.currentmove = &jorg_move_end_attack1;
     }
 }
 
@@ -421,7 +421,7 @@ void jorg_pain (edict_t *self, edict_t *other, float kick, int damage)
 
     if (self->health < (self->max_health / 2))
             self->s.skinnum = 1;
-    
+
     self->s.sound = 0;
 
     if (level.time < self->pain_debounce_time)
@@ -432,11 +432,11 @@ void jorg_pain (edict_t *self, edict_t *other, float kick, int damage)
         if (random()<=0.6)
             return;
 
-    /* 
+    /*
     If he's entering his attack1 or using attack1, lessen the chance of him
     going into pain
     */
-    
+
     if ( (self->s.frame >= FRAME_attak101) && (self->s.frame <= FRAME_attak108) )
         if (random() <= 0.005)
             return;
@@ -490,16 +490,16 @@ void jorgBFG (edict_t *self)
     VectorSubtract (vec, start, dir);
     VectorNormalize (dir);
     gi.sound (self, CHAN_VOICE, sound_attack2, 1, ATTN_NORM, 0);
-    /*void monster_fire_bfg (edict_t *self, 
-                             vec3_t start, 
-                             vec3_t aimdir, 
-                             int damage, 
-                             int speed, 
-                             int kick, 
-                             float damage_radius, 
+    /*void monster_fire_bfg (edict_t *self,
+                             vec3_t start,
+                             vec3_t aimdir,
+                             int damage,
+                             int speed,
+                             int kick,
+                             float damage_radius,
                              int flashtype)*/
     monster_fire_bfg (self, start, dir, 100, 300, 200, 500, MZ2_JORG_BFG_1);
-}   
+}
 
 void jorg_firebullet_right (edict_t *self)
 {
@@ -515,7 +515,7 @@ void jorg_firebullet_right (edict_t *self)
     VectorNormalize (forward);
 
     monster_fire_bullet (self, start, forward, 10, 10, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, MZ2_JORG_MACHINEGUN_R1);
-}   
+}
 
 void jorg_firebullet_left (edict_t *self)
 {
@@ -531,7 +531,7 @@ void jorg_firebullet_left (edict_t *self)
     VectorNormalize (forward);
 
     monster_fire_bullet (self, start, forward, 10, 10, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, MZ2_JORG_MACHINEGUN_L1);
-}   
+}
 
 void jorg_firebullet (edict_t *self)
 {
@@ -543,7 +543,7 @@ void jorg_attack(edict_t *self)
 {
     vec3_t  vec;
     float   range;
-    
+
     VectorSubtract (self->enemy->s.origin, self->s.origin, vec);
     range = VectorLength (vec);
 
@@ -568,7 +568,7 @@ void jorg_dead (edict_t *self)
     VectorSet (self->mins, -16, -16, -24);
     VectorSet (self->maxs, 16, 16, -8);
     */
-    
+
     // Jorg is on modelindex2. Do not clear him.
     VectorSet (self->mins, -60, -60, 0);
     VectorSet (self->maxs, 60, 60, 72);
@@ -625,7 +625,7 @@ qboolean Jorg_CheckAttack (edict_t *self)
         //if (tr.ent != self->enemy)
         //  return false;
     }
-    
+
     enemy_infront = infront(self, self->enemy);
     enemy_range = range(self, self->enemy);
     VectorSubtract (self->enemy->s.origin, self->s.origin, temp);
@@ -643,14 +643,14 @@ qboolean Jorg_CheckAttack (edict_t *self)
             self->monsterinfo.attack_state = AS_MISSILE;
         return true;
     }
-    
+
 // missile attack
     if (!self->monsterinfo.attack)
         return false;
-        
+
     if (level.time < self->monsterinfo.attack_finished)
         return false;
-        
+
     if (enemy_range == RANGE_FAR)
         return false;
 
@@ -747,12 +747,12 @@ void SP_monster_jorg (edict_t *self)
     self->monsterinfo.sight = NULL;
     self->monsterinfo.checkattack = Jorg_CheckAttack;
     gi.linkentity (self);
-    
+
     self->monsterinfo.currentmove = &jorg_move_stand;
     self->monsterinfo.scale = MODEL_SCALE;
 
     walkmonster_start(self);
-    
+
     //SWB
     Kots_MonsterStart(self);
 }

@@ -63,7 +63,7 @@ void Kots_FreeServer()
 {
 
     int i;
-    
+
     //free the other services
     Kots_UpdateFree();
 
@@ -143,7 +143,7 @@ void Kots_ServerProcessAdminLogin(jobitem_t *job)
 
     //Print debug information about what results will be shown
     gi.dprintf("DB: Result of admin login for '%s': ", info->name);
-    
+
     //if the client is no longer connected
     //we can't do anything
     if (info->ent && info->ent->inuse && info->ent->client && info->client_id == info->ent->client->pers.kots_persist.client_id)
@@ -212,7 +212,7 @@ void Kots_ServerProcessCharacterInfoOutput(jobitem_t *job)
             gi.dprintf("DB: Result of saving character '%s': ", info->name);
 
     }
-    
+
     //if the client is no longer connected
     //we can't do anything
     //or if a different client replaced him/her
@@ -568,11 +568,11 @@ void Kots_AddServerUpdateJob()
 void Kots_AddRuneUpdateJob(void (*complete_callback)(struct jobitem_s *job))
 {
     jobitem_t *job = Kots_CreateJobItem("Update Rune List");
-    
+
     //Rune updates don't require any arguments and they only return back using args
     job->function = MysqlLoadRunes;
     job->complete_callback = complete_callback;
-    
+
     //add the job to the queue
     Kots_AddDbThreadJob(job);
 }
@@ -580,11 +580,11 @@ void Kots_AddRuneUpdateJob(void (*complete_callback)(struct jobitem_s *job))
 void Kots_ServerLogInfo(char *reason)
 {
     jobitem_t *job = Kots_CreateJobItem("Add Server Log Entry");
-    
+
     //set up the job arguments and callbacks
     job->args = Kots_ServerBuildLogInfo(reason);
     job->function = MysqlLogInfo;
-    
+
     //add the job to the queue
     Kots_AddDbThreadJob(job);
 }
@@ -952,7 +952,7 @@ static void MysqlUpdateIpbans(dbthread_t *thread, jobitem_t *job)
 {
     int querylength;
     MYSQL_ITERATOR *iterator;
-    
+
     //perform query
     querylength = Kots_snprintf(thread->query_buffer, KOTS_QUERYBUFFER_SIZE,
         "call `LoadIpBans`();\n");
@@ -992,7 +992,7 @@ static void MysqlUpdateIpbans(dbthread_t *thread, jobitem_t *job)
         else
             job->result = KOTS_SERVER_UNKNOWNERROR;
     }
-    
+
     //free the iterator
     mysql_iterator_free(iterator);
 }
@@ -1055,7 +1055,7 @@ static void MysqlCreateCharacter(dbthread_t *thread, jobitem_t *job)
         else
             job->result = KOTS_SERVER_UNKNOWNERROR;
     }
-    
+
     //free the iterator
     mysql_iterator_free(iterator);
 
@@ -1088,28 +1088,28 @@ void MysqlSaveCharacter(dbthread_t *thread, jobitem_t *job)
 
         //save character parameters
         character->id, character->level, character->exp, character->gender,
-        character->resist, character->cubes, character->credits, 
+        character->resist, character->cubes, character->credits,
         character->respawn_weapon, character->respawns,
         character->is_loggedin, character->is_cursed, character->is_admin, character->respec_points,
-        
+
         //save weapon parameters
-        character->id, character->sabre, character->shotgun, character->supershotgun, 
-        character->machinegun, character->chaingun, character->grenade, 
+        character->id, character->sabre, character->shotgun, character->supershotgun,
+        character->machinegun, character->chaingun, character->grenade,
         character->grenadelauncher, character->rocketlauncher, character->hyperblaster,
         character->railgun, character->bfg, character->wantiweapon, character->weaponsbought, character->weaponpoints,
 
         //save player parameters
-        character->id, character->dexterity, character->strength, character->karma, 
-        character->wisdom, character->technical, character->spirit, 
+        character->id, character->dexterity, character->strength, character->karma,
+        character->wisdom, character->technical, character->spirit,
         character->rage, character->vithealth, character->vitarmor,
         character->munition, character->playersbought, character->playerpoints,
 
         //save power parameters
-        character->id, character->expack, character->spiral, character->bide, 
+        character->id, character->expack, character->spiral, character->bide,
         character->kotsthrow, character->antiweapon, character->powersbought, character->powerpoints,
 
         //save persist parameters
-        character->id, persist->health, persist->armor, persist->weapon, 
+        character->id, persist->health, persist->armor, persist->weapon,
         persist->persist, persist->shotgun, persist->supershotgun,
         persist->machinegun, persist->chaingun, persist->grenadelauncher,
         persist->rocketlauncher, persist->hyperblaster, persist->railgun,
@@ -1170,7 +1170,7 @@ static void MysqlLoginCharacter(dbthread_t *thread, jobitem_t *job)
         {
             if (mysql_iterator_hascolumn(iterator, "@return_val"))
                 job->result = mysql_iterator_getint(iterator, "@return_val");
-            
+
             else
             {
                 //get character information

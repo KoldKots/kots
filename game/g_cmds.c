@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -75,7 +75,7 @@ void SelectNextItem (edict_t *ent, int itflags)
         PMenu_Next(ent);
         return;
     }
-    
+
     else if (cl->chase_target)
     {
         ChaseNext(ent);
@@ -114,7 +114,7 @@ void SelectPrevItem (edict_t *ent, int itflags)
         PMenu_Prev(ent);
         return;
     }
-    
+
     else if (cl->chase_target) {
         ChasePrev(ent);
         return;
@@ -477,7 +477,7 @@ void Cmd_Drop_f (edict_t *ent)
             return;
         }
     }
-    
+
     //SWB - Weapons not dropable in kots at least not by commands
     //TODO: May want to make weapons and ammo droppable in team modes
     if (it->weapmodel && it->weapmodel != WEAP_GRENADES && it->weapmodel != WEAP_BLASTER)
@@ -574,7 +574,7 @@ void Cmd_WeapPrev_f (edict_t *ent)
     int         selected_weapon;
 
     cl = ent->client;
-    
+
     //SWB - PMenu Changes
     if (cl->menu) {
         PMenu_Prev(ent);
@@ -884,7 +884,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
         if (level.is_silenced)
             team = true;
 
-        //SWB - if team chat is trying to be used 
+        //SWB - if team chat is trying to be used
         if (level.is_silenced && ent->client->pers.kots_persist.is_loggedin)
         {
             gi.centerprintf(ent, "This level has been silenced.\n");
@@ -916,7 +916,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 
         Kots_strncpy(text, p, sizeof(text));
     }
-    
+
     //SWB - format the message for special identifiers
     for (j = 0, p = &text[0]; *p != '\0' && j < sizeof(text); j++, p++)
     {
@@ -942,7 +942,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
                     Kots_ReplaceText(text, --p, "No Weapon", 2);
 
                 break;
-                
+
             case 'm':
             case 'M':
                 {
@@ -957,7 +957,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
                         else if (ent->client->pers.weapon->weapmodel != WEAP_SABRE)
                             ammo = ent->client->pers.inventory[ITEM_INDEX(FindItem(ent->client->pers.weapon->ammo))];
                     }
-                    
+
                     Kots_ReplaceText(text, --p, va("%i", ammo), 2);
                 }
                 break;
@@ -1024,8 +1024,8 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
                             best = targ;
                         }
                     }
-                    
-                    
+
+
                     if (!best)
                         Kots_ReplaceText(text, --p, "No Nearby Items", 2);
                     else
@@ -1045,7 +1045,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
             }
         }
     }
-    
+
     //SWB - since we modify the text before appending the name now
     if (team)
         Kots_strncpy(text, va("(%s): %s", ent->client->pers.netname, text), sizeof(text));
@@ -1069,7 +1069,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
         i = cl->flood_whenhead - flood_msgs->value + 1;
         if (i < 0)
             i = (sizeof(cl->flood_when)/sizeof(cl->flood_when[0])) + i;
-        if (cl->flood_when[i] && 
+        if (cl->flood_when[i] &&
             level.time - cl->flood_when[i] < flood_persecond->value) {
             cl->flood_locktill = level.time + flood_waitdelay->value;
             gi.cprintf(ent, PRINT_CHAT, "Flood protection:  You can't talk for %d seconds.\n",
@@ -1102,7 +1102,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
                 continue;
         }
 
-        //SWB - print title or spectator in front 
+        //SWB - print title or spectator in front
         if (ent->character && ent->client->pers.kots_persist.is_loggedin)
         {
             if (ent->character->title[0] != '\0')

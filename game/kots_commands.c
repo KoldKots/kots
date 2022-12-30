@@ -156,9 +156,9 @@ void Kots_CheckDuplicateCommands()
 
 void stuffcmd(edict_t *ent, char *s)
 {
-    gi.WriteByte (11);          
+    gi.WriteByte (11);
     gi.WriteString (s);
-    gi.unicast (ent, true); 
+    gi.unicast (ent, true);
 }
 
 void Kots_Help(edict_t *ent, char *args)
@@ -221,7 +221,7 @@ void Kots_StartGame(edict_t *ent, pmenuhnd_t *hnd)
         else
         {
             Kots_ServerLoginCharacter(ent);
-            
+
             gi.centerprintf(ent, "Loading character, please wait...\n");
             gi.centerprintf(ent, "Visit www.kingoftheserver.org to see the\n"
                                     "current rankings for this server!\n"
@@ -239,7 +239,7 @@ qboolean Kots_ValidateName(edict_t *ent)
 {
     static char *valid_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 -=[]',./!@#%^&*()_+{}|:<>?";
     size_t len = strlen(ent->client->pers.netname);
-    
+
     if (len == 0)
         gi.cprintf(ent, PRINT_HIGH, "Name cannot be blank.\n");
     else if (ent->client->pers.netname[0] == ' ')
@@ -1144,7 +1144,7 @@ void Kots_HookColor(edict_t *ent, char *args)
 qboolean Kots_Command(edict_t *ent, char *cmd)
 {
     int i;
-    
+
     if (Q_stricmp(cmd, "use") == 0 && Q_stricmp(gi.args(), "Blaster") == 0)
     {
         Use_Weapon(ent, FindItem("Sabre"));

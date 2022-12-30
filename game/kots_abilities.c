@@ -147,7 +147,7 @@ void Kots_CharacterCheckDoubleJump(edict_t *ent, pmove_t *pm)
     else if (!ent->character->canDoubleJump)
         return;
 
-    //no double jumps from anywhere in water 
+    //no double jumps from anywhere in water
     if (pm->waterlevel)
         return;
 
@@ -203,7 +203,7 @@ void Kots_CharacterCheckFly(edict_t *ent, pmove_t *pm)
             if (pm->s.velocity[2] > 270 * 5)
                 pm->s.velocity[2] = 270 * 5;
         }
-            
+
         //keep us from taking fall damage
         VectorClear(ent->client->oldvelocity);
     }
@@ -312,7 +312,7 @@ void Kots_CharacterCheckArmorRegen(edict_t *ent)
     {
         int maxarmor = Kots_CharacterGetMaxArmorRegen(ent);
         int index = ITEM_INDEX(FindItem("Body Armor"));
-        
+
         if (ent->client->pers.inventory[index] < maxarmor)
         {
             if (ent->character->cur_technical >= 7)
@@ -349,7 +349,7 @@ void Kots_CharacterCheckAmmoRegen(edict_t *ent)
         int i, j, count;
 
         if (ent->character->cur_strength < 10)
-        {   
+        {
             //strength 7-9 regenerate every 3 seconds
             if ((int)ent->character->next_regen % 3)
                 return;
@@ -540,7 +540,7 @@ void Kots_CharacterTossItem(edict_t *ent)
         }
     }
     else //otherwise scale from y
-    {   
+    {
         //check minimum velocity
         if (absy < 150.0)
         {
@@ -647,7 +647,7 @@ void Kots_CharacterCloakUseCubes(edict_t *ent)
 
 void Kots_CharacterCheckCloak(edict_t *ent)
 {
-    //reset noclient, we'll determine this later 
+    //reset noclient, we'll determine this later
     ent->svflags &= ~SVF_NOCLIENT;
 
     if (ent->health <= 0)
@@ -765,7 +765,7 @@ void Kots_CharacterFlashlightThink(edict_t *self)
         P_ProjectSource(self->owner->client, self->owner->s.origin, offset, forward, right, start);
         VectorMA(start, 8192, forward, end);
 
-        //perform initial trace with a wider area 
+        //perform initial trace with a wider area
         tr = gi.trace(start, self->mins, self->maxs, end, self->owner, CONTENTS_SOLID | CONTENTS_MONSTER | MASK_WATER);
 
         //only go through transparent water
@@ -810,13 +810,13 @@ void Kots_CharacterFlashlightThink(edict_t *self)
 
         }
 
-        VectorCopy(tr.endpos, self->s.origin); 
+        VectorCopy(tr.endpos, self->s.origin);
 
         //make sure the entity is visible
         self->svflags &= ~SVF_NOCLIENT;
         gi.linkentity (self);
     }
-    
+
     self->nextthink = level.time + 0.1;
 }
 
@@ -838,7 +838,7 @@ void Kots_CharacterHook(edict_t *ent)
             gi.cprintf(ent, PRINT_HIGH, "Not enough cubes to use the hook.\n");
             return;
         }
-        
+
         //uncloak the character if cloaked
         Kots_CharacterUncloak(ent);
 
@@ -894,7 +894,7 @@ void Kots_CharacterCheckKnock(edict_t *targ, edict_t *attacker, int damage)
         knock = 250;
     else if (attacker->character->cur_strength >= 5)
         knock = 400;
-    
+
     if (targ->character->knockdamage > knock)
     {
         float chance = 0.5;
@@ -956,7 +956,7 @@ void Kots_CharacterCheckVampire(edict_t *targ, edict_t *attacker, int damage)
             //only receive 50% health steal from monsters
             if (!(attacker->svflags & SVF_MONSTER) && (targ->svflags & SVF_MONSTER))
                 damage /= 2;
-            
+
             //steal 25% of the health
             attacker->health += Kots_RandMultiply(damage, 0.25);
 
@@ -991,7 +991,7 @@ void Kots_CharacterCheckAmmoSteal(edict_t *targ, edict_t *attacker, int damage)
 
                 //perform karma reduction
                 if (targ->character->cur_karma >= 7)
-                    ammosteal = Kots_RandMultiply(ammosteal, 0.1 * targ->character->cur_karma); 
+                    ammosteal = Kots_RandMultiply(ammosteal, 0.1 * targ->character->cur_karma);
                 else if (targ->character->cur_karma > 0)
                     ammosteal = Kots_RandMultiply(ammosteal, 0.05 * targ->character->cur_karma);
 
@@ -1059,7 +1059,7 @@ void Kots_CharacterPlayerId(edict_t *ent)
             best = NULL;
 
         ent->character->karma_id_ent = best;
-            
+
         //if we found something to id then don't attempt to id again for a bit
         if (best)
             ent->character->next_karma_id = level.time + 1.0;
@@ -1091,7 +1091,7 @@ void Kots_CharacterCreateHealth(edict_t *ent)
         health = Drop_Item(ent, item);
         health->style = HEALTH_IGNORE_MAX;
         health->count = 50; // Aldarn - kotshealth gives 50!
-        
+
         ent->character->cubes -= cubes;
 
         //uncloak the character if cloaked
@@ -1141,7 +1141,7 @@ void Kots_CharacterCheckSpiritSwim(edict_t *ent, pmove_t *pm)
         if (ent->character->cur_spirit >= levelreq)
         {
             gi.Pmove(pm);
-            
+
             if (ent->waterlevel > 1)
                 gi.Pmove(pm);
 
@@ -1255,7 +1255,7 @@ void Kots_CharacterCheckKotsArmor(edict_t *ent)
     {
         int maxarmor = Kots_CharacterGetMaxArmor(ent);
         int index = ITEM_INDEX(FindItem("Body Armor"));
-        
+
         //kots armor can only be depleted when it's actually being used
         //so only use as much kots armor as we actually regen
         if (ent->client->pers.inventory[index] < maxarmor)
@@ -1318,7 +1318,7 @@ void Kots_CharacterConvertCells(edict_t *ent)
             gi.cprintf(ent, PRINT_HIGH, "You do not have enough cells.\n");
             return;
         }
-        
+
         if (ent->character->cubes < max)
         {
             ent->client->pers.inventory[index] -= 50;
@@ -1412,7 +1412,7 @@ qboolean Kots_CharacterCheckRailDeflect(edict_t *targ, edict_t *attacker, vec3_t
     {
         if (targ->client && !targ->client->pers.kots_persist.using_deflect)
             return false;
-        
+
         if (level.time >= targ->character->next_deflect)
         {
             float chance;
@@ -1429,7 +1429,7 @@ qboolean Kots_CharacterCheckRailDeflect(edict_t *targ, edict_t *attacker, vec3_t
                 VectorInverse(deflect_dir);
                 deflect_dir[0] += (-90 + rand() % 181) * M_PI / 180.0;
                 deflect_dir[2] = 0;
-                
+
                 fire_rail2(attacker, targ, targ->s.origin, deflect_dir, damage, 0);
                 gi.sound(targ, CHAN_AUTO, gi.soundindex("weapons/RAILGF1A.WAV"), 1, ATTN_NORM, 0);
                 targ->character->next_deflect = level.time + 3.0;
@@ -1534,10 +1534,10 @@ void Kots_CharacterCheckQuadRage(edict_t *targ, edict_t *attacker, int dmg)
 
             //we hit the damage level required to quad rage
             if (attacker->character->quadragedamage >= 800)
-            {           
+            {
                 float quadtime = 0.0;
                 float chance;
-                
+
                 if (attacker->client->quad_framenum > level.framenum)
                     quadtime = (attacker->client->quad_framenum - level.framenum) * FRAMETIME;
 
@@ -1655,7 +1655,7 @@ void Kots_CharacterCheckPoisonDamage(edict_t *ent)
 
         T_Damage(ent, ent->character->poisonedby, ent->character->poisonedby, vec3_origin, *CenterEdict(ent), NULL, 10, 0, DAMAGE_NO_RESIST | DAMAGE_NO_ARMOR | DAMAGE_NO_KNOCKBACK , MOD_POISON);
     }
-} 
+}
 
 void Kots_CharacterDropMine(edict_t *ent)
 {
@@ -1678,7 +1678,7 @@ void Kots_CharacterDropMine(edict_t *ent)
             needed = 10;
 
         //is there enough ammo?
-        if (ent->client->pers.inventory[rocket_index] >= needed && 
+        if (ent->client->pers.inventory[rocket_index] >= needed &&
             ent->client->pers.inventory[grenade_index] >= needed)
         {
             gitem_t *mine;
@@ -1793,7 +1793,7 @@ void Kots_CharacterFlail(edict_t *ent)
         vec3_t      dir, angle;
         edict_t     *enemy = NULL;
         qboolean    hit = false;
-        
+
         //SWB - dex damage reduction like all other damage reductions
         //      should be in Kots_CharacterCheckReductions
         //      and resistances should be in Kots_CharacterCheckResistances
@@ -1844,7 +1844,7 @@ void Kots_CharacterFlail(edict_t *ent)
         //sorry didn't hit anything now you get hit
         if (!hit)
             T_Damage(ent, ent, ent, vec3_origin, ent->s.origin, vec3_origin, dmg / 5, 0, 0, MOD_FLAIL);
-        
+
         //SWB - removed after Dave's whining
         //adds an effect but not necessary
         //ent->s.event = EV_PLAYER_TELEPORT;
@@ -1900,7 +1900,7 @@ void Kots_CharacterConflagration(edict_t *ent)
             return;
         }
 
-        //require a combined total of at least 20 rockets and grenades 
+        //require a combined total of at least 20 rockets and grenades
         if ((rockets + grenades) < 20)
         {
             gi.cprintf(ent, PRINT_HIGH, "You must have at least 20 rockets and grenades to use conflagration.\n");
@@ -2000,7 +2000,7 @@ void Kots_VerifyHeadShot (vec3_t point, vec3_t dir, float height, vec3_t newpoin
 {
     vec3_t normdir;
     vec3_t normdir2;
-    
+
     //if length is 0 then vectornormalize won't set the values so we should clear it first
     VectorClear(normdir);
 
@@ -2026,7 +2026,7 @@ qboolean Kots_IsHeadShot (edict_t *attacker, edict_t *targ, vec3_t dir, vec3_t p
         return false;
 
     height = 7;
-    z_rel = point[2] - targ->s.origin[2]; 
+    z_rel = point[2] - targ->s.origin[2];
     from_top = targ->maxs[2] - z_rel;
 
     if (from_top < 2 * HEAD_HEIGHT)
@@ -2049,14 +2049,14 @@ qboolean Kots_IsHeadShot (edict_t *attacker, edict_t *targ, vec3_t dir, vec3_t p
 
         if((upper_bound - new_point[2]) < 0)
             return false;
- 
+
         if((lower_bound - new_point[2]) > 0)
             return false;
-          
+
         if ((upper_bound - new_point[2]) < HEAD_HEIGHT && (abs(new_point[1])) < HEAD_HEIGHT*.5 && (abs(new_point[0])) < HEAD_HEIGHT*.5)
             headshot = true;
     }
-    
+
     if (headshot)
     {
         if (level.time >= attacker->character->next_headshot)
@@ -2095,7 +2095,7 @@ void Kots_CharacterCheckStun(edict_t *ent, pmove_t *pm)
             pm->s.velocity[0] = 0;
             pm->s.velocity[1] = 0;
 
-            pm->cmd.sidemove = 0; 
+            pm->cmd.sidemove = 0;
             pm->cmd.forwardmove = 0;
             pm->cmd.upmove = 0;
         }
@@ -2155,7 +2155,7 @@ void Kots_CharacterToggleLaser(edict_t *ent, char *value)
         }
 
         gi.cprintf(ent, PRINT_HIGH, "Laser sight is enabled.\n");
-        ent->client->pers.kots_persist.using_laserball = false; 
+        ent->client->pers.kots_persist.using_laserball = false;
         Kots_CharacterCreateLaser(ent);
     }
     else
@@ -2243,7 +2243,7 @@ void Kots_CharacterLaserThink(edict_t *self)
         vec3_t forward, right, offset;
         vec3_t start, end;
 
-        //determine the point to trace to 
+        //determine the point to trace to
         AngleVectors(self->owner->client->v_angle, forward, right, NULL);
         VectorSet(offset, 8, 6, self->owner->viewheight - 7);
         P_ProjectSource(self->owner->client, self->owner->s.origin, offset, forward, right, start);
@@ -2251,7 +2251,7 @@ void Kots_CharacterLaserThink(edict_t *self)
 
         tr = gi.trace(start, self->mins, self->maxs, end, self->owner, MASK_SHOT);
 
-        if (self->s.renderfx & RF_BEAM) 
+        if (self->s.renderfx & RF_BEAM)
         {
             VectorCopy(start, self->s.origin);
             VectorCopy(tr.endpos, self->s.old_origin);
@@ -2269,7 +2269,7 @@ void Kots_CharacterLaserThink(edict_t *self)
         //relink the laser
         gi.linkentity(self);
     }
-    
+
     //set the next think time
     self->nextthink = level.time + 0.1;
 }
@@ -2316,7 +2316,7 @@ void Kots_CharacterDetonate(edict_t *ent)
     else if (!ent->client->pers.weapon || ent->client->pers.weapon->weapmodel != WEAP_GRENADES)
         gi.cprintf(ent, PRINT_HIGH, "You are not currently using grenades.\n");
     else if (ent->client->pers.inventory[ent->client->ammo_index] <= 0)
-        gi.cprintf(ent, PRINT_HIGH, "You do not have any grenades.\n"); 
+        gi.cprintf(ent, PRINT_HIGH, "You do not have any grenades.\n");
     else if (ent->client->weaponstate != WEAPON_FIRING || level.time > ent->client->grenade_time || ent->client->ps.gunframe == 15)
         gi.cprintf(ent, PRINT_HIGH, "Your grenade is not ready to be detonated.\n");
     else
@@ -2334,7 +2334,7 @@ void Kots_CharacterDetonate(edict_t *ent)
         //add quad damage
         if (ent->client->quad_framenum > level.framenum)
             damage *= 4;
-        
+
         //do radius damage on opponents and damage self
         T_RadiusDamage(ent, ent, damage, ent, 160, MOD_HG_SPLASH);
 

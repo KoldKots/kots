@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -139,7 +139,7 @@ void ai_stand (edict_t *self, float dist)
 
     if (FindTarget (self))
         return;
-    
+
     //SWB - find a new goal
     if (Kots_MonsterFindGoal(self))
         return;
@@ -232,7 +232,7 @@ void ai_turn (edict_t *self, float dist)
 
     if (FindTarget (self))
         return;
-    
+
     M_ChangeYaw (self);
 }
 
@@ -349,12 +349,12 @@ qboolean infront (edict_t *self, edict_t *other)
     //SWB - monsters can't see logged out or cloaked players
     if (other->character && (!other->character->is_loggedin || other->character->is_cloaked))
         return false;
-    
+
     AngleVectors (self->s.angles, forward, NULL, NULL);
     VectorSubtract (other->s.origin, self->s.origin, vec);
     VectorNormalize (vec);
     dot = DotProduct (vec, forward);
-    
+
     if (dot > 0.3)
         return true;
     return false;
@@ -688,7 +688,7 @@ qboolean M_CheckAttack (edict_t *self)
         if (tr.ent != self->enemy)
             return false;
     }
-    
+
     // melee attack
     if (enemy_range == RANGE_MELEE)
     {
@@ -701,14 +701,14 @@ qboolean M_CheckAttack (edict_t *self)
             self->monsterinfo.attack_state = AS_MISSILE;
         return true;
     }
-    
+
 // missile attack
     if (!self->monsterinfo.attack)
         return false;
-        
+
     if (level.time < self->monsterinfo.attack_finished)
         return false;
-        
+
     if (enemy_range == RANGE_FAR)
         return false;
 
@@ -807,7 +807,7 @@ Strafe sideways, but stay at aproximately the same range
 void ai_run_slide(edict_t *self, float distance)
 {
     float   ofs;
-    
+
     self->ideal_yaw = enemy_yaw;
     M_ChangeYaw (self);
 
@@ -815,10 +815,10 @@ void ai_run_slide(edict_t *self, float distance)
         ofs = 90;
     else
         ofs = -90;
-    
+
     if (M_walkmove (self, self->ideal_yaw + ofs, distance))
         return;
-        
+
     self->monsterinfo.lefty = 1 - self->monsterinfo.lefty;
     M_walkmove (self, self->ideal_yaw - ofs, distance);
 }
@@ -854,7 +854,7 @@ qboolean ai_checkattack (edict_t *self, float dist)
                     else
                         self->goalentity = NULL;
                 }
-                
+
                 self->monsterinfo.aiflags &= ~AI_SOUND_TARGET;
                 if (self->monsterinfo.aiflags & AI_TEMP_STAND_GROUND)
                     self->monsterinfo.aiflags &= ~(AI_STAND_GROUND | AI_TEMP_STAND_GROUND);
@@ -1016,7 +1016,7 @@ void ai_run (edict_t *self, float dist)
         if (!FindTarget (self))
             return;
     }
-    
+
     //SWB
     //sound target without an enemy indicates moving to an item
     if (self->goalentity && self->goalentity->item)

@@ -386,7 +386,7 @@ void Kots_CharacterSetPlayer(edict_t *ent)
             if (Q_stricmp(other->client->pers.netname, name) == 0)
             {
                 playerpoint_t *player_tree = Kots_GetPlayerTree(player);
-                
+
                 if (!player_tree)
                 {
                     gi.cprintf(ent, PRINT_HIGH, "Unrecognized player tree %s.\n", player);

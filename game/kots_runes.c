@@ -41,7 +41,7 @@ void Kots_RuneTouch(edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *s
 
         ent->count = 0; //reset hit count
     }
-    else //we hit something that wouldn't make a bounce so reset the enemy to let us bounce again 
+    else //we hit something that wouldn't make a bounce so reset the enemy to let us bounce again
         ent->enemy = NULL;
 
     Touch_Item (ent, other, plane, surf);
@@ -70,14 +70,14 @@ void Kots_RunePreThink(edict_t *ent)
             ent->velocity[2] += 100;
             if (ent->velocity[2] > 150)
                 ent->velocity[2] = 150;
-            
+
             //trace from the destination down to see if we're going to be above water
             origin = CenterEdict(ent);
             VectorCopy((*origin), dest);
             dest[2] += ent->velocity[2] * FRAMETIME;
             tr = gi.trace(dest, NULL, NULL, (*origin), ent, MASK_WATER);
 
-            //if we hit water 
+            //if we hit water
             if (tr.fraction < 1.0)
             {
                 ent->velocity[2] = ((tr.endpos[2] - (*origin)[2]) / FRAMETIME);
@@ -306,7 +306,7 @@ void Kots_RunesFreeInfo()
 void Kots_RunesProcessOutput(jobitem_t *job)
 {
     array_t *temp_runes = (array_t *)job->args;
-    
+
     //process result
     switch (job->result)
     {
@@ -413,7 +413,7 @@ static void Kots_RunesUpdate(array_t *temp_runes)
         if (ent->inuse && ent->character && ent->character->is_loggedin)
             Kots_RuneCheckAssociated(ent);
     }
-    
+
     //alert the server that the new runes were loaded
     gi.dprintf("DB: Successfully updated rune list from server...\n");
 }
@@ -587,7 +587,7 @@ void Kots_RuneDeathDrop(edict_t *ent)
         return;
     }
 
-    //if we are still over the rune limit never drop anything 
+    //if we are still over the rune limit never drop anything
     if (runes_on_map->length >= KOTS_RUNES_MAX_DROPPED)
         return;
 
@@ -752,7 +752,7 @@ void Kots_RuneDestroy(edict_t *ent, char *name)
         return;
     }
 
-    for (i = 0; i < runes_on_map->length; i++) 
+    for (i = 0; i < runes_on_map->length; i++)
     {
         dropped = (dropped_rune_t *)Array_GetValueAt(runes_on_map, i);
 
@@ -765,7 +765,7 @@ void Kots_RuneDestroy(edict_t *ent, char *name)
 
                 //print message to admin
                 gi.cprintf(ent, PRINT_HIGH, "Destroyed '%s' held by %s.\n", dropped->rune->name, dropped->owner->character->name);
-                
+
                 Kots_RuneRemoveAbilities(dropped->owner, dropped->rune);
                 dropped->owner->character->rune = NULL;
             }

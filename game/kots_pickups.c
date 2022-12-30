@@ -108,7 +108,7 @@ qboolean Kots_CharacterPickupArmor(edict_t *ent, edict_t *other)
     if (ent->item->tag == ARMOR_SHARD)
     {
         pickup = 2;
-        
+
         // Aldarn - cube bonuses
         if(other->character->cur_spirit >= 7) // 7+
             spirit_cube_bonus += 2; // 2 extra at level 7 (not sure why)
@@ -140,7 +140,7 @@ qboolean Kots_CharacterPickupArmor(edict_t *ent, edict_t *other)
         if (other->client->pers.inventory[index] < max)
         {
             other->client->pers.inventory[index] += pickup;
-            
+
             if (other->client->pers.inventory[index] > max)
                 other->client->pers.inventory[index] = max;
         }

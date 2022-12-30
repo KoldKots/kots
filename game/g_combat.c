@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -55,7 +55,7 @@ qboolean CanDamage (edict_t *targ, edict_t *inflictor)
             return true;
         return false;
     }
-    
+
     trace = gi.trace (inflictor->s.origin, vec3_origin, vec3_origin, targ->s.origin, inflictor, MASK_SOLID);
     if (trace.fraction == 1.0)
         return true;
@@ -119,7 +119,7 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
             if (strcmp(attacker->classname, "monster_medic") == 0)
                 targ->owner = attacker;
         }
-        
+
         //SWB
         //set up the monster to respawn again later
         Kots_MonsterDead(targ);
@@ -510,7 +510,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 
             //SWB - ensure velocity here before continuing because we might be going to EndServerFrame before doing targets think
             SV_CheckVelocity(targ);
-            
+
             //SWB - ensure we don't take falling damage for getting knocked up
             if (targ->client)
                 VectorCopy(targ->velocity, targ->client->oldvelocity);
@@ -570,7 +570,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 
     //treat cheat/powerup savings the same as armor
     asave += save;
-    
+
     // team damage avoidance
     if (!(dflags & DAMAGE_NO_PROTECTION) && CheckTeamDamage (targ, attacker))
         return;
@@ -592,7 +592,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 
 
         targ->health = targ->health - take;
-            
+
         if (targ->health <= 0)
         {
             qboolean dopostdeath = false;

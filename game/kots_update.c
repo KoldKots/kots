@@ -74,7 +74,7 @@ void Kots_UpdateFree()
 size_t Kots_WriteFile( void *ptr, size_t size, size_t nmemb, void *stream)
 {
     FILE *fHandle = (FILE *)stream;
-    return fwrite(ptr, 
+    return fwrite(ptr,
 }
 */
 
@@ -100,7 +100,7 @@ void Kots_DownloadFile(char *url, char *filepath)
             curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
             curl_easy_setopt(curl, CURLOPT_TRANSFERTEXT, 0);
             curl_easy_perform(curl);
-            curl_easy_cleanup(curl); 
+            curl_easy_cleanup(curl);
         }
 
         fclose(fHandle);
@@ -125,7 +125,7 @@ qboolean Kots_GetVersion(char *version, int len, char *filename)
         //then we successfully read it
         if (*version != '\0')
             result = true;
-        
+
         fclose(fVersion);
     }
 
@@ -166,7 +166,7 @@ qboolean Kots_RenameAll(const int total, ...)
             //in windows it may return failure but still work
             if (!Kots_FileExists(files[i + 1]))
             {
-                //rename failed so set our result and break out 
+                //rename failed so set our result and break out
                 result = false;
                 break;
             }
@@ -268,7 +268,7 @@ void Kots_RevertStart(edict_t *ent, int wait)
     else
     {
         qboolean hasDebug = (strlen(KOTS_URL_DEBUG) > 0 ? true : false);
-    
+
         //copy the game path and current version
         Kots_strncpy(game_dir, gamedir->string, sizeof(game_dir));
         Kots_strncpy(game_ver, gamever->string, sizeof(game_ver));
@@ -343,7 +343,7 @@ void *Kots_RunUpdate(void *args)
     if (Kots_GetVersion(new_ver, sizeof(new_ver), files[VERSION_LOCAL_INDEX]) && Q_stricmp(new_ver, game_ver) != 0)
     {
         qboolean hasDebug = (strlen(KOTS_URL_DEBUG) > 0 ? true : false);
-        
+
         Kots_DownloadFile(files[GAME_URL_INDEX], files[GAME_NEW_INDEX]);
 
         if (hasDebug)
@@ -406,7 +406,7 @@ void *Kots_RunUpdate(void *args)
     {
         Kots_ServerAddClientMessage(update_ent, update_client_id, "No new updates available.\n");
     }
-    
+
     //signal that the update is complete
     pthread_mutex_lock(&update_lock);
 

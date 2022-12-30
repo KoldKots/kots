@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -1261,7 +1261,7 @@ void SP_monster_soldier_light (edict_t *self)
     self->s.skinnum = 0;
     self->health = 20;
     self->gib_health = -30;
-    
+
     //SWB
     Kots_MonsterStart(self);
 }
@@ -1286,7 +1286,7 @@ void SP_monster_soldier (edict_t *self)
     self->s.skinnum = 2;
     self->health = 30;
     self->gib_health = -30;
-    
+
     //SWB
     Kots_MonsterStart(self);
 }
@@ -1311,7 +1311,7 @@ void SP_monster_soldier_ss (edict_t *self)
     self->s.skinnum = 4;
     self->health = 40;
     self->gib_health = -30;
-    
+
     //SWB
     Kots_MonsterStart(self);
 }
