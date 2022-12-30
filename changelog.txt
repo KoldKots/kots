@@ -1,4 +1,9 @@
-Version 2.0.0 - 2021-07-04 - Kold
+Version 2.0.2 - 2021-07-04 - Kold
+CHANGE: Modified hook to be a laser instead of the classic CTF grapple. Added ability to change hook color.
+CHANGE: Added chaingun ammo convert.
+CHANGE: Changed all tabs to spaces to enforce consistent style.
+
+Version 2.0.1 - 2021-07-04 - Kold
 BUGFIX: Forced gamedir to kots2020 for consistent behavior across clients, since Q2PRO doesn't populate gamedir
 CHANGE: Nerfed SSG by reducing pellet increase in 2.0.0
 CHANGE: Modified reunion splash
