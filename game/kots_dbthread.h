@@ -24,39 +24,39 @@
 
 #include "kots_linkedlist.h"
 
-#define KOTS_MAX_DBTHREADS			5
-#define KOTS_QUERYBUFFER_SIZE		4096
-#define KOTS_MYSQL_TIMEOUT			300
-#define KOTS_MYSQL_CONNECT_TIMEOUT	30
+#define KOTS_MAX_DBTHREADS      5
+#define KOTS_QUERYBUFFER_SIZE   4096
+#define KOTS_MYSQL_TIMEOUT      300
+#define KOTS_MYSQL_CONNECT_TIMEOUT  30
 
 
 typedef struct dbthread_s
 {
-	//thread based information
-	pthread_t thread;
-	struct jobitem_s *currentjob;
-	int is_running;
+  //thread based information
+  pthread_t thread;
+  struct jobitem_s *currentjob;
+  int is_running;
 
-	//mysql connection stuff
-	MYSQL *mysql;
-	struct timespec timeout;
-	char query_buffer[KOTS_QUERYBUFFER_SIZE];
-	int is_connected;
+  //mysql connection stuff
+  MYSQL *mysql;
+  struct timespec timeout;
+  char query_buffer[KOTS_QUERYBUFFER_SIZE];
+  int is_connected;
 
 } dbthread_t;
 
 
 typedef struct jobitem_s
 {
-	char *name;
-	void (*function)(dbthread_t *thread, struct jobitem_s *job);
-	int (*wait_check)(struct jobitem_s *job);
-	int (*skip_check)(struct jobitem_s *job);
-	void (*complete_callback)(struct jobitem_s *job);
-	void *args;
-	int result;
-	char *last_error;
-	time_t queue_time;
+  char *name;
+  void (*function)(dbthread_t *thread, struct jobitem_s *job);
+  int (*wait_check)(struct jobitem_s *job);
+  int (*skip_check)(struct jobitem_s *job);
+  void (*complete_callback)(struct jobitem_s *job);
+  void *args;
+  int result;
+  char *last_error;
+  time_t queue_time;
 } jobitem_t;
 
 

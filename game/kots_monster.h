@@ -5,21 +5,21 @@
 
 
 //monster definitions
-#define KOTS_MONSTERS_ONLY_SPAWN_INTERVAL	5.0
-#define KOTS_MONSTERS_MIXED_SPAWN_INTERVAL	15.0
-#define KOTS_MONSTERS_MAX					25
-#define	KOTS_MONSTERS_ONLY_MAX				10
-#define	KOTS_MONSTERS_MIXED_MAX				4
-#define KOTS_MONSTERS_PER_CLIENT			2
-#define KOTS_MONSTERS_SPAWN_TRIES			5 /*Try spawning a monster # times before giving up*/
-#define KOTS_MONSTERS_SPAWN_LOC_TRIES		10 /*Try # locations before giving up*/
-#define KOTS_MONSTERS_SPAWN_AFTERPK			45.0 /*Don't spawn a monster for this long after a player kill*/
-#define KOTS_MONSTERS_VOTE_INTERVAL			15.0 /*Check for monster vote changes this often*/
+#define KOTS_MONSTERS_ONLY_SPAWN_INTERVAL   5.0
+#define KOTS_MONSTERS_MIXED_SPAWN_INTERVAL  15.0
+#define KOTS_MONSTERS_MAX                   25
+#define KOTS_MONSTERS_ONLY_MAX              10
+#define KOTS_MONSTERS_MIXED_MAX             4
+#define KOTS_MONSTERS_PER_CLIENT            2
+#define KOTS_MONSTERS_SPAWN_TRIES           5 /*Try spawning a monster # times before giving up*/
+#define KOTS_MONSTERS_SPAWN_LOC_TRIES       10 /*Try # locations before giving up*/
+#define KOTS_MONSTERS_SPAWN_AFTERPK         45.0 /*Don't spawn a monster for this long after a player kill*/
+#define KOTS_MONSTERS_VOTE_INTERVAL         15.0 /*Check for monster vote changes this often*/
 
 //monster vote settings
-#define KOTS_MONSTERS_OFF						1
-#define KOTS_MONSTERS_MIXED						2
-#define KOTS_MONSTERS_ONLY						3
+#define KOTS_MONSTERS_OFF                       1
+#define KOTS_MONSTERS_MIXED                     2
+#define KOTS_MONSTERS_ONLY                      3
 
 extern int KOTS_MONSTER_VOTE;
 extern int KOTS_MONSTER_NEXT_SPAWN;
@@ -27,30 +27,30 @@ extern int KOTS_MONSTER_NEXT_VOTE_INTERVAL;
 
 typedef struct kots_monster_s
 {
-	char *classname;
-	char *name;
-	float health;
-	float armor;
-	float damage;
-	int bonus_exp;
-	void (*spawn)(edict_t *self);
-	int frequency;
-	qboolean enabled;
-	qboolean boss;
+    char *classname;
+    char *name;
+    float health;
+    float armor;
+    float damage;
+    int bonus_exp;
+    void (*spawn)(edict_t *self);
+    int frequency;
+    qboolean enabled;
+    qboolean boss;
 } kots_monster_t;
 
 typedef struct monster_build_s
 {
-	float dexterity;
-	float strength;
-	float karma;
-	float wisdom;
-	float technical;
-	float spirit;
-	float rage;
-	float vitarmor;
-	float vithealth;
-	float munition;
+    float dexterity;
+    float strength;
+    float karma;
+    float wisdom;
+    float technical;
+    float spirit;
+    float rage;
+    float vitarmor;
+    float vithealth;
+    float munition;
 } monster_build_t;
 
 //define quake 2 methods referenced

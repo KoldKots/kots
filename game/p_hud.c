@@ -39,199 +39,199 @@ INTERMISSION
 
 void MoveClientToIntermission (edict_t *ent)
 {
-	if (deathmatch->value || coop->value)
-		ent->client->showscores = true;
-	VectorCopy (level.intermission_origin, ent->s.origin);
-	ent->client->ps.pmove.origin[0] = level.intermission_origin[0]*8;
-	ent->client->ps.pmove.origin[1] = level.intermission_origin[1]*8;
-	ent->client->ps.pmove.origin[2] = level.intermission_origin[2]*8;
-	VectorCopy (level.intermission_angle, ent->client->ps.viewangles);
-	ent->client->ps.pmove.pm_type = PM_FREEZE;
-	ent->client->ps.gunindex = 0;
-	ent->client->ps.blend[3] = 0;
-	ent->client->ps.rdflags &= ~RDF_UNDERWATER;
+    if (deathmatch->value || coop->value)
+        ent->client->showscores = true;
+    VectorCopy (level.intermission_origin, ent->s.origin);
+    ent->client->ps.pmove.origin[0] = level.intermission_origin[0]*8;
+    ent->client->ps.pmove.origin[1] = level.intermission_origin[1]*8;
+    ent->client->ps.pmove.origin[2] = level.intermission_origin[2]*8;
+    VectorCopy (level.intermission_angle, ent->client->ps.viewangles);
+    ent->client->ps.pmove.pm_type = PM_FREEZE;
+    ent->client->ps.gunindex = 0;
+    ent->client->ps.blend[3] = 0;
+    ent->client->ps.rdflags &= ~RDF_UNDERWATER;
 
-	// clean up powerup info
-	ent->client->quad_framenum = 0;
-	ent->client->invincible_framenum = 0;
-	ent->client->breather_framenum = 0;
-	ent->client->enviro_framenum = 0;
-	ent->client->grenade_blew_up = false;
-	ent->client->grenade_time = 0;
+    // clean up powerup info
+    ent->client->quad_framenum = 0;
+    ent->client->invincible_framenum = 0;
+    ent->client->breather_framenum = 0;
+    ent->client->enviro_framenum = 0;
+    ent->client->grenade_blew_up = false;
+    ent->client->grenade_time = 0;
 
-	//cleanup chase cam
-	ent->client->chase_target = NULL;
+    //cleanup chase cam
+    ent->client->chase_target = NULL;
 
-	ent->viewheight = 0;
-	ent->s.modelindex = 0;
-	ent->s.modelindex2 = 0;
-	ent->s.modelindex3 = 0;
-	ent->s.modelindex = 0;
-	ent->s.effects = 0;
-	ent->s.sound = 0;
-	ent->solid = SOLID_NOT;
+    ent->viewheight = 0;
+    ent->s.modelindex = 0;
+    ent->s.modelindex2 = 0;
+    ent->s.modelindex3 = 0;
+    ent->s.modelindex = 0;
+    ent->s.effects = 0;
+    ent->s.sound = 0;
+    ent->solid = SOLID_NOT;
 
-	//SWB - make players spectators in case something goes wrong
-	ent->client->resp.spectator = true;
-	ent->client->pers.spectator = true;
-	ent->movetype = MOVETYPE_NOCLIP;
-	ent->svflags |= SVF_NOCLIENT;
-	gi.linkentity (ent);
+    //SWB - make players spectators in case something goes wrong
+    ent->client->resp.spectator = true;
+    ent->client->pers.spectator = true;
+    ent->movetype = MOVETYPE_NOCLIP;
+    ent->svflags |= SVF_NOCLIENT;
+    gi.linkentity (ent);
 
-	// add the layout
+    // add the layout
 
-	if (deathmatch->value || coop->value)
-	{
-		//DeathmatchScoreboardMessage (ent, NULL);
-		Kots_HudScoreboard(ent);
-		gi.unicast (ent, true);
-	}
+    if (deathmatch->value || coop->value)
+    {
+        //DeathmatchScoreboardMessage (ent, NULL);
+        Kots_HudScoreboard(ent);
+        gi.unicast (ent, true);
+    }
 
 }
 
 qboolean IsFraglimitHit()
 {
-	int i;
-	edict_t *ent = g_edicts + 1;
-	for (i = 0; i < game.maxclients; i++, ent++)
-	{
-		if (!ent->inuse)
-			continue;
+    int i;
+    edict_t *ent = g_edicts + 1;
+    for (i = 0; i < game.maxclients; i++, ent++)
+    {
+        if (!ent->inuse)
+            continue;
 
-		if (ent->client->resp.score >= fraglimit->value)
-			return true;
-	}
+        if (ent->client->resp.score >= fraglimit->value)
+            return true;
+    }
 
-	return false;
+    return false;
 }
 
 void BeginIntermission (edict_t *targ)
 {
-	int		i, n;
-	edict_t	*ent, *client;
+    int     i, n;
+    edict_t *ent, *client;
 
-	if (level.intermissiontime)
-		return;		// already activated
+    if (level.intermissiontime)
+        return;     // already activated
 
-	//SWB - maps only count against previous maps if played for more than 1 minute or the fraglimit is hit
-	if (level.time > 60 || IsFraglimitHit())
-		Kots_Maplist_AddPrevMap();
+    //SWB - maps only count against previous maps if played for more than 1 minute or the fraglimit is hit
+    if (level.time > 60 || IsFraglimitHit())
+        Kots_Maplist_AddPrevMap();
 
-	game.autosaved = false;
+    game.autosaved = false;
 
-	//SWB - set this here so we can handle intermission stuff properly later
-	level.intermission_screen = KOTS_INTERMISSION_SCORE;
-	level.intermission_nextscreen = level.time + KOTS_INTERMISSION_DELAY;
-	level.intermission_dirty = false;
-	level.intermissiontime = level.time;
-	level.changemap = targ->map;
+    //SWB - set this here so we can handle intermission stuff properly later
+    level.intermission_screen = KOTS_INTERMISSION_SCORE;
+    level.intermission_nextscreen = level.time + KOTS_INTERMISSION_DELAY;
+    level.intermission_dirty = false;
+    level.intermissiontime = level.time;
+    level.changemap = targ->map;
 
-	//SWB - end any spreewars going on BEFORE we log characters out
-	if (spreewar.warent != NULL)
-		Kots_CharacterEndSpree(spreewar.warent, true);
+    //SWB - end any spreewars going on BEFORE we log characters out
+    if (spreewar.warent != NULL)
+        Kots_CharacterEndSpree(spreewar.warent, true);
 
-	//SWB - Log information before logging clients out
-	Kots_LogOnDisconnect();
+    //SWB - Log information before logging clients out
+    Kots_LogOnDisconnect();
 
-	// respawn any dead clients
-	for (i=0 ; i<maxclients->value ; i++)
-	{
-		client = g_edicts + 1 + i;
-		if (!client->inuse)
-			continue;
-		if (client->health <= 0)
-			respawn(client);
+    // respawn any dead clients
+    for (i=0 ; i<maxclients->value ; i++)
+    {
+        client = g_edicts + 1 + i;
+        if (!client->inuse)
+            continue;
+        if (client->health <= 0)
+            respawn(client);
 
-		//reset map vote
-		client->client->pers.kots_persist.map_vote = MAPVOTE_NONE;
-		client->client->intermission_clicked = false;
-				
-		//SWB
-		if (client->character->is_loggedin)
-		{
-			//save the previous rune
-			rune_t *rune = client->character->rune;
+        //reset map vote
+        client->client->pers.kots_persist.map_vote = MAPVOTE_NONE;
+        client->client->intermission_clicked = false;
+                
+        //SWB
+        if (client->character->is_loggedin)
+        {
+            //save the previous rune
+            rune_t *rune = client->character->rune;
 
-			//save the rune for the next map 
-			client->client->pers.kots_persist.rune_id = (client->character->rune ? client->character->rune->id : 0);
-			client->character->rune = NULL;
+            //save the rune for the next map 
+            client->client->pers.kots_persist.rune_id = (client->character->rune ? client->character->rune->id : 0);
+            client->character->rune = NULL;
 
-			//keep some stats for the scoreboard
-			Kots_CharacterLogout(client, false, false);
-			Kots_CharacterClearEdicts(client);
+            //keep some stats for the scoreboard
+            Kots_CharacterLogout(client, false, false);
+            Kots_CharacterClearEdicts(client);
 
-			//restore the rune back for display during intermission
-			client->character->rune = rune;
+            //restore the rune back for display during intermission
+            client->character->rune = rune;
 
-			//we want to stay logged in for the next map so reset this to true
-			game.clients[i].pers.kots_persist.is_loggedin = true;
-		}
-	}
+            //we want to stay logged in for the next map so reset this to true
+            game.clients[i].pers.kots_persist.is_loggedin = true;
+        }
+    }
 
-	if (strstr(level.changemap, "*"))
-	{
-		if (coop->value)
-		{
-			for (i=0 ; i<maxclients->value ; i++)
-			{
-				client = g_edicts + 1 + i;
-				if (!client->inuse)
-					continue;
-				// strip players of all keys between units
-				for (n = 0; n < MAX_ITEMS; n++)
-				{
-					if (itemlist[n].flags & IT_KEY)
-						client->client->pers.inventory[n] = 0;
-				}
-			}
-		}
-	}
-	else
-	{
-		if (!deathmatch->value)
-		{
-			level.exitintermission = 1;		// go immediately to the next level
-			return;
-		}
-	}
+    if (strstr(level.changemap, "*"))
+    {
+        if (coop->value)
+        {
+            for (i=0 ; i<maxclients->value ; i++)
+            {
+                client = g_edicts + 1 + i;
+                if (!client->inuse)
+                    continue;
+                // strip players of all keys between units
+                for (n = 0; n < MAX_ITEMS; n++)
+                {
+                    if (itemlist[n].flags & IT_KEY)
+                        client->client->pers.inventory[n] = 0;
+                }
+            }
+        }
+    }
+    else
+    {
+        if (!deathmatch->value)
+        {
+            level.exitintermission = 1;     // go immediately to the next level
+            return;
+        }
+    }
 
-	level.exitintermission = 0;
+    level.exitintermission = 0;
 
-	// find an intermission spot
-	ent = G_Find (NULL, FOFS(classname), "info_player_intermission");
-	if (!ent)
-	{	// the map creator forgot to put in an intermission point...
-		ent = G_Find (NULL, FOFS(classname), "info_player_start");
-		if (!ent)
-			ent = G_Find (NULL, FOFS(classname), "info_player_deathmatch");
-	}
-	else
-	{	// chose one of four spots
-		i = rand() & 3;
-		while (i--)
-		{
-			ent = G_Find (ent, FOFS(classname), "info_player_intermission");
-			if (!ent)	// wrap around the list
-				ent = G_Find (ent, FOFS(classname), "info_player_intermission");
-		}
-	}
+    // find an intermission spot
+    ent = G_Find (NULL, FOFS(classname), "info_player_intermission");
+    if (!ent)
+    {   // the map creator forgot to put in an intermission point...
+        ent = G_Find (NULL, FOFS(classname), "info_player_start");
+        if (!ent)
+            ent = G_Find (NULL, FOFS(classname), "info_player_deathmatch");
+    }
+    else
+    {   // chose one of four spots
+        i = rand() & 3;
+        while (i--)
+        {
+            ent = G_Find (ent, FOFS(classname), "info_player_intermission");
+            if (!ent)   // wrap around the list
+                ent = G_Find (ent, FOFS(classname), "info_player_intermission");
+        }
+    }
 
-	//SWB - ensure that we found a intermission spot
-	//this will sometimes happen if the server is just starting and we were not previously on a map
-	if (ent)
-	{
-		VectorCopy (ent->s.origin, level.intermission_origin);
-		VectorCopy (ent->s.angles, level.intermission_angle);
-	}
+    //SWB - ensure that we found a intermission spot
+    //this will sometimes happen if the server is just starting and we were not previously on a map
+    if (ent)
+    {
+        VectorCopy (ent->s.origin, level.intermission_origin);
+        VectorCopy (ent->s.angles, level.intermission_angle);
+    }
 
-	// move all clients to the intermission point
-	for (i=0 ; i<maxclients->value ; i++)
-	{
-		client = g_edicts + 1 + i;
-		if (!client->inuse)
-			continue;
-		MoveClientToIntermission (client);
-	}
+    // move all clients to the intermission point
+    for (i=0 ; i<maxclients->value ; i++)
+    {
+        client = g_edicts + 1 + i;
+        if (!client->inuse)
+            continue;
+        MoveClientToIntermission (client);
+    }
 }
 
 
@@ -243,91 +243,91 @@ DeathmatchScoreboardMessage
 */
 void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 {
-	char	entry[1024];
-	char	string[1400];
-	int		stringlength;
-	int		i, j, k;
-	int		sorted[MAX_CLIENTS];
-	int		sortedscores[MAX_CLIENTS];
-	int		score, total;
-	int		picnum;
-	int		x, y;
-	gclient_t	*cl;
-	edict_t		*cl_ent;
-	char	*tag;
+    char    entry[1024];
+    char    string[1400];
+    int     stringlength;
+    int     i, j, k;
+    int     sorted[MAX_CLIENTS];
+    int     sortedscores[MAX_CLIENTS];
+    int     score, total;
+    int     picnum;
+    int     x, y;
+    gclient_t   *cl;
+    edict_t     *cl_ent;
+    char    *tag;
 
-	// sort the clients by score
-	total = 0;
-	for (i=0 ; i<game.maxclients ; i++)
-	{
-		cl_ent = g_edicts + 1 + i;
-		if (!cl_ent->inuse || game.clients[i].resp.spectator)
-			continue;
-		score = game.clients[i].resp.score;
-		for (j=0 ; j<total ; j++)
-		{
-			if (score > sortedscores[j])
-				break;
-		}
-		for (k=total ; k>j ; k--)
-		{
-			sorted[k] = sorted[k-1];
-			sortedscores[k] = sortedscores[k-1];
-		}
-		sorted[j] = i;
-		sortedscores[j] = score;
-		total++;
-	}
+    // sort the clients by score
+    total = 0;
+    for (i=0 ; i<game.maxclients ; i++)
+    {
+        cl_ent = g_edicts + 1 + i;
+        if (!cl_ent->inuse || game.clients[i].resp.spectator)
+            continue;
+        score = game.clients[i].resp.score;
+        for (j=0 ; j<total ; j++)
+        {
+            if (score > sortedscores[j])
+                break;
+        }
+        for (k=total ; k>j ; k--)
+        {
+            sorted[k] = sorted[k-1];
+            sortedscores[k] = sortedscores[k-1];
+        }
+        sorted[j] = i;
+        sortedscores[j] = score;
+        total++;
+    }
 
-	// print level name and exit rules
-	string[0] = 0;
+    // print level name and exit rules
+    string[0] = 0;
 
-	stringlength = strlen(string);
+    stringlength = strlen(string);
 
-	// add the clients in sorted order
-	if (total > 12)
-		total = 12;
+    // add the clients in sorted order
+    if (total > 12)
+        total = 12;
 
-	for (i=0 ; i<total ; i++)
-	{
-		cl = &game.clients[sorted[i]];
-		cl_ent = g_edicts + 1 + sorted[i];
+    for (i=0 ; i<total ; i++)
+    {
+        cl = &game.clients[sorted[i]];
+        cl_ent = g_edicts + 1 + sorted[i];
 
-		picnum = gi.imageindex ("i_fixme");
-		x = (i>=6) ? 160 : 0;
-		y = 32 + 32 * (i%6);
+        picnum = gi.imageindex ("i_fixme");
+        x = (i>=6) ? 160 : 0;
+        y = 32 + 32 * (i%6);
 
-		// add a dogtag
-		if (cl_ent == ent)
-			tag = "tag1";
-		else if (cl_ent == killer)
-			tag = "tag2";
-		else
-			tag = NULL;
-		if (tag)
-		{
-			Com_sprintf (entry, sizeof(entry),
-				"xv %i yv %i picn %s ",x+32, y, tag);
-			j = strlen(entry);
-			if (stringlength + j > 1024)
-				break;
-			strcpy (string + stringlength, entry);
-			stringlength += j;
-		}
+        // add a dogtag
+        if (cl_ent == ent)
+            tag = "tag1";
+        else if (cl_ent == killer)
+            tag = "tag2";
+        else
+            tag = NULL;
+        if (tag)
+        {
+            Com_sprintf (entry, sizeof(entry),
+                "xv %i yv %i picn %s ",x+32, y, tag);
+            j = strlen(entry);
+            if (stringlength + j > 1024)
+                break;
+            strcpy (string + stringlength, entry);
+            stringlength += j;
+        }
 
-		// send the layout
-		Com_sprintf (entry, sizeof(entry),
-			"client %i %i %i %i %i %i ",
-			x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe)/600);
-		j = strlen(entry);
-		if (stringlength + j > 1024)
-			break;
-		strcpy (string + stringlength, entry);
-		stringlength += j;
-	}
+        // send the layout
+        Com_sprintf (entry, sizeof(entry),
+            "client %i %i %i %i %i %i ",
+            x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe)/600);
+        j = strlen(entry);
+        if (stringlength + j > 1024)
+            break;
+        strcpy (string + stringlength, entry);
+        stringlength += j;
+    }
 
-	gi.WriteByte (svc_layout);
-	gi.WriteString (string);
+    gi.WriteByte (svc_layout);
+    gi.WriteString (string);
 }
 
 
@@ -341,10 +341,10 @@ Note that it isn't that hard to overflow the 1400 byte message limit!
 */
 void DeathmatchScoreboard (edict_t *ent)
 {
-	//SWB
-	Kots_HudScoreboard(ent);
-	//DeathmatchScoreboardMessage (ent, ent->enemy);
-	gi.unicast (ent, true);
+    //SWB
+    Kots_HudScoreboard(ent);
+    //DeathmatchScoreboardMessage (ent, ent->enemy);
+    gi.unicast (ent, true);
 }
 
 
@@ -357,23 +357,23 @@ Display the scoreboard
 */
 void Cmd_Score_f (edict_t *ent)
 {
-	ent->client->showinventory = false;
-	ent->client->showhelp = false;
+    ent->client->showinventory = false;
+    ent->client->showhelp = false;
 
-	if (!deathmatch->value && !coop->value)
-		return;
+    if (!deathmatch->value && !coop->value)
+        return;
 
-	if (ent->client->showscores)
-	{
-		ent->client->showscores = false;
-		return;
-	}
+    if (ent->client->showscores)
+    {
+        ent->client->showscores = false;
+        return;
+    }
 
-	//SWB - default to scores when pressing this button
-	ent->client->pers.kots_persist.intermission_screen = KOTS_INTERMISSION_SCORE;
+    //SWB - default to scores when pressing this button
+    ent->client->pers.kots_persist.intermission_screen = KOTS_INTERMISSION_SCORE;
 
-	ent->client->showscores = true;
-	DeathmatchScoreboard (ent);
+    ent->client->showscores = true;
+    DeathmatchScoreboard (ent);
 }
 
 
@@ -386,38 +386,38 @@ Draw help computer.
 */
 void HelpComputer (edict_t *ent)
 {
-	char	string[1024];
-	char	*sk;
+    char    string[1024];
+    char    *sk;
 
-	if (skill->value == 0)
-		sk = "easy";
-	else if (skill->value == 1)
-		sk = "medium";
-	else if (skill->value == 2)
-		sk = "hard";
-	else
-		sk = "hard+";
+    if (skill->value == 0)
+        sk = "easy";
+    else if (skill->value == 1)
+        sk = "medium";
+    else if (skill->value == 2)
+        sk = "hard";
+    else
+        sk = "hard+";
 
-	// send the layout
-	Com_sprintf (string, sizeof(string),
-		"xv 32 yv 8 picn help "			// background
-		"xv 202 yv 12 string2 \"%s\" "		// skill
-		"xv 0 yv 24 cstring2 \"%s\" "		// level name
-		"xv 0 yv 54 cstring2 \"%s\" "		// help 1
-		"xv 0 yv 110 cstring2 \"%s\" "		// help 2
-		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
-		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
-		sk,
-		level.level_name,
-		game.helpmessage1,
-		game.helpmessage2,
-		level.killed_monsters, level.total_monsters, 
-		level.found_goals, level.total_goals,
-		level.found_secrets, level.total_secrets);
+    // send the layout
+    Com_sprintf (string, sizeof(string),
+        "xv 32 yv 8 picn help "         // background
+        "xv 202 yv 12 string2 \"%s\" "      // skill
+        "xv 0 yv 24 cstring2 \"%s\" "       // level name
+        "xv 0 yv 54 cstring2 \"%s\" "       // help 1
+        "xv 0 yv 110 cstring2 \"%s\" "      // help 2
+        "xv 50 yv 164 string2 \" kills     goals    secrets\" "
+        "xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
+        sk,
+        level.level_name,
+        game.helpmessage1,
+        game.helpmessage2,
+        level.killed_monsters, level.total_monsters, 
+        level.found_goals, level.total_goals,
+        level.found_secrets, level.total_secrets);
 
-	gi.WriteByte (svc_layout);
-	gi.WriteString (string);
-	gi.unicast (ent, true);
+    gi.WriteByte (svc_layout);
+    gi.WriteString (string);
+    gi.unicast (ent, true);
 }
 
 
@@ -430,25 +430,25 @@ Display the current help message
 */
 void Cmd_Help_f (edict_t *ent)
 {
-	// this is for backwards compatability
-	if (deathmatch->value)
-	{
-		Cmd_Score_f (ent);
-		return;
-	}
+    // this is for backwards compatability
+    if (deathmatch->value)
+    {
+        Cmd_Score_f (ent);
+        return;
+    }
 
-	ent->client->showinventory = false;
-	ent->client->showscores = false;
+    ent->client->showinventory = false;
+    ent->client->showscores = false;
 
-	if (ent->client->showhelp && (ent->client->pers.game_helpchanged == game.helpchanged))
-	{
-		ent->client->showhelp = false;
-		return;
-	}
+    if (ent->client->showhelp && (ent->client->pers.game_helpchanged == game.helpchanged))
+    {
+        ent->client->showhelp = false;
+        return;
+    }
 
-	ent->client->showhelp = true;
-	ent->client->pers.helpchanged = 0;
-	HelpComputer (ent);
+    ent->client->showhelp = true;
+    ent->client->pers.helpchanged = 0;
+    HelpComputer (ent);
 }
 
 
@@ -461,185 +461,185 @@ G_SetStats
 */
 void G_SetStats (edict_t *ent)
 {
-	gitem_t		*item;
-	int			index, cells;
-	int			power_armor_type;
+    gitem_t     *item;
+    int         index, cells;
+    int         power_armor_type;
 
-	//
-	// health
-	//
-	ent->client->ps.stats[STAT_HEALTH_ICON] = level.pic_health;
-	ent->client->ps.stats[STAT_HEALTH] = ent->health;
+    //
+    // health
+    //
+    ent->client->ps.stats[STAT_HEALTH_ICON] = level.pic_health;
+    ent->client->ps.stats[STAT_HEALTH] = ent->health;
 
-	//
-	// ammo
-	//
-	if (!ent->client->ammo_index /* || !ent->client->pers.inventory[ent->client->ammo_index] */)
-	{
-		ent->client->ps.stats[STAT_AMMO_ICON] = 0;
-		ent->client->ps.stats[STAT_AMMO] = 0;
-	}
-	else
-	{
-		item = &itemlist[ent->client->ammo_index];
-		ent->client->ps.stats[STAT_AMMO_ICON] = gi.imageindex (item->icon);
-		ent->client->ps.stats[STAT_AMMO] = ent->client->pers.inventory[ent->client->ammo_index];
-	}
-	
-	//
-	// armor
-	//
-	power_armor_type = PowerArmorType (ent);
-	if (power_armor_type)
-	{
-		cells = ent->client->pers.inventory[ITEM_INDEX(FindItem ("cells"))];
-		if (cells == 0)
-		{	// ran out of cells for power armor
-			ent->flags &= ~FL_POWER_ARMOR;
-			gi.sound(ent, CHAN_ITEM, gi.soundindex("misc/power2.wav"), 1, ATTN_NORM, 0);
-			power_armor_type = 0;;
-		}
-	}
+    //
+    // ammo
+    //
+    if (!ent->client->ammo_index /* || !ent->client->pers.inventory[ent->client->ammo_index] */)
+    {
+        ent->client->ps.stats[STAT_AMMO_ICON] = 0;
+        ent->client->ps.stats[STAT_AMMO] = 0;
+    }
+    else
+    {
+        item = &itemlist[ent->client->ammo_index];
+        ent->client->ps.stats[STAT_AMMO_ICON] = gi.imageindex (item->icon);
+        ent->client->ps.stats[STAT_AMMO] = ent->client->pers.inventory[ent->client->ammo_index];
+    }
+    
+    //
+    // armor
+    //
+    power_armor_type = PowerArmorType (ent);
+    if (power_armor_type)
+    {
+        cells = ent->client->pers.inventory[ITEM_INDEX(FindItem ("cells"))];
+        if (cells == 0)
+        {   // ran out of cells for power armor
+            ent->flags &= ~FL_POWER_ARMOR;
+            gi.sound(ent, CHAN_ITEM, gi.soundindex("misc/power2.wav"), 1, ATTN_NORM, 0);
+            power_armor_type = 0;;
+        }
+    }
 
-	index = ArmorIndex (ent);
-	if (power_armor_type && (!index || (level.framenum & 8) ) )
-	{	// flash between power armor and other armor icon
-		ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex ("i_powershield");
-		ent->client->ps.stats[STAT_ARMOR] = cells;
-	}
-	else if (index)
-	{
-		item = GetItemByIndex (index);
-		ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex (item->icon);
-		ent->client->ps.stats[STAT_ARMOR] = ent->client->pers.inventory[index];
-	}
-	else
-	{
-		ent->client->ps.stats[STAT_ARMOR_ICON] = 0;
-		ent->client->ps.stats[STAT_ARMOR] = 0;
-	}
+    index = ArmorIndex (ent);
+    if (power_armor_type && (!index || (level.framenum & 8) ) )
+    {   // flash between power armor and other armor icon
+        ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex ("i_powershield");
+        ent->client->ps.stats[STAT_ARMOR] = cells;
+    }
+    else if (index)
+    {
+        item = GetItemByIndex (index);
+        ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex (item->icon);
+        ent->client->ps.stats[STAT_ARMOR] = ent->client->pers.inventory[index];
+    }
+    else
+    {
+        ent->client->ps.stats[STAT_ARMOR_ICON] = 0;
+        ent->client->ps.stats[STAT_ARMOR] = 0;
+    }
 
-	//
-	// pickup message
-	//
-	if (level.time > ent->client->pickup_msg_time)
-	{
-		ent->client->ps.stats[STAT_PICKUP_ICON] = 0;
-		ent->client->ps.stats[STAT_PICKUP_STRING] = 0;
-	}
+    //
+    // pickup message
+    //
+    if (level.time > ent->client->pickup_msg_time)
+    {
+        ent->client->ps.stats[STAT_PICKUP_ICON] = 0;
+        ent->client->ps.stats[STAT_PICKUP_STRING] = 0;
+    }
 
-	//
-	// timers
-	//
-	if (ent->client->quad_framenum > level.framenum)
-	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_quad");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->quad_framenum - level.framenum)/10;
-	}
-	else if (ent->client->invincible_framenum > level.framenum)
-	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_invulnerability");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->invincible_framenum - level.framenum)/10;
-	}
-	else if (ent->client->enviro_framenum > level.framenum)
-	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_envirosuit");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->enviro_framenum - level.framenum)/10;
-	}
-	else if (ent->client->breather_framenum > level.framenum)
-	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_rebreather");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->breather_framenum - level.framenum)/10;
-	}
-	// Aldarn - bide power up icon - thought here was best for code //
-	else if(ent->character->bideon)
-	{
-		if((level.time-ent->character->bidestart)==10)
-			gi.positioned_sound (ent->s.origin, ent, CHAN_WEAPON, gi.soundindex("makron/head2.wav"), 1, ATTN_NORM, 0);
+    //
+    // timers
+    //
+    if (ent->client->quad_framenum > level.framenum)
+    {
+        ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_quad");
+        ent->client->ps.stats[STAT_TIMER] = (ent->client->quad_framenum - level.framenum)/10;
+    }
+    else if (ent->client->invincible_framenum > level.framenum)
+    {
+        ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_invulnerability");
+        ent->client->ps.stats[STAT_TIMER] = (ent->client->invincible_framenum - level.framenum)/10;
+    }
+    else if (ent->client->enviro_framenum > level.framenum)
+    {
+        ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_envirosuit");
+        ent->client->ps.stats[STAT_TIMER] = (ent->client->enviro_framenum - level.framenum)/10;
+    }
+    else if (ent->client->breather_framenum > level.framenum)
+    {
+        ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_rebreather");
+        ent->client->ps.stats[STAT_TIMER] = (ent->client->breather_framenum - level.framenum)/10;
+    }
+    // Aldarn - bide power up icon - thought here was best for code //
+    else if(ent->character->bideon)
+    {
+        if((level.time-ent->character->bidestart)==10)
+            gi.positioned_sound (ent->s.origin, ent, CHAN_WEAPON, gi.soundindex("makron/head2.wav"), 1, ATTN_NORM, 0);
 
-		if(ent->character->bidestart > level.time-10)
-		{
-			ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("a_blaster");
-			if((((int)(10-(level.time-ent->character->bidestart)))%2) == 0)
-				ent->client->ps.stats[STAT_TIMER] = ent->character->bidedmg;
-			else
-				ent->client->ps.stats[STAT_TIMER] = 10-(level.time-ent->character->bidestart);			
-		}
-		else
-		{
-			ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("k_dataspin");
-			if((((int)(40-(level.time-ent->character->bidestart)))%2) == 0)
-				ent->client->ps.stats[STAT_TIMER] = ent->character->bidedmg;
-			else
-				ent->client->ps.stats[STAT_TIMER] = 40-(level.time-ent->character->bidestart);
-		}
-	}
-	else if((ent->character->bidestart < level.time-40) && ent->character->bideon) // cancel bide
-	{
-		ent->character->bideon = false;
-		gi.cprintf(ent,PRINT_HIGH,"Bide was lost due to 30 second timeout\n");
-		// play a sound
-		gi.positioned_sound (ent->s.origin, ent, CHAN_WEAPON, gi.soundindex("makron/popup.wav"), 1, ATTN_NORM, 0);
-	}
-	// End //
-	else
-	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = 0;
-		ent->client->ps.stats[STAT_TIMER] = 0;
-	}
+        if(ent->character->bidestart > level.time-10)
+        {
+            ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("a_blaster");
+            if((((int)(10-(level.time-ent->character->bidestart)))%2) == 0)
+                ent->client->ps.stats[STAT_TIMER] = ent->character->bidedmg;
+            else
+                ent->client->ps.stats[STAT_TIMER] = 10-(level.time-ent->character->bidestart);          
+        }
+        else
+        {
+            ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("k_dataspin");
+            if((((int)(40-(level.time-ent->character->bidestart)))%2) == 0)
+                ent->client->ps.stats[STAT_TIMER] = ent->character->bidedmg;
+            else
+                ent->client->ps.stats[STAT_TIMER] = 40-(level.time-ent->character->bidestart);
+        }
+    }
+    else if((ent->character->bidestart < level.time-40) && ent->character->bideon) // cancel bide
+    {
+        ent->character->bideon = false;
+        gi.cprintf(ent,PRINT_HIGH,"Bide was lost due to 30 second timeout\n");
+        // play a sound
+        gi.positioned_sound (ent->s.origin, ent, CHAN_WEAPON, gi.soundindex("makron/popup.wav"), 1, ATTN_NORM, 0);
+    }
+    // End //
+    else
+    {
+        ent->client->ps.stats[STAT_TIMER_ICON] = 0;
+        ent->client->ps.stats[STAT_TIMER] = 0;
+    }
 
-	//
-	// selected item
-	//
-	if (ent->client->pers.selected_item == -1)
-		ent->client->ps.stats[STAT_SELECTED_ICON] = 0;
-	else
-		ent->client->ps.stats[STAT_SELECTED_ICON] = gi.imageindex (itemlist[ent->client->pers.selected_item].icon);
+    //
+    // selected item
+    //
+    if (ent->client->pers.selected_item == -1)
+        ent->client->ps.stats[STAT_SELECTED_ICON] = 0;
+    else
+        ent->client->ps.stats[STAT_SELECTED_ICON] = gi.imageindex (itemlist[ent->client->pers.selected_item].icon);
 
-	ent->client->ps.stats[STAT_SELECTED_ITEM] = ent->client->pers.selected_item;
+    ent->client->ps.stats[STAT_SELECTED_ITEM] = ent->client->pers.selected_item;
 
-	//
-	// layouts
-	//
-	ent->client->ps.stats[STAT_LAYOUTS] = 0;
+    //
+    // layouts
+    //
+    ent->client->ps.stats[STAT_LAYOUTS] = 0;
 
-	if (deathmatch->value)
-	{
-		if (ent->client->pers.health <= 0 || level.intermissiontime
-			|| ent->client->showscores)
-			ent->client->ps.stats[STAT_LAYOUTS] |= 1;
-		if (ent->client->showinventory && ent->client->pers.health > 0)
-			ent->client->ps.stats[STAT_LAYOUTS] |= 2;
-	}
-	else
-	{
-		if (ent->client->showscores || ent->client->showhelp)
-			ent->client->ps.stats[STAT_LAYOUTS] |= 1;
-		if (ent->client->showinventory && ent->client->pers.health > 0)
-			ent->client->ps.stats[STAT_LAYOUTS] |= 2;
-	}
+    if (deathmatch->value)
+    {
+        if (ent->client->pers.health <= 0 || level.intermissiontime
+            || ent->client->showscores)
+            ent->client->ps.stats[STAT_LAYOUTS] |= 1;
+        if (ent->client->showinventory && ent->client->pers.health > 0)
+            ent->client->ps.stats[STAT_LAYOUTS] |= 2;
+    }
+    else
+    {
+        if (ent->client->showscores || ent->client->showhelp)
+            ent->client->ps.stats[STAT_LAYOUTS] |= 1;
+        if (ent->client->showinventory && ent->client->pers.health > 0)
+            ent->client->ps.stats[STAT_LAYOUTS] |= 2;
+    }
 
-	//
-	// frags
-	//
-	ent->client->ps.stats[STAT_FRAGS] = ent->client->resp.score;
+    //
+    // frags
+    //
+    ent->client->ps.stats[STAT_FRAGS] = ent->client->resp.score;
 
-	//
-	// help icon / current weapon if not shown
-	//
-	if (ent->client->pers.helpchanged && (level.framenum&8) )
-		ent->client->ps.stats[STAT_HELPICON] = gi.imageindex ("i_help");
-	else if ( (ent->client->pers.hand == CENTER_HANDED || ent->client->ps.fov > 91)
-		&& ent->client->pers.weapon)
-		ent->client->ps.stats[STAT_HELPICON] = gi.imageindex (ent->client->pers.weapon->icon);
-	else
-		ent->client->ps.stats[STAT_HELPICON] = 0;
+    //
+    // help icon / current weapon if not shown
+    //
+    if (ent->client->pers.helpchanged && (level.framenum&8) )
+        ent->client->ps.stats[STAT_HELPICON] = gi.imageindex ("i_help");
+    else if ( (ent->client->pers.hand == CENTER_HANDED || ent->client->ps.fov > 91)
+        && ent->client->pers.weapon)
+        ent->client->ps.stats[STAT_HELPICON] = gi.imageindex (ent->client->pers.weapon->icon);
+    else
+        ent->client->ps.stats[STAT_HELPICON] = 0;
 
-	ent->client->ps.stats[STAT_SPECTATOR] = 0;
+    ent->client->ps.stats[STAT_SPECTATOR] = 0;
 
-	//SWB
-	ent->client->ps.stats[STAT_KOTS_TBALLS] = 0;
-	Kots_CharacterWriteStats(ent);
+    //SWB
+    ent->client->ps.stats[STAT_KOTS_TBALLS] = 0;
+    Kots_CharacterWriteStats(ent);
 }
 
 /*
@@ -649,16 +649,16 @@ G_CheckChaseStats
 */
 void G_CheckChaseStats (edict_t *ent)
 {
-	int i;
-	gclient_t *cl;
+    int i;
+    gclient_t *cl;
 
-	for (i = 1; i <= maxclients->value; i++) {
-		cl = g_edicts[i].client;
-		if (!g_edicts[i].inuse || cl->chase_target != ent)
-			continue;
-		memcpy(cl->ps.stats, ent->client->ps.stats, sizeof(cl->ps.stats));
-		G_SetSpectatorStats(g_edicts + i);
-	}
+    for (i = 1; i <= maxclients->value; i++) {
+        cl = g_edicts[i].client;
+        if (!g_edicts[i].inuse || cl->chase_target != ent)
+            continue;
+        memcpy(cl->ps.stats, ent->client->ps.stats, sizeof(cl->ps.stats));
+        G_SetSpectatorStats(g_edicts + i);
+    }
 }
 
 /*
@@ -668,47 +668,47 @@ G_SetSpectatorStats
 */
 void G_SetSpectatorStats (edict_t *ent)
 {
-	gclient_t *cl = ent->client;
+    gclient_t *cl = ent->client;
 
-	//SWB - reset player ID before continuing
-	cl->ps.stats[STAT_KOTS_KARMAID] = 0;
+    //SWB - reset player ID before continuing
+    cl->ps.stats[STAT_KOTS_KARMAID] = 0;
 
-	if (!cl->chase_target)
-		G_SetStats (ent);
+    if (!cl->chase_target)
+        G_SetStats (ent);
 
-	else 
-		cl->ps.stats[STAT_SPECTATOR] = 1;
+    else 
+        cl->ps.stats[STAT_SPECTATOR] = 1;
 
-	// layouts are independant in spectator
-	cl->ps.stats[STAT_LAYOUTS] = 0;
-	if (cl->pers.health <= 0 || level.intermissiontime || cl->showscores)
-		cl->ps.stats[STAT_LAYOUTS] |= 1;
-	if (cl->showinventory && cl->pers.health > 0)
-		cl->ps.stats[STAT_LAYOUTS] |= 2;
+    // layouts are independant in spectator
+    cl->ps.stats[STAT_LAYOUTS] = 0;
+    if (cl->pers.health <= 0 || level.intermissiontime || cl->showscores)
+        cl->ps.stats[STAT_LAYOUTS] |= 1;
+    if (cl->showinventory && cl->pers.health > 0)
+        cl->ps.stats[STAT_LAYOUTS] |= 2;
 
-	if (cl->chase_target && cl->chase_target->inuse)
-		cl->ps.stats[STAT_CHASE] = CS_PLAYERSKINS + 
-			(cl->chase_target - g_edicts) - 1;
-	else
-		cl->ps.stats[STAT_CHASE] = 0;
+    if (cl->chase_target && cl->chase_target->inuse)
+        cl->ps.stats[STAT_CHASE] = CS_PLAYERSKINS + 
+            (cl->chase_target - g_edicts) - 1;
+    else
+        cl->ps.stats[STAT_CHASE] = 0;
 
-	//SWB - setup stats for chasing monsters
-	if (cl->chase_target && cl->chase_target->svflags & SVF_MONSTER)
-		Kots_MonsterWriteStats(ent);
+    //SWB - setup stats for chasing monsters
+    if (cl->chase_target && cl->chase_target->svflags & SVF_MONSTER)
+        Kots_MonsterWriteStats(ent);
 
-	//SWB - perform karma ID if necessary
-	if (!cl->ps.stats[STAT_KOTS_KARMAID])
-	{
-		//give us karma mastery and perform player ID
-		ent->character->karma = 7;
-		ent->character->cur_karma = 7;
-		Kots_CharacterPlayerId(ent);
+    //SWB - perform karma ID if necessary
+    if (!cl->ps.stats[STAT_KOTS_KARMAID])
+    {
+        //give us karma mastery and perform player ID
+        ent->character->karma = 7;
+        ent->character->cur_karma = 7;
+        Kots_CharacterPlayerId(ent);
 
-		//if we didn't find an edict to id and we're chasing someone then show their health
-		if (!ent->character->karma_id_ent && cl->chase_target)
-			ent->character->karma_id_ent = cl->chase_target;
+        //if we didn't find an edict to id and we're chasing someone then show their health
+        if (!ent->character->karma_id_ent && cl->chase_target)
+            ent->character->karma_id_ent = cl->chase_target;
 
- 		Kots_CharacterUpdateKarmaIdStats(ent);
-	}
+        Kots_CharacterUpdateKarmaIdStats(ent);
+    }
 }
 

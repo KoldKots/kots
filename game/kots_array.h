@@ -6,11 +6,11 @@ typedef unsigned long int ULONG;
 //array structure
 typedef struct array_s
 {
-	void **values;
-	ULONG length;
-	ULONG capacity;
-	ULONG realloc_size;
-	void (*FreeItem)(void *item);
+    void **values;
+    ULONG length;
+    ULONG capacity;
+    ULONG realloc_size;
+    void (*FreeItem)(void *item);
 } array_t;
 
 typedef int (*Array_CompareFunc)(void *item1, void *item2);

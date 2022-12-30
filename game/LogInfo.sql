@@ -3,7 +3,7 @@ CREATE PROCEDURE `LogInfo`(
 )
 BEGIN
 
-	insert into `log` (`date`, `info`)
-	values ( NOW(), info );
+        insert into `log` (`date`, `info`)
+        values ( NOW(), info );
 
 END

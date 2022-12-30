@@ -6,20 +6,20 @@
 
 typedef struct
 {
-	char ip_address[16];
-	char name[16];
-	int character_id;
+    char ip_address[16];
+    char name[16];
+    int character_id;
 } mute_entry_t;
 
 typedef struct
 {
-	edict_t *admin;
-	int admin_id;
-	edict_t *player;
-	int player_id;
-	char ip_address[16];
-	char name[16];
-	int character_id;
+    edict_t *admin;
+    int admin_id;
+    edict_t *player;
+    int player_id;
+    char ip_address[16];
+    char name[16];
+    int character_id;
 } mute_info_t;
 
 void Kots_MuteInit();

@@ -2,5 +2,5 @@
 
 void Kots_InitCvars()
 {
-	kots_pass = gi.cvar("kots_pass", "", CVAR_USERINFO);
+    kots_pass = gi.cvar("kots_pass", "", CVAR_USERINFO);
 }

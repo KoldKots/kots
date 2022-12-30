@@ -20,24 +20,24 @@ BEGIN
         select a.id, a.pass, a.isadmin into id, realpass, isadmin
         from characters a where a.name = name limit 1;
 
-		/* Check if the character was found */
+                /* Check if the character was found */
         if id is null
         then
         
-				/* Not found */
+                                /* Not found */
                 set return_val = 2;
                 
         elseif (isadmin <> 1)
         then
         
-				/* Not an admin */
-				set return_val = 7;
+                                /* Not an admin */
+                                set return_val = 7;
                 
         elseif (realpass <> MD5(pass))
         then
         
-				/* Incorrect password */
-				set return_val = 3;
+                                /* Incorrect password */
+                                set return_val = 3;
                 
                 /* TODO: Possibly add some logging in here */
         end if;

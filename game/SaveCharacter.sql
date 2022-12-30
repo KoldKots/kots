@@ -11,7 +11,7 @@ CREATE PROCEDURE `SaveCharacter3`(
         loggedin tinyint(1),
         cursed tinyint(1),
         isadmin tinyint(1),
-		respec_points int
+                respec_points int
 )
 BEGIN
 
@@ -28,7 +28,7 @@ BEGIN
                       a.loggedin = loggedin,
                       a.cursed = cursed,
                       a.isadmin = isadmin,
-					  a.respec_points = respec_points
+                                          a.respec_points = respec_points
         where         a.id = id;
         
 END

@@ -1,7 +1,7 @@
 CREATE PROCEDURE `DeleteAllCharacters`()
 BEGIN
 
-		update kings set character_id = null;
+        update kings set character_id = null;
         delete from characters_persist;
         delete from characters_player;
         delete from characters_power;

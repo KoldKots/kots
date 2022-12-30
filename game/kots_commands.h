@@ -5,16 +5,16 @@
 
 typedef struct
 {
-	char *name;
-	int weapon;
+    char *name;
+    int weapon;
 } weaponlookup_t;
 
 typedef struct
 {
-	char *name;
-	char *desc;
-	void (*action)(edict_t *ent, char *args);
-	qboolean is_admin;
+    char *name;
+    char *desc;
+    void (*action)(edict_t *ent, char *args);
+    qboolean is_admin;
 } command_t;
 
 //Quake 2 Prototypes used

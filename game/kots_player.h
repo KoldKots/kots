@@ -5,9 +5,9 @@
 
 typedef struct
 {
-	char *name;
-	int player;
-	void (*add)(edict_t *ent);
+    char *name;
+    int player;
+    void (*add)(edict_t *ent);
 } playerpoint_t;
 
 playerpoint_t *Kots_GetPlayerTree(char *name);

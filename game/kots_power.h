@@ -3,27 +3,27 @@
 
 #include "kots_character.h"
 
-#define KOTS_BIDE_MAX_RADIUS	768
-#define KOTS_BIDE_MIN_RADIUS	125
-#define KOTS_BIDE_START_CAP		500
+#define KOTS_BIDE_MAX_RADIUS    768
+#define KOTS_BIDE_MIN_RADIUS    125
+#define KOTS_BIDE_START_CAP     500
 
-#define KOTS_SPIRAL_DAMAGE_CAP	5000.0
-#define KOTS_SPIRAL_DAMAGE		100.0
-#define KOTS_SPIRAL_TIME		10.0	/*Spiral time in seconds*/
-#define KOTS_SPIRAL_MAX_RADIUS	64		/*Spiral maximum radius size*/
-#define KOTS_SPIRAL_MIN_RADIUS	30		/*Spiral minimum radius size*/
-#define KOTS_SPIRAL_FORWARD		128		/*Distance the spiral should go forward*/
-#define KOTS_SPIRAL_BEAMSIZE	30		/*Size of each beam*/
-#define KOTS_SPIRAL_SPEED		8		/*Speed of rotation in degrees per frame*/
+#define KOTS_SPIRAL_DAMAGE_CAP  5000.0
+#define KOTS_SPIRAL_DAMAGE      100.0
+#define KOTS_SPIRAL_TIME        10.0    /*Spiral time in seconds*/
+#define KOTS_SPIRAL_MAX_RADIUS  64      /*Spiral maximum radius size*/
+#define KOTS_SPIRAL_MIN_RADIUS  30      /*Spiral minimum radius size*/
+#define KOTS_SPIRAL_FORWARD     128     /*Distance the spiral should go forward*/
+#define KOTS_SPIRAL_BEAMSIZE    30      /*Size of each beam*/
+#define KOTS_SPIRAL_SPEED       8       /*Speed of rotation in degrees per frame*/
 
-#define KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP	30
+#define KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP 30
 
 typedef struct
 {
-	char *name;
-	int power;
-	void (*add)(edict_t *ent);
-	void (*resist)(edict_t *ent);
+    char *name;
+    int power;
+    void (*add)(edict_t *ent);
+    void (*resist)(edict_t *ent);
 } powerpoint_t;
 
 powerpoint_t *Kots_GetPowerTree(char *name);

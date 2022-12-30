@@ -1,14 +1,14 @@
 #ifndef KOTS_HUD_H
 #define KOTS_HUD_H
 
-#define KOTS_INTERMISSION_DELAY			5.0 /* delay before moving to the next screen */
+#define KOTS_INTERMISSION_DELAY         5.0 /* delay before moving to the next screen */
 
-#define KOTS_INTERMISSION_SCORE			0
-#define KOTS_INTERMISSION_ACCURACY		1
-#define KOTS_INTERMISSION_KILLRATIO		2
-#define KOTS_INTERMISSION_DAMAGE		3
-#define KOTS_INTERMISSION_EXP			4
-#define KOTS_INTERMISSION_PACKS			5
+#define KOTS_INTERMISSION_SCORE         0
+#define KOTS_INTERMISSION_ACCURACY      1
+#define KOTS_INTERMISSION_KILLRATIO     2
+#define KOTS_INTERMISSION_DAMAGE        3
+#define KOTS_INTERMISSION_EXP           4
+#define KOTS_INTERMISSION_PACKS         5
 
 #include "kots_character.h"
 

@@ -11,9 +11,9 @@ BEGIN
 
         if id is null
         then
-                insert into		ipbans
-								(ip_address, date, description)
-				values			(ip_address, NOW(), description);
+                insert into             ipbans
+                                                                (ip_address, date, description)
+                                values                  (ip_address, NOW(), description);
         end if;
 
 END

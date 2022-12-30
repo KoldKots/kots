@@ -7,17 +7,17 @@
 
 typedef struct listitem
 {
-	void *data;
-	struct listitem *next;
-	struct listitem *prev;
+    void *data;
+    struct listitem *next;
+    struct listitem *prev;
 } listitem_t;
 
 typedef struct list
 {
-	listitem_t *first;
-	listitem_t *last;
-	void (*freeItem)(listitem_t *item);
-	int length;
+    listitem_t *first;
+    listitem_t *last;
+    void (*freeItem)(listitem_t *item);
+    int length;
 } list_t;
 
 //Create a linked list and specify the freeItem function

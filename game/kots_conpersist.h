@@ -18,8 +18,8 @@ Persistant data is matched by name AND IP Address.
 
 typedef struct
 {
-	char name[16];
-	kots_persist_t persist;
+    char name[16];
+    kots_persist_t persist;
 } kots_conpersist_t;
 
 void Kots_LoadConPersistData(edict_t *ent);

@@ -4,42 +4,42 @@
 #include "g_local.h"
 #include "kots_array.h"
 
-#define MAPLIST_CAPACITY		256
-#define MAPLIST_GROWSIZE		128
-#define MAPLIST_MINMAPS			3
-#define MAPLIST_MAX_FILENAME	257
+#define MAPLIST_CAPACITY        256
+#define MAPLIST_GROWSIZE        128
+#define MAPLIST_MINMAPS         3
+#define MAPLIST_MAX_FILENAME    257
 
-#define	MAPVOTE_NONE			0
-#define MAPVOTE_YES				1
-#define MAPVOTE_NO				2
+#define MAPVOTE_NONE            0
+#define MAPVOTE_YES             1
+#define MAPVOTE_NO              2
 
 typedef enum
 {
-	ML_ROTATE_SEQ,
-	ML_ROTATE_RANDOM
+    ML_ROTATE_SEQ,
+    ML_ROTATE_RANDOM
 } maplist_rotation_t;
 
 typedef struct
 {
-	int min_players;						//minimum number of players on server for this map to be picked
-	int max_players;						//maximum number of players on server for this map to be picked
-	int priority;							//priority over other maps
-	char mapname[MAPLIST_MAX_FILENAME];		//name of the map
-	int index;
+    int min_players;                        //minimum number of players on server for this map to be picked
+    int max_players;                        //maximum number of players on server for this map to be picked
+    int priority;                           //priority over other maps
+    char mapname[MAPLIST_MAX_FILENAME];     //name of the map
+    int index;
 } mapentry_t;
        
 typedef struct
 {
-	char filename[MAPLIST_MAX_FILENAME];    //filename on server
-	array_t *maps;						//array of mapentry_t's in the maplist
-	maplist_rotation_t rotationflag;		//type of rotation to follow
-	int  currentmap;						//index of current map
+    char filename[MAPLIST_MAX_FILENAME];    //filename on server
+    array_t *maps;                      //array of mapentry_t's in the maplist
+    maplist_rotation_t rotationflag;        //type of rotation to follow
+    int  currentmap;                        //index of current map
 } maplist_t;
 
 typedef struct
 {
-	int mapindex;			//index of map
-	int fails;				//number of failed attempts to vote for the map
+    int mapindex;           //index of map
+    int fails;              //number of failed attempts to vote for the map
 } votefail_t;
 
 extern maplist_t maplist;

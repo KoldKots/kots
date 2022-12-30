@@ -5,10 +5,10 @@
 
 typedef struct
 {
-	char *name;
-	int weapon;
-	void (*add)(edict_t *ent);
-	void (*resist)(edict_t *ent);
+    char *name;
+    int weapon;
+    void (*add)(edict_t *ent);
+    void (*resist)(edict_t *ent);
 } weaponpoint_t;
 
 weaponpoint_t *Kots_GetWeaponTree(char *name);

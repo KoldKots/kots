@@ -5,31 +5,31 @@
 
 typedef struct pack_s
 {
-	//longer to account for monster full name including level
-	char owner_name[100];
+    //longer to account for monster full name including level
+    char owner_name[100];
 
-	//has weapons?
-	qboolean shotgun;
-	qboolean supershotgun;
-	qboolean machinegun;
-	qboolean chaingun;
-	qboolean grenadelauncher;
-	qboolean rocketlauncher;
-	qboolean hyperblaster;
-	qboolean railgun;
-	qboolean bfg;
+    //has weapons?
+    qboolean shotgun;
+    qboolean supershotgun;
+    qboolean machinegun;
+    qboolean chaingun;
+    qboolean grenadelauncher;
+    qboolean rocketlauncher;
+    qboolean hyperblaster;
+    qboolean railgun;
+    qboolean bfg;
 
-	//ammo
-	int shells;
-	int bullets;
-	int grenades;
-	int rockets;
-	int cells;
-	int slugs;
+    //ammo
+    int shells;
+    int bullets;
+    int grenades;
+    int rockets;
+    int cells;
+    int slugs;
 
-	//credits and cubes
-	int credits;
-	int cubes;
+    //credits and cubes
+    int credits;
+    int cubes;
 
 } pack_t;
 

@@ -17,12 +17,12 @@
 
 typedef struct st_mysql_iterator
 {
-	MYSQL *mysql;
-	MYSQL_RES *result;
-	MYSQL_ROW currentrow;
-	MYSQL_FIELD *fields;
-	unsigned int numfields;
-	unsigned int numrows;
+    MYSQL *mysql;
+    MYSQL_RES *result;
+    MYSQL_ROW currentrow;
+    MYSQL_FIELD *fields;
+    unsigned int numfields;
+    unsigned int numrows;
 } MYSQL_ITERATOR;
 
 //creates an iterator to more easily manage results and row values
