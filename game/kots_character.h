@@ -3,6 +3,10 @@
 
 #include "g_local.h"
 
+#ifdef KOTS_OFFICIAL
+ #include "kots_official.h"
+#endif
+
 #ifndef DEG2RAD
 #define DEG2RAD( a ) ( a * M_PI ) / 180.0F
 #endif
@@ -84,9 +88,11 @@ typedef enum {
 #define KOTS_EXP_2FER_MIN           20
 #define KOTS_EXP_3FER_MIN           40
 
-//define experience multiplication constants
-#define KOTS_EXP_MULTIPLY           50
-#define KOTS_CREDIT_MULTIPLY        50
+#ifndef KOTS_OFFICIAL
+ //define experience multiplication constants
+ #define KOTS_EXP_MULTIPLY           50
+ #define KOTS_CREDIT_MULTIPLY        50
+#endif
 
 #define KOTS_ENABLE_MAX_WEAPON_SKILL    0
 

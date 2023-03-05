@@ -24,37 +24,37 @@ int Kots_CharacterGetNextLevelExp(int level)
     switch (level)
     {
     case 0:
-        return 500;
+        return 500 / KOTS_EXP_MULTIPLY;
     case 1:
-        return 1000;
+        return 1000 / KOTS_EXP_MULTIPLY;
     case 2:
-        return 2000;
+        return 2000 / KOTS_EXP_MULTIPLY;
     case 3:
-        return 4000;
+        return 4000 / KOTS_EXP_MULTIPLY;
     case 4:
-        return 8000;
+        return 8000 / KOTS_EXP_MULTIPLY;
     case 5:
-        return 16000;
+        return 16000 / KOTS_EXP_MULTIPLY;
     case 6:
-        return 32000;
+        return 32000 / KOTS_EXP_MULTIPLY;
     case 7:
-        return 60000;
+        return 60000 / KOTS_EXP_MULTIPLY;
     case 8:
-        return 100000;
+        return 100000 / KOTS_EXP_MULTIPLY;
     case 9:
-        return 150000;
+        return 150000 / KOTS_EXP_MULTIPLY;
     case 10:
-        return 200000;
+        return 200000 / KOTS_EXP_MULTIPLY;
     case 11:
-        return 275000;
+        return 275000 / KOTS_EXP_MULTIPLY;
     case 12:
-        return 350000;
+        return 350000 / KOTS_EXP_MULTIPLY;
     case 13:
-        return 425000;
+        return 425000 / KOTS_EXP_MULTIPLY;
     case 14:
-        return 500000;
+        return 500000 / KOTS_EXP_MULTIPLY;
     default:
-        return 100000 * (level - 9);
+        return 100000 * (level - 9) / KOTS_EXP_MULTIPLY;
     }
 }
 
@@ -229,9 +229,9 @@ void Kots_CharacterAddDamageExp(edict_t *damager, edict_t *damaged, int damage)
 
     exp = Kots_CharacterGetDamageExp(damager, damaged, damage);
 
-    damager->character->exp += exp * KOTS_EXP_MULTIPLY;
-    damager->character->score += exp * KOTS_EXP_MULTIPLY;
-    damager->character->damage_exp += exp * KOTS_EXP_MULTIPLY;
+    damager->character->exp += exp;
+    damager->character->score += exp;
+    damager->character->damage_exp += exp;
 }
 
 void Kots_CharacterAddKillExp(edict_t *killer, edict_t *killed)
@@ -271,8 +271,8 @@ void Kots_CharacterAddKillExp(edict_t *killer, edict_t *killed)
     //enforce min and max exp
     Kots_CharacterAdjustExpLimits(killed, &exp);
 
-    killer->character->exp += exp * KOTS_EXP_MULTIPLY;
-    killer->character->score += exp * KOTS_EXP_MULTIPLY;
+    killer->character->exp += exp;
+    killer->character->score += exp;
 
     //increment number of player kills (mainly for logging algorithms)
     killer->character->player_kills++;
@@ -1195,12 +1195,12 @@ void Kots_CharacterKilled(edict_t *targ, edict_t *inflictor, edict_t *attacker, 
 
         if (targ->character->exp >= explost)
         {
-            targ->character->exp -= explost * KOTS_EXP_MULTIPLY;
-            targ->character->score -= explost * KOTS_EXP_MULTIPLY;
+            targ->character->exp -= explost;
+            targ->character->score -= explost;
         }
         else
         {
-            targ->character->score -= targ->character->exp * KOTS_EXP_MULTIPLY;
+            targ->character->score -= targ->character->exp;
             targ->character->exp = 0;
         }
 
@@ -1480,8 +1480,8 @@ void Kots_CharacterDivideWarExp(edict_t *warent)
             {
                 percent = (float)spreewar.dmgs[i] / totaldmg;
                 bonusexp = (int)(KOTS_EXP_MAX * percent); // total bonus exp is max
-                cl_ent->character->exp += bonusexp * KOTS_EXP_MULTIPLY;
-                cl_ent->character->score += bonusexp * KOTS_EXP_MULTIPLY;
+                cl_ent->character->exp += bonusexp;
+                cl_ent->character->score += bonusexp;
                 gi.cprintf(cl_ent,PRINT_HIGH,"You got %i bonus exp for doing %i damage (%03.2f%%) on %s's SpreeWar!\n",bonusexp,spreewar.dmgs[i],percent * 100,Kots_CharacterGetName(warent));
 
                 if(spreewar.dmgs[i] > highest_dmg)
@@ -2466,7 +2466,7 @@ int Kots_CharacterGetPurchasedPlayerPoints(edict_t *ent)
 
 int Kots_CharacterGetNextPlayerPointCost(edict_t *ent)
 {
-    return (8000 + Kots_CharacterGetPurchasedPlayerPoints(ent) * 1000);
+    return (8000 + Kots_CharacterGetPurchasedPlayerPoints(ent) * 1000) / KOTS_CREDIT_MULTIPLY;
 }
 
 int Kots_CharacterGetTotalWeaponPoints(edict_t *ent)
@@ -2486,7 +2486,7 @@ int Kots_CharacterGetPurchasedWeaponPoints(edict_t *ent)
 
 int Kots_CharacterGetNextWeaponPointCost(edict_t *ent)
 {
-    return (4000 + Kots_CharacterGetPurchasedWeaponPoints(ent) * 500);
+    return (4000 + Kots_CharacterGetPurchasedWeaponPoints(ent) * 500) / KOTS_CREDIT_MULTIPLY;
 }
 
 int Kots_CharacterGetTotalPowerPoints(edict_t *ent)
@@ -2503,7 +2503,7 @@ int Kots_CharacterGetPurchasedPowerPoints(edict_t *ent)
 
 int Kots_CharacterGetNextPowerPointCost(edict_t *ent)
 {
-    return (12000 + Kots_CharacterGetPurchasedPowerPoints(ent) * 1500);
+    return (12000 + Kots_CharacterGetPurchasedPowerPoints(ent) * 1500) / KOTS_CREDIT_MULTIPLY;
 }
 
 int Kots_CharacterGetSpawnCost(int spawns)
