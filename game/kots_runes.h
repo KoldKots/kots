@@ -57,8 +57,8 @@ typedef struct rune_s
     int tballs;
     int tball_regen;
     int tball_speed;
-    qboolean normal_resist;
-    qboolean energy_resist;
+    bool normal_resist;
+    bool energy_resist;
 
 } rune_t;
 
@@ -74,7 +74,7 @@ typedef struct dropped_rune_s
 edict_t *SelectRandomDeathmatchSpawnPoint();
 
 //function prototypes
-qboolean Kots_RunePickup(edict_t *ent, edict_t *other);
+bool Kots_RunePickup(edict_t *ent, edict_t *other);
 edict_t *Kots_RuneDrop(edict_t *ent);
 void Kots_RuneCreate(edict_t *ent, rune_t *rune);
 void Kots_RuneAddAbilities(edict_t *ent, rune_t *rune);
@@ -85,7 +85,7 @@ rune_t *Kots_RuneFindByName(char *name);
 void Kots_RunesInit();
 void Kots_RunesFreeInfo();
 void Kots_RunesCheckLoad();
-qboolean Kots_RuneIsDropped(int rune_id);
+bool Kots_RuneIsDropped(int rune_id);
 void Kots_RuneCheckAssociated(edict_t *ent);
 void Kots_RuneAddDropped(edict_t *ent, rune_t *rune);
 void Kots_RuneRemoveDropped(edict_t *ent, rune_t *rune);

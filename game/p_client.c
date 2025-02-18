@@ -199,7 +199,7 @@ void player_pain (edict_t *self, edict_t *other, float kick, int damage)
 }
 
 
-qboolean IsFemale (edict_t *ent)
+bool IsFemale (edict_t *ent)
 {
     char        *info;
 
@@ -212,7 +212,7 @@ qboolean IsFemale (edict_t *ent)
     return false;
 }
 
-qboolean IsNeutral (edict_t *ent)
+bool IsNeutral (edict_t *ent)
 {
     char        *info;
 
@@ -233,9 +233,9 @@ void ClientObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
     char        *message;
     char        *message2;
     char        targ_name[100];
-    qboolean    ff;
-    qboolean    quad=false;
-    qboolean    headshot=false;
+    bool    ff;
+    bool    quad=false;
+    bool    headshot=false;
 
     //SWB - get targ name needs to be done separately in case there's also an attacker
     Kots_strncpy(targ_name, Kots_CharacterGetFullName(self), 100);
@@ -954,7 +954,7 @@ void TossClientWeapon (edict_t *self)
 {
     //gitem_t       *item;
     edict_t     *drop;
-    //qboolean  quad;
+    //bool  quad;
     //float     spread;
 
     if (!deathmatch->value)
@@ -1238,7 +1238,7 @@ void InitClientResp (gclient_t *client)
 }
 
 
-qboolean IsClientIdInUse(int client_id)
+bool IsClientIdInUse(int client_id)
 {
     int i;
     edict_t *player = g_edicts + 1;
@@ -1314,7 +1314,7 @@ void SaveClientData (void)
 {
     int     i;
     edict_t *ent;
-    qboolean need_persist = false;
+    bool need_persist = false;
 
     //SWB - end any spreewars going on BEFORE we log characters out
     if (spreewar.warent != NULL)
@@ -1397,7 +1397,7 @@ float   PlayersRangeFromSpot (edict_t *spot)
     vec3_t  v;
     int     n;
     float   playerdistance;
-    qboolean found = false;
+    bool found = false;
 
 
     bestplayerdistance = 9999999;
@@ -2288,7 +2288,7 @@ Changing levels will NOT cause this to be called again, but
 loadgames will.
 ============
 */
-qboolean ClientConnect (edict_t *ent, char *userinfo)
+bool ClientConnect (edict_t *ent, char *userinfo)
 {
     char    *value;
     char    *ip_address;

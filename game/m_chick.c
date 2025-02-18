@@ -31,7 +31,7 @@ chick
 //SWB - KOTS Includes
 #include "kots_monster.h"
 
-qboolean visible (edict_t *self, edict_t *other);
+bool visible (edict_t *self, edict_t *other);
 
 void chick_stand (edict_t *self);
 void chick_run (edict_t *self);

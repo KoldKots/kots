@@ -212,8 +212,8 @@ typedef struct character_s
     int level;
     int exp;
     char gender;
-    qboolean is_cursed;
-    qboolean is_admin;
+    bool is_cursed;
+    bool is_admin;
 
     //player points
     int playerpoints;
@@ -304,7 +304,7 @@ typedef struct character_s
     int nfer;           //# of kills in a short period
     float nfertimer;    //level time when nfer expires
 
-    qboolean canDoubleJump; //player has not yet jumped his extra mid-air jump
+    bool canDoubleJump; //player has not yet jumped his extra mid-air jump
 
     //monster specific stuff
     struct kots_monster_s *monster_info;
@@ -354,7 +354,7 @@ typedef struct character_s
     // Aldarn - Bide vars //
     int         bidesleft; // charges
     int         bidedmg; // current damage accumulation
-    qboolean    bideon; // a bide on or off?
+    bool    bideon; // a bide on or off?
     float       bidestart; // when the bide was started
     // End //
     int spiralsleft;
@@ -396,16 +396,16 @@ typedef struct character_s
     //character state values
     int laserhook_color;
     int is_flashlighted;
-    qboolean is_poisoned;
-    qboolean is_stealth;
-    qboolean is_loggedin;
-    qboolean is_flying;
-    qboolean is_cloaked;
-    qboolean using_highjump;
-    qboolean using_empathy;
-    qboolean using_spiritswim;
-    qboolean using_pconvert;
-    qboolean using_cgconvert;
+    bool is_poisoned;
+    bool is_stealth;
+    bool is_loggedin;
+    bool is_flying;
+    bool is_cloaked;
+    bool using_highjump;
+    bool using_empathy;
+    bool using_spiritswim;
+    bool using_pconvert;
+    bool using_cgconvert;
 
     //pointers
     edict_t *karma_id_ent;
@@ -424,18 +424,18 @@ typedef struct character_persist_s
 
     //determine whether or not to persist
     //we should persist if dead and possibly other situations
-    qboolean persist;
+    bool persist;
 
     //has weapons?
-    qboolean shotgun;
-    qboolean supershotgun;
-    qboolean machinegun;
-    qboolean chaingun;
-    qboolean grenadelauncher;
-    qboolean rocketlauncher;
-    qboolean hyperblaster;
-    qboolean railgun;
-    qboolean bfg;
+    bool shotgun;
+    bool supershotgun;
+    bool machinegun;
+    bool chaingun;
+    bool grenadelauncher;
+    bool rocketlauncher;
+    bool hyperblaster;
+    bool railgun;
+    bool bfg;
 
     //ammo
     int shells;
@@ -487,14 +487,13 @@ extern spreewar_t spreewar;
 #include "kots_motd.h"
 #include "kots_svcmds.h"
 #include "kots_conpersist.h"
-#include "kots_update.h"
 */
 
 //Quake 2 prototypes
 void spectator_respawn(edict_t *ent);
-qboolean IsNeutral(edict_t *ent);
-qboolean IsFemale(edict_t *ent);
-qboolean CheckTeamDamage (edict_t *targ, edict_t *attacker);
+bool IsNeutral(edict_t *ent);
+bool IsFemale(edict_t *ent);
+bool CheckTeamDamage (edict_t *targ, edict_t *attacker);
 void Use_Quad(edict_t *ent, gitem_t *item);
 void SpawnDamage (int type, vec3_t origin, vec3_t normal, int damage);
 
@@ -519,7 +518,7 @@ void Kots_CharacterFree(edict_t *ent);
 void Kots_CharacterClearEdicts(edict_t *ent);
 void Kots_CharacterLoad(edict_t *ent);
 void Kots_CharacterLogin(edict_t *ent);
-void Kots_CharacterLogout(edict_t *ent, qboolean force_respawn, qboolean log_activity);
+void Kots_CharacterLogout(edict_t *ent, bool force_respawn, bool log_activity);
 void Kots_CharacterRespawn(edict_t *ent);
 void Kots_CharacterSelectRespawn(edict_t *ent);
 void Kots_CharacterCheckResistances(edict_t *targ, edict_t *attacker, int *take, int mod, int dflags);
@@ -574,7 +573,7 @@ void Kots_CharacterBuyPlayerPoint(edict_t *ent);
 void Kots_CharacterBuyWeaponPoint(edict_t *ent);
 void Kots_CharacterBuyPowerPoint(edict_t *ent);
 edict_t *Kots_CharacterGetThanksTo(edict_t *targ);
-void Kots_CharacterEndSpree(edict_t *ent, qboolean allow_forfeit);
+void Kots_CharacterEndSpree(edict_t *ent, bool allow_forfeit);
 void Kots_CharacterDivideWarExp(edict_t *warent);
 
 #endif

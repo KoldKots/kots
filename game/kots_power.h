@@ -27,14 +27,14 @@ typedef struct
 } powerpoint_t;
 
 powerpoint_t *Kots_GetPowerTree(char *name);
-qboolean Kots_CharacterCanAddPower(edict_t *ent);
+bool Kots_CharacterCanAddPower(edict_t *ent);
 void Kots_CharacterAddExpack(edict_t *ent);
 void Kots_CharacterAddSpiral(edict_t *ent);
 void Kots_CharacterAddBide(edict_t *ent);
 void Kots_CharacterAddThrow(edict_t *ent);
 void Kots_CharacterAddAntiweapon(edict_t *ent);
 void Kots_ExpackExplode(edict_t *ent);
-qboolean Kots_ExpackTouch(edict_t *ent, edict_t *other);
+bool Kots_ExpackTouch(edict_t *ent, edict_t *other);
 void Kots_ExpackDrop(edict_t *ent);
 void Kots_CharacterThrow(edict_t *ent, char *args);
 void Kots_CharacterBide(edict_t *ent);
@@ -46,9 +46,9 @@ void Kots_CharacterThrowUp(edict_t *ent);
 void Kots_SpiralThink(edict_t *ent);
 void Kots_SpiralBeamThink(edict_t *ent);
 void Kots_CharacterSpiral(edict_t *ent, char *args);
-void Kots_CharacterCreateSpiral(edict_t *ent, qboolean forward);
+void Kots_CharacterCreateSpiral(edict_t *ent, bool forward);
 void Kots_CharacterAddPower(edict_t *ent, char *power);
 void Kots_CharacterSetPower(edict_t *ent);
-qboolean Kots_PowerCharacterCheckLevelCap(edict_t *ent, int power, int total);
+bool Kots_PowerCharacterCheckLevelCap(edict_t *ent, int power, int total);
 
 #endif

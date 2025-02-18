@@ -52,7 +52,7 @@ int *Kots_CharacterGetPowerLevel(edict_t *ent, int power)
     }
 }
 
-qboolean Kots_CharacterCanAddPower(edict_t *ent)
+bool Kots_CharacterCanAddPower(edict_t *ent)
 {
     if (ent->character->powerpoints > 0)
         return true;
@@ -173,7 +173,7 @@ void Kots_ExpackExplode(edict_t *ent)
     G_FreeEdict (ent);
 }
 
-qboolean Kots_ExpackTouch(edict_t *ent, edict_t *other)
+bool Kots_ExpackTouch(edict_t *ent, edict_t *other)
 {
     int dmg;
     vec3_t      origin;
@@ -816,7 +816,7 @@ void Kots_CharacterSpiral(edict_t *ent, char *args)
         gi.cprintf(ent, PRINT_HIGH, "Invalid spiral argument '%s'.\n", args);
 }
 
-void Kots_CharacterCreateSpiral(edict_t *ent, qboolean forward)
+void Kots_CharacterCreateSpiral(edict_t *ent, bool forward)
 {
     int i;
 
@@ -960,7 +960,7 @@ void Kots_CharacterSetPower(edict_t *ent)
     }
 }
 
-qboolean Kots_PowerCharacterCheckLevelCap(edict_t *ent, int power, int total)
+bool Kots_PowerCharacterCheckLevelCap(edict_t *ent, int power, int total)
 {
     // The cap only applies when you're below level KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP
     if (ent->character->level < KOTS_POWER_TRAINING_LIMIT_LEVEL_CAP)

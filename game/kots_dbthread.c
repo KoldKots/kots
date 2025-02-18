@@ -507,7 +507,7 @@ void SetMysqlOptions(MYSQL *mysql)
     char reconnect = 1;
     unsigned int connect_timeout = KOTS_MYSQL_CONNECT_TIMEOUT;
 
-    mysql_options(mysql, MYSQL_SECURE_AUTH, &secure_auth);
+    mysql_options(mysql, MYSQL_DEFAULT_AUTH, &secure_auth);
     mysql_options(mysql, MYSQL_OPT_RECONNECT, &reconnect);
     mysql_options(mysql, MYSQL_OPT_CONNECT_TIMEOUT, (char *)&connect_timeout);
     mysql_options(mysql, MYSQL_OPT_READ_TIMEOUT, (char *)&connect_timeout);

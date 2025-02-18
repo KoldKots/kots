@@ -311,7 +311,7 @@ void Kots_CharacterFree(edict_t *ent)
 void Kots_CharacterClearEdicts(edict_t *ent)
 {
     int i;
-    qboolean remove_packs = true;
+    bool remove_packs = true;
     edict_t *other = NULL;
 
     //Don't bother removing packs for monsters
@@ -471,7 +471,7 @@ void Kots_CharacterLogin(edict_t *ent)
     }
 }
 
-void Kots_CharacterLogout(edict_t *ent, qboolean force_respawn, qboolean log_activity)
+void Kots_CharacterLogout(edict_t *ent, bool force_respawn, bool log_activity)
 {
     //Log suspicious activity
     //We may not always want to log it if we're going to be logging people out in bulk
@@ -1388,7 +1388,7 @@ void Kots_CharacterResetTimers(edict_t *ent)
     ent->character->next_flytime = 0;
 }
 
-void Kots_CharacterEndSpree(edict_t *ent, qboolean allow_forfeit)
+void Kots_CharacterEndSpree(edict_t *ent, bool allow_forfeit)
 {
     //don't do any of this stuff if at intermission
     if (!level.intermissiontime && allow_forfeit)
@@ -1988,7 +1988,7 @@ int Kots_CharacterGetArmor(edict_t *ent)
 void Kots_CharacterPerformDamageCalculations(edict_t *targ, edict_t *attacker, int *take, int *asave, int mod, vec3_t dir, vec3_t point, vec3_t normal, int te_sparks, int dflags)
 {
     int total, realtotal;
-    qboolean friendly_fire = (mod & MOD_FRIENDLY_FIRE ? true : false);
+    bool friendly_fire = (mod & MOD_FRIENDLY_FIRE ? true : false);
     mod = (mod & ~MOD_FRIENDLY_FIRE);
 
     //no need to do anything for dead things or non-characters

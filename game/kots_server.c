@@ -4,7 +4,6 @@
 #include "kots_mute.h"
 #include "kots_commands.h"
 #include "kots_runes.h"
-#include "kots_update.h"
 #include "kots_utils.h"
 #include "kots_menu.h"
 #include "kots_admin.h"
@@ -14,8 +13,8 @@
 array_t *kots_ipbans = NULL;
 array_t *kots_servers = NULL;
 time_t next_server_update = 0;
-qboolean allow_login = true;
-qboolean server_login = true;
+bool allow_login = true;
+bool server_login = true;
 
 //static function prototypes
 static void LoginCharacterInternal(edict_t *ent, char *name, char *pass, char *ip_address, int client_id);
@@ -44,7 +43,6 @@ void Kots_InitializeServer()
     Kots_CheckDuplicateCommands();
 
     //initialize other things
-    Kots_UpdateInit();
     Kots_MuteInit();
 
     //do initial creating of queues, etc
@@ -63,9 +61,6 @@ void Kots_FreeServer()
 {
 
     int i;
-
-    //free the other services
-    Kots_UpdateFree();
 
     //wait for all input jobs to be completed
     Kots_WaitForDbThreads();
@@ -129,7 +124,7 @@ void Kots_ServerProcessOutput()
     }
 }
 
-qboolean Kots_ServerIsClientValid(edict_t *ent, int client_id)
+bool Kots_ServerIsClientValid(edict_t *ent, int client_id)
 {
     if (ent && ent->client && ent->client->pers.kots_persist.client_id == client_id)
         return true;
@@ -522,7 +517,7 @@ void Kots_ServerBanIp(edict_t *admin, edict_t *banned)
     Kots_AddDbThreadJob(job);
 }
 
-qboolean Kots_CheckIpBan(edict_t *ent)
+bool Kots_CheckIpBan(edict_t *ent)
 {
     ULONG i;
 
@@ -820,7 +815,7 @@ void Kots_ServerDbNameChanged()
     Kots_AddDbThreadJob(job);
 }
 
-void Kots_ServerSetAllowLogin(edict_t *admin, qboolean allow)
+void Kots_ServerSetAllowLogin(edict_t *admin, bool allow)
 {
     server_login = allow;
 #ifndef KOTS_TEST // Useful for logging in as admin, then disabling login
@@ -858,7 +853,7 @@ void Kots_ServerSetAllowLogin(edict_t *admin, qboolean allow)
     }
 }
 
-qboolean Kots_ServerCanLogin()
+bool Kots_ServerCanLogin()
 {
     return server_login;
 }

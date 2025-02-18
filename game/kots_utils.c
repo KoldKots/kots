@@ -256,7 +256,7 @@ static void loc_buildboxpoints(vec3_t p[8], vec3_t org, vec3_t mins, vec3_t maxs
     p[7][1] -= maxs[1];
 }
 
-qboolean loc_CanSee (edict_t *targ, edict_t *inflictor)
+bool loc_CanSee (edict_t *targ, edict_t *inflictor)
 {
     trace_t trace;
     vec3_t  targpoints[8];
@@ -340,7 +340,7 @@ void Kots_strtov(char *value, vec3_t *out)
     sscanf(value, "%f,%f,%f", &(*out)[0], &(*out)[1], &(*out)[2]);
 }
 
-qboolean Kots_ValidateChar(char *value, char *valid_chars)
+bool Kots_ValidateChar(char *value, char *valid_chars)
 {
     char *v;
     for (v = valid_chars; *v != '\0'; v++)
@@ -353,7 +353,7 @@ qboolean Kots_ValidateChar(char *value, char *valid_chars)
     return false;
 }
 
-qboolean Kots_ValidateString(char *value, char *valid_chars)
+bool Kots_ValidateString(char *value, char *valid_chars)
 {
     char *c;
 
@@ -386,7 +386,7 @@ void Kots_UnicastSound(edict_t *ent, int soundIndex, float volume)
     gi.unicast(ent, true);
 }
 
-void Kots_PlaySound(edict_t *ent, int channel, int soundIndex, float volume, float attenuation, float timeofs, qboolean unicast)
+void Kots_PlaySound(edict_t *ent, int channel, int soundIndex, float volume, float attenuation, float timeofs, bool unicast)
 {
     if (unicast)
         Kots_UnicastSound(ent, soundIndex, volume);

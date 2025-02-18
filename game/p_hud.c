@@ -89,7 +89,7 @@ void MoveClientToIntermission (edict_t *ent)
 
 }
 
-qboolean IsFraglimitHit()
+bool IsFraglimitHit()
 {
     int i;
     edict_t *ent = g_edicts + 1;

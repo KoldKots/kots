@@ -595,7 +595,7 @@ Kill box
 ==============================================================================
 */
 
-qboolean Kots_SpawnKick(edict_t *targ, edict_t *attacker)
+bool Kots_SpawnKick(edict_t *targ, edict_t *attacker)
 {
     vec3_t forward;
     vec3_t dest;
@@ -663,7 +663,7 @@ Kills all entities that would touch the proposed new positioning
 of ent.  Ent should be unlinked before calling this!
 =================
 */
-qboolean KillBox (edict_t *ent)
+bool KillBox (edict_t *ent)
 {
     trace_t     tr;
     int count = 0;

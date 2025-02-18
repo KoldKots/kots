@@ -31,7 +31,7 @@ hover
 //SWB - KOTS Includes
 #include "kots_monster.h"
 
-qboolean visible (edict_t *self, edict_t *other);
+bool visible (edict_t *self, edict_t *other);
 
 
 static int  sound_pain1;

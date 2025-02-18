@@ -98,7 +98,7 @@ void Kots_RuneMakeTouchable(edict_t *ent)
     ent->owner = NULL;
 }
 
-qboolean Kots_RunePickup(edict_t *ent, edict_t *other)
+bool Kots_RunePickup(edict_t *ent, edict_t *other)
 {
     if (!other->character || !other->character->is_loggedin || other->character->rune)
         return false;
@@ -433,7 +433,7 @@ void Kots_RunesCheckLoad()
     }
 }
 
-qboolean Kots_RuneIsDropped(int rune_id)
+bool Kots_RuneIsDropped(int rune_id)
 {
     dropped_rune_t *dropped;
     ULONG i;
@@ -449,7 +449,7 @@ qboolean Kots_RuneIsDropped(int rune_id)
     return false;
 }
 
-qboolean Kots_RuneIsPersisted(int rune_id)
+bool Kots_RuneIsPersisted(int rune_id)
 {
     int i;
     edict_t *ent;

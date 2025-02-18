@@ -3,7 +3,7 @@
 
 #include "kots_character.h"
 
-qboolean Kots_CharacterCanResist(edict_t *ent);
+bool Kots_CharacterCanResist(edict_t *ent);
 
 //Power resist methods
 void Kots_CharacterResistExpack(edict_t *ent);

@@ -1406,7 +1406,7 @@ void Kots_CharacterCheckConvertAmmo(edict_t *ent)
     }
 }
 
-qboolean Kots_CharacterCheckRailDeflect(edict_t *targ, edict_t *attacker, vec3_t dir, int damage)
+bool Kots_CharacterCheckRailDeflect(edict_t *targ, edict_t *attacker, vec3_t dir, int damage)
 {
     if (targ->character->cur_spirit >= 7)
     {
@@ -1792,7 +1792,7 @@ void Kots_CharacterFlail(edict_t *ent)
     {
         vec3_t      dir, angle;
         edict_t     *enemy = NULL;
-        qboolean    hit = false;
+        bool    hit = false;
 
         //SWB - dex damage reduction like all other damage reductions
         //      should be in Kots_CharacterCheckReductions
@@ -1855,7 +1855,7 @@ void Kots_CharacterFlail(edict_t *ent)
 }
 
 //returns true if maximum number of conflags have been reached
-qboolean Kots_CharacterCheckMaxConflags()
+bool Kots_CharacterCheckMaxConflags()
 {
     int i, count = 0;
     edict_t *ent = g_edicts + 1;
@@ -2011,12 +2011,12 @@ void Kots_VerifyHeadShot (vec3_t point, vec3_t dir, float height, vec3_t newpoin
 
 #define HEAD_HEIGHT 16
 
-qboolean Kots_IsHeadShot (edict_t *attacker, edict_t *targ, vec3_t dir, vec3_t point, int damage)
+bool Kots_IsHeadShot (edict_t *attacker, edict_t *targ, vec3_t dir, vec3_t point, int damage)
 {
     float       height, lower_bound, upper_bound; //height will be distance from the top of BBOX
     float       z_rel;
     float       from_top;
-    qboolean    headshot = false;
+    bool    headshot = false;
 
     if (damage < 1)
         return false;
@@ -2306,7 +2306,7 @@ void Kots_CharacterCheckHaste(edict_t *ent, pmove_t *pm)
     }
 }
 
-void weapon_grenade_fire(edict_t *ent, qboolean held);
+void weapon_grenade_fire(edict_t *ent, bool held);
 void Kots_CharacterDetonate(edict_t *ent)
 {
     if (ent->character->cur_grenade < 4)

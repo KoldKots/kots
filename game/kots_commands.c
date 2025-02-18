@@ -17,7 +17,6 @@
 #include "kots_monster.h"
 #include "kots_admin.h"
 #include "kots_hud.h"
-#include "kots_update.h"
 
 //Respawn weapons
 weaponlookup_t WeaponLookup[] =
@@ -113,7 +112,6 @@ command_t kots_commands[] =
     "kots_listrunes", "Shows a list of all runes", Kots_ListRunes, true,
     "kots_showrunes", "Shows a list of all runes on the current map", Kots_ShowRunes, true,
     "kots_destroyrune", "Destroyes the first rune found with this name", Kots_DestroyRune, true,
-    "kots_update", "Updates to the latest version of KOTS2007", Kots_Update, true,
     "kots_revert", "Reverts to the last saved version of KOTS2007", Kots_Revert, true,
     "kots_rcon", "Provides rcon-like functionality for KOTS2007 admins", Kots_RCon, true,
     "kots_poison", "Enables/disables rage poison ability", Kots_Poison, false,
@@ -235,7 +233,7 @@ void Kots_StartGame(edict_t *ent, pmenuhnd_t *hnd)
     }
 }
 
-qboolean Kots_ValidateName(edict_t *ent)
+bool Kots_ValidateName(edict_t *ent)
 {
     static char *valid_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 -=[]',./!@#%^&*()_+{}|:<>?";
     size_t len = strlen(ent->client->pers.netname);
@@ -1001,7 +999,7 @@ void Kots_Stats(edict_t *ent, char *args)
     Kots_HudShowStats(ent, args);
 }
 
-qboolean Kots_ToggleValue(char *value, qboolean current)
+bool Kots_ToggleValue(char *value, bool current)
 {
     if (Q_stricmp(value, "on") == 0)
         return true;
@@ -1055,16 +1053,6 @@ void Kots_HgFuse(edict_t *ent, char *args)
             gi.cprintf(ent, PRINT_HIGH, "HG shorter fuse has been enabled.\n");
         else
             gi.cprintf(ent, PRINT_HIGH, "HG shorter fuse has been disabled.\n");
-    }
-}
-
-void Kots_Update(edict_t *ent, char *args)
-{
-    if (level.intermissiontime)
-        return;
-    else if (ent->client->pers.kots_persist.is_admin)
-    {
-        Kots_UpdateStartDefault(ent);
     }
 }
 
@@ -1141,7 +1129,7 @@ void Kots_HookColor(edict_t *ent, char *args)
         Kots_CharacterHookColor(ent, args);
 }
 
-qboolean Kots_Command(edict_t *ent, char *cmd)
+bool Kots_Command(edict_t *ent, char *cmd)
 {
     int i;
 

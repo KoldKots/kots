@@ -157,7 +157,6 @@ is loaded.
 */
 void InitGame (void)
 {
-    //Kots_UpdateGetModulePath();
     gi.dprintf ("==== InitGame ====\n");
 
     gun_x = gi.cvar ("gun_x", "0", 0);
@@ -494,7 +493,7 @@ A single player death will automatically restore from the
 last save position.
 ============
 */
-void WriteGame (char *filename, qboolean autosave)
+void WriteGame (char *filename, bool autosave)
 {
     FILE    *f;
     int     i;

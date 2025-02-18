@@ -48,7 +48,7 @@ monster_build_t monster_builds[MonsterBuildCount] = {
     {0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 0}
 };
 
-qboolean Kots_MonstersEnabled()
+bool Kots_MonstersEnabled()
 {
     if (coop->value)
         return true;
@@ -365,7 +365,7 @@ void Kots_MonsterCheckSpawn()
 
         if (!spreewar.warent)
         {
-            qboolean success = false;
+            bool success = false;
             //increment max based on clients
             max += players * KOTS_MONSTERS_PER_CLIENT;
 
@@ -420,7 +420,7 @@ kots_monster_t *Kots_MonsterFind(char *name)
     return NULL;
 }
 
-qboolean Kots_MonsterSpawnNew(kots_monster_t *monster)
+bool Kots_MonsterSpawnNew(kots_monster_t *monster)
 {
     edict_t *ent = G_Spawn();
     ent->classname = monster->classname;
@@ -444,7 +444,7 @@ qboolean Kots_MonsterSpawnNew(kots_monster_t *monster)
     }
 }
 
-qboolean Kots_MonsterSelectSpawn(edict_t *ent)
+bool Kots_MonsterSelectSpawn(edict_t *ent)
 {
     int i, j, start;
     edict_t *spot = NULL;
@@ -521,7 +521,7 @@ qboolean Kots_MonsterSelectSpawn(edict_t *ent)
 }
 
 //we recreate this function so the monster can drop as far as necessary
-qboolean Kots_MonsterDropToFloor(edict_t *ent)
+bool Kots_MonsterDropToFloor(edict_t *ent)
 {
     vec3_t      end;
     trace_t     trace;
@@ -665,7 +665,7 @@ void Kots_MonsterWriteStats(edict_t *ent)
 }
 
 //Look around for a new goal entity to walk to
-qboolean Kots_MonsterFindGoal(edict_t *ent)
+bool Kots_MonsterFindGoal(edict_t *ent)
 {
     edict_t *ignore = ent->enemy;
     edict_t *best = NULL;
@@ -716,7 +716,7 @@ qboolean Kots_MonsterFindGoal(edict_t *ent)
     return false;
 }
 
-qboolean Kots_MonsterCanWalkTo(edict_t *self, edict_t *targ)
+bool Kots_MonsterCanWalkTo(edict_t *self, edict_t *targ)
 {
     //int max_stepsize = 6;
     //trace_t tr;
@@ -874,7 +874,7 @@ float Kots_MonstersRangeFromSpot(edict_t *spot)
     vec3_t  v;
     unsigned long i;
     float   distance;
-    qboolean found = false;
+    bool found = false;
 
     bestdistance = 9999999;
 

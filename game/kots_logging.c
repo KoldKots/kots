@@ -62,7 +62,7 @@ void Kots_GetUniquePlayers(int *players, int *specs, int *unique)
 void Kots_LogHighScores()
 {
     int i;
-    qboolean found = false;
+    bool found = false;
     edict_t *ent = g_edicts + 1;
 
     //search for unusually high scores
@@ -95,7 +95,7 @@ void Kots_LogHighScores()
 void Kots_LogLowScores()
 {
     int i;
-    qboolean found = false;
+    bool found = false;
     edict_t *ent = g_edicts + 1;
 
     //search for unusually low scores
@@ -128,7 +128,7 @@ void Kots_LogLowScores()
 void Kots_LogHighRatio()
 {
     int i;
-    qboolean found = false;
+    bool found = false;
     edict_t *ent = g_edicts + 1;
 
     //search for unusually low scores

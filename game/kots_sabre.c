@@ -126,7 +126,7 @@ void fire_sabre (edict_t *self, vec3_t start, vec3_t dir, int damage, int length
     trace_t tr, tr2;
     vec3_t from, end;
     vec3_t mins, maxs;
-    qboolean water;
+    bool water;
     int mask;
     int count = 0;
 

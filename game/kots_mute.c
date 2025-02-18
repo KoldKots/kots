@@ -82,7 +82,7 @@ void Kots_MuteCheckAll()
 void Kots_MuteCheck(edict_t *ent)
 {
     ULONG i;
-    qboolean muted = false;
+    bool muted = false;
 
     for (i = 0; i < kots_mutes->length; i++)
     {

@@ -14,7 +14,7 @@ typedef struct
     char *name;
     char *desc;
     void (*action)(edict_t *ent, char *args);
-    qboolean is_admin;
+    bool is_admin;
 } command_t;
 
 //Quake 2 Prototypes used
@@ -107,12 +107,11 @@ void Kots_Map(edict_t *ent, char *args);
 void Kots_HgTimer(edict_t *ent, char *args);
 void Kots_HgSpeed(edict_t *ent, char *args);
 void Kots_HgFuse(edict_t *ent, char *args);
-void Kots_Update(edict_t *ent, char *args);
 void Kots_Revert(edict_t *ent, char *args);
 void Kots_RCon(edict_t *ent, char *args);
 void Kots_Stats(edict_t *ent, char *args);
 void Kots_Respec(edict_t *ent, char *player);
 void Kots_HookColor(edict_t *ent, char *args);
-qboolean Kots_Command(edict_t *ent, char *cmd);
+bool Kots_Command(edict_t *ent, char *cmd);
 
 #endif

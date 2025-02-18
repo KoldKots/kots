@@ -23,7 +23,7 @@ int Kots_ConfigStringFindIndex(char *name, int start, int length, indexmethod_t 
 static char configstrings[MAX_CONFIGSTRINGS][MAX_QPATH];
 
 //maps use models so we need to keep track of when the first model gets indexed
-static qboolean first_model_indexed;
+static bool first_model_indexed;
 
 void Kots_ConfigStringInit()
 {

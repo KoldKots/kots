@@ -6,13 +6,13 @@
 #define HEALTH_IGNORE_MAX   1
 #define HEALTH_TIMED        2
 
-void Kots_GiveWeapon(edict_t *ent, int index, qboolean give)
+void Kots_GiveWeapon(edict_t *ent, int index, bool give)
 {
     if (give && !ent->client->pers.inventory[index])
         ent->client->pers.inventory[index] = 1;
 }
 
-qboolean Kots_PackPickup(edict_t *pack, edict_t *ent)
+bool Kots_PackPickup(edict_t *pack, edict_t *ent)
 {
     float ammopickup;
 
@@ -163,7 +163,7 @@ edict_t *Kots_PackDrop(edict_t *targ, edict_t *attacker)
 }
 
 
-qboolean Kots_FakeHealthPickup(edict_t *item, edict_t *ent)
+bool Kots_FakeHealthPickup(edict_t *item, edict_t *ent)
 {
     if (!ent->client && !(ent->svflags & SVF_MONSTER))
         return false;
@@ -206,7 +206,7 @@ void Kots_CharacterDropFakeHealth(edict_t *ent, char *pickup_name)
     }
 }
 
-qboolean Kots_MinePickup(edict_t *item, edict_t *ent)
+bool Kots_MinePickup(edict_t *item, edict_t *ent)
 {
     vec3_t      origin;
 
@@ -349,7 +349,7 @@ void Kots_CharacterDropShards(edict_t *ent)
     }
 }
 
-qboolean Kots_FakeShardPickup(edict_t *item, edict_t *ent)
+bool Kots_FakeShardPickup(edict_t *item, edict_t *ent)
 {
     if (!ent->client && !(ent->svflags & SVF_MONSTER))
         return false;

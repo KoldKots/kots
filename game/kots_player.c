@@ -40,7 +40,7 @@ playerpoint_t *Kots_GetPlayerTree(char *name)
     return NULL;
 }
 
-qboolean Kots_CharacterCanAddPlayer(edict_t *ent, int level, int max, int cost)
+bool Kots_CharacterCanAddPlayer(edict_t *ent, int level, int max, int cost)
 {
     if (max > 0 && level >= max)
     {
@@ -425,7 +425,7 @@ void Kots_CharacterSetPlayer(edict_t *ent)
     }
 }
 
-qboolean Kots_CharacterCheckLevelCap(edict_t *ent, int player, int total)
+bool Kots_CharacterCheckLevelCap(edict_t *ent, int player, int total)
 {
     // The level cap only applies when you're below level 10
     if (ent->character->level < 10)

@@ -13,7 +13,7 @@ typedef struct
 
 weaponpoint_t *Kots_GetWeaponTree(char *name);
 int Kots_CharacterGetCurrentWeaponLevel(edict_t *ent, int weapon);
-qboolean Kots_CharacterCanAddWeapon(edict_t *ent, int cost);
+bool Kots_CharacterCanAddWeapon(edict_t *ent, int cost);
 void Kots_CharacterAddSabre(edict_t *ent);
 void Kots_CharacterAddShotgun(edict_t *ent);
 void Kots_CharacterAddMachinegun(edict_t *ent);

@@ -258,7 +258,7 @@ pmenu_t servers_menu[KotsMenuCount] = {
     { "Back",                       PMENU_ALIGN_LEFT, Kots_MenuShow }
 };
 
-qboolean Kots_MenuIsOpen(edict_t *ent, char *name)
+bool Kots_MenuIsOpen(edict_t *ent, char *name)
 {
     if (level.intermissiontime || !level.time)
         return false;
@@ -270,7 +270,7 @@ qboolean Kots_MenuIsOpen(edict_t *ent, char *name)
         return false;
 }
 
-qboolean Kots_MenuCloseIfOpen(edict_t *ent, char *name)
+bool Kots_MenuCloseIfOpen(edict_t *ent, char *name)
 {
     if (level.intermissiontime || !level.time)
         return false;

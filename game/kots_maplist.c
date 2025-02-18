@@ -75,7 +75,7 @@ void AddVoteFail(int mapindex)
     }
 }
 
-qboolean CanVoteMap(int mapindex)
+bool CanVoteMap(int mapindex)
 {
     //find the vote fail
     votefail_t *vote = GetVoteFail(mapindex);

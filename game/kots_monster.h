@@ -35,8 +35,8 @@ typedef struct kots_monster_s
     int bonus_exp;
     void (*spawn)(edict_t *self);
     int frequency;
-    qboolean enabled;
-    qboolean boss;
+    bool enabled;
+    bool boss;
 } kots_monster_t;
 
 typedef struct monster_build_s
@@ -79,7 +79,7 @@ void SP_monster_soldier_light(edict_t *self);
 
 
 //define kots methods
-qboolean Kots_MonstersEnabled();
+bool Kots_MonstersEnabled();
 void Kots_MonsterRecreateAll();
 void Kots_MonsterStart(edict_t *ent);
 void Kots_MonsterCreate(edict_t *ent);
@@ -92,15 +92,15 @@ kots_monster_t *Kots_MonsterGetRandom();
 void Kots_MonsterKillAll();
 int Kots_MonsterGetClientsLoggedIn();
 void Kots_MonsterCheckSpawn();
-qboolean Kots_MonsterSelectSpawn(edict_t *ent);
-qboolean Kots_MonsterDropToFloor(edict_t *ent);
+bool Kots_MonsterSelectSpawn(edict_t *ent);
+bool Kots_MonsterDropToFloor(edict_t *ent);
 edict_t *Kots_MonsterFindRandomEdict();
 void Kots_MonsterInitSpawnPoints();
 kots_monster_t *Kots_MonsterFind(char *name);
-qboolean Kots_MonsterSpawnNew(kots_monster_t *monster);
+bool Kots_MonsterSpawnNew(kots_monster_t *monster);
 void Kots_MonsterWriteStats(edict_t *ent);
-qboolean Kots_MonsterFindGoal(edict_t *ent);
-qboolean Kots_MonsterCanWalkTo(edict_t *self, edict_t *targ);
+bool Kots_MonsterFindGoal(edict_t *ent);
+bool Kots_MonsterCanWalkTo(edict_t *self, edict_t *targ);
 void Kots_MonsterVoteCommand(edict_t *ent);
 void Kots_MonsterVote (edict_t *ent, int vote);
 void Kots_MonsterCheckVote();

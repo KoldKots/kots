@@ -9,15 +9,15 @@ typedef struct pack_s
     char owner_name[100];
 
     //has weapons?
-    qboolean shotgun;
-    qboolean supershotgun;
-    qboolean machinegun;
-    qboolean chaingun;
-    qboolean grenadelauncher;
-    qboolean rocketlauncher;
-    qboolean hyperblaster;
-    qboolean railgun;
-    qboolean bfg;
+    bool shotgun;
+    bool supershotgun;
+    bool machinegun;
+    bool chaingun;
+    bool grenadelauncher;
+    bool rocketlauncher;
+    bool hyperblaster;
+    bool railgun;
+    bool bfg;
 
     //ammo
     int shells;
@@ -33,17 +33,17 @@ typedef struct pack_s
 
 } pack_t;
 
-void Kots_GiveWeapon(edict_t *ent, int index, qboolean give);
+void Kots_GiveWeapon(edict_t *ent, int index, bool give);
 edict_t *Kots_PackDrop(edict_t *targ, edict_t *attacker);
-qboolean Kots_PackPickup(edict_t *pack, edict_t *ent);
+bool Kots_PackPickup(edict_t *pack, edict_t *ent);
 void Kots_PackMakeTouchable(edict_t *ent);
-qboolean Kots_FakeHealthPickup(edict_t *item, edict_t *ent);
+bool Kots_FakeHealthPickup(edict_t *item, edict_t *ent);
 void Kots_CharacterDropFakeHealth(edict_t *ent, char *pickup_name);
-qboolean Kots_MinePickup(edict_t *item, edict_t *ent);
+bool Kots_MinePickup(edict_t *item, edict_t *ent);
 void Kots_MineMakeTouchable(edict_t *ent);
 void Kots_CharacterDropStims(edict_t *ent);
 void Kots_CharacterDropShards(edict_t *ent);
-qboolean Kots_FakeShardPickup(edict_t *item, edict_t *ent);
+bool Kots_FakeShardPickup(edict_t *item, edict_t *ent);
 void Kots_CharacterDropFakeShard(edict_t *ent);
 void Kots_TelefragItem(edict_t *ent);
 void Kots_FreeItem(edict_t *ent);

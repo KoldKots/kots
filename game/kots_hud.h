@@ -16,7 +16,7 @@ void Kots_HudShowStats(edict_t *ent, char *args);
 void Kots_HudScoreboard(edict_t *ent);
 void Kots_HudIntermissionCheckScreen();
 void Kots_HudResetIntermissionClicked(edict_t *ent);
-qboolean Kots_HudHasIntermissionClicked(edict_t *ent);
+bool Kots_HudHasIntermissionClicked(edict_t *ent);
 void Kots_HudIntermissionClick(edict_t *ent);
 
 #endif

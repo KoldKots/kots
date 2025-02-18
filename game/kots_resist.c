@@ -1,7 +1,7 @@
 #include "kots_resist.h"
 
 //Check if a character can set a resist or not
-qboolean Kots_CharacterCanResist(edict_t *ent)
+bool Kots_CharacterCanResist(edict_t *ent)
 {
     if (ent->character->resist == WEAP_NONE)
         return true;

@@ -26,7 +26,7 @@ int Kots_RandRound(float i);
 int Kots_RandMultiply(int i, double j);
 
 
-void Kots_PlaySound(edict_t *ent, int channel, int soundIndex, float volume, float attenuation, float timeofs, qboolean unicast);
+void Kots_PlaySound(edict_t *ent, int channel, int soundIndex, float volume, float attenuation, float timeofs, bool unicast);
 void Kots_UnicastSound(edict_t *ent, int soundIndex, float volume);
 void Kots_ClearSoundQueue();
 void Kots_DeleteSoundQueue();
@@ -36,7 +36,7 @@ void Kots_ProcessQueuedSounds();
 
 
 //These methods are curteousy of disruptor taken from KOTS Orbit
-qboolean loc_CanSee (edict_t *targ, edict_t *inflictor);
+bool loc_CanSee (edict_t *targ, edict_t *inflictor);
 
 int Kots_snprintf(char *out, size_t size, const char *in, ...);
 int Kots_vsnprintf(char *out, size_t size, const char *in, va_list args);
@@ -44,7 +44,7 @@ char *Kots_strncpy(char *out, const char *in, size_t size);
 
 vec3_t *CenterEdict(edict_t *ent);
 void Kots_strtov(char *value, vec3_t *out);
-qboolean Kots_ValidateString(char *value, char *valid_chars);
+bool Kots_ValidateString(char *value, char *valid_chars);
 void Kots_WrapText(char *input, char *output, int lineWidth, int length);
 
 #endif

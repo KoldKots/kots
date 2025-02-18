@@ -52,7 +52,7 @@ char *ClientTeam (edict_t *ent)
     return ++p;
 }
 
-qboolean OnSameTeam (edict_t *ent1, edict_t *ent2)
+bool OnSameTeam (edict_t *ent1, edict_t *ent2)
 {
     //if both players are either logged in or both are logged out consider them the same team
     if (!ent1->client->pers.kots_persist.is_loggedin && !ent2->client->pers.kots_persist.is_loggedin)
@@ -167,7 +167,7 @@ void Cmd_Give_f (edict_t *ent)
     gitem_t     *it;
     int         index;
     int         i;
-    qboolean    give_all;
+    bool    give_all;
     edict_t     *it_ent;
 
     if (deathmatch->value && !sv_cheats->value)
@@ -866,7 +866,7 @@ void Kots_ReplaceText(char *source, char *start, char *replaceWith, int len)
 Cmd_Say_f
 ==================
 */
-void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
+void Cmd_Say_f (edict_t *ent, bool team, bool arg0)
 {
     int     i, j;
     edict_t *other;

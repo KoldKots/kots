@@ -2,7 +2,7 @@
 #include "kots_resist.h"
 #include "kots_runes.h"
 
-qboolean is_quad;
+bool is_quad;
 byte     is_silenced;
 
 //Weapon names and functions to add or resist them
@@ -126,7 +126,7 @@ int Kots_CharacterGetWeaponCost(int weapon, int curlevel)
         return 1;
 }
 
-qboolean Kots_CharacterCanAddWeapon(edict_t *ent, int cost)
+bool Kots_CharacterCanAddWeapon(edict_t *ent, int cost)
 {
     if (cost == 0)
     {

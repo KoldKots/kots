@@ -22,7 +22,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //SWB - KOTS Includes
 #include "kots_dbthread.h"
-#include "kots_update.h"
 #include "kots_maplist.h"
 #include "kots_server.h"
 
@@ -74,7 +73,7 @@ int         numipfilters;
 StringToFilter
 =================
 */
-static qboolean StringToFilter (char *s, ipfilter_t *f)
+static bool StringToFilter (char *s, ipfilter_t *f)
 {
     char    num[128];
     int     i, j;
@@ -121,7 +120,7 @@ static qboolean StringToFilter (char *s, ipfilter_t *f)
 SV_FilterPacket
 =================
 */
-qboolean SV_FilterPacket (char *from)
+bool SV_FilterPacket (char *from)
 {
     int     i;
     unsigned    in;
@@ -307,11 +306,6 @@ void SVCmd_DbHostName_f (void)
 void SVCmd_DbDebug_f (void)
 {
     Kots_DebugDbInfo(NULL);
-}
-
-void SVCmd_Update_f (void)
-{
-    Kots_UpdateStartDefault(NULL);
 }
 
 void SVCmd_Revert_f (void)

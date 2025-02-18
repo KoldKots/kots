@@ -3,8 +3,8 @@
 
 #include "kots_character.h"
 
-qboolean Kots_MenuCloseIfOpen(edict_t *ent, char *name);
-qboolean Kots_MenuIsOpen(edict_t *ent, char *name);
+bool Kots_MenuCloseIfOpen(edict_t *ent, char *name);
+bool Kots_MenuIsOpen(edict_t *ent, char *name);
 
 // Aldarn
 void Kots_MenuClose(edict_t *ent, pmenuhnd_t *hnd);

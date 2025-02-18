@@ -96,7 +96,7 @@ void Kots_CharacterPickupAmmo(edict_t *ent, gitem_t *ammo, int amount)
     }
 }
 
-qboolean Kots_CharacterPickupArmor(edict_t *ent, edict_t *other)
+bool Kots_CharacterPickupArmor(edict_t *ent, edict_t *other)
 {
     int pickup;
     int index = ARMOR_INDEX;
@@ -167,9 +167,9 @@ qboolean Kots_CharacterPickupArmor(edict_t *ent, edict_t *other)
     return true;
 }
 
-qboolean Kots_CharacterPickupHealth(edict_t *ent, edict_t *other)
+bool Kots_CharacterPickupHealth(edict_t *ent, edict_t *other)
 {
-    qboolean cure_poison = false;
+    bool cure_poison = false;
     int realmax = Kots_CharacterGetMaxRegenHealth(other);
     int count = ent->count;
 
